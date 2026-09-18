@@ -1,13 +1,65 @@
 const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
 const fmt=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(n||0);
 const STORAGE_KEY='agis10m.phase1.drafts.v1';
-let DATA={metrics:{},jobs:[],team:[],knowledge:[],training:[],rnd:[],schedule:[]};
+let DATA={metrics:{},jobs:[],team:[],knowledge:[],training:[],rnd:[],schedule:[],agents100:[],activity:[]};
 
 async function load(path,fallback){try{const r=await fetch(path+'?v='+Date.now());if(!r.ok)throw 0;return await r.json()}catch{return fallback}}
 function esc(v=''){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function statusClass(s){s=(s||'').toLowerCase();return s.includes('block')||s.includes('fail')?'red':s.includes('review')||s.includes('queue')||s.includes('plan')?'yellow':'green'}
 function drafts(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]')}catch{return[]}}
 function saveDrafts(v){localStorage.setItem(STORAGE_KEY,JSON.stringify(v));renderDrafts()}
+
+
+function officeStateClass(s){return 'state-'+String(s||'READY').toLowerCase()}
+function initials(name='AI'){return name.split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase()}
+function renderOffice(){
+ const agents=DATA.agents100||[];
+ const q=($('#officeSearch')?.value||'').toLowerCase().trim();
+ const dept=$('#officeDepartment')?.value||'';
+ const state=$('#officeStatus')?.value||'';
+ const filtered=agents.filter(a=>(!dept||a.department===dept)&&(!state||a.status===state)&&(!q||[a.name,a.specialty,a.currentJob,a.department].join(' ').toLowerCase().includes(q)));
+ const groups={}; for(const a of filtered)(groups[a.department]??=[]).push(a);
+ $('#officeRooms').innerHTML=Object.entries(groups).map(([department,list])=>`
+  <section class="office-room">
+    <div class="room-head"><div><small>DEPARTMENT</small><h3>${esc(department)}</h3></div><span class="badge">${list.length} visible</span></div>
+    <div class="desk-grid">${list.map(a=>`
+      <button class="agent-desk ${officeStateClass(a.status)}" data-agent-id="${esc(a.id)}">
+        <span class="person"><i class="head"></i><i class="body"></i><i class="deskline"></i></span>
+        <span class="desk-copy"><b>${esc(a.name)}</b><small>${esc(a.specialty)}</small><em>${esc(a.status)}</em></span>
+      </button>`).join('')}</div>
+  </section>`).join('') || '<div class="empty">No agents match this filter.</div>';
+ $('[data-agent-id]').forEach(b=>b.onclick=()=>openAgent(b.dataset.agentId));
+ const count=s=>agents.filter(a=>a.status===s).length;
+ $('#officeTotal').textContent=agents.length;$('#officeWorking').textContent=count('WORKING');$('#officeReview').textContent=count('REVIEW');$('#officeLearning').textContent=count('LEARNING');$('#officeReady').textContent=count('READY');
+}
+function renderActivity(){
+ const items=DATA.activity||[];
+ $('#activityFeed').innerHTML=items.map(x=>`<div class="activity-item"><time>${esc(x.time)}</time><div><b>${esc(x.agent)}</b><small>${esc(x.type)}</small><p>${esc(x.text)}</p></div></div>`).join('')||'<div class="empty">No activity evidence yet.</div>';
+}
+function openAgent(id){
+ const a=(DATA.agents100||[]).find(x=>x.id===id); if(!a)return;
+ $('#agentProfile').innerHTML=`
+   <div class="profile-state ${officeStateClass(a.status)}">${esc(a.status)}</div>
+   <div class="profile-avatar">${esc(initials(a.name))}</div>
+   <div class="eyebrow">${esc(a.id)} • ${esc(a.department)}</div>
+   <h2>${esc(a.name)}</h2><p class="muted">${esc(a.specialty)}</p>
+   <div class="profile-grid">
+    <div><small>MISSION</small><strong>${esc(a.mission)}</strong></div>
+    <div><small>CURRENT JOB</small><strong>${esc(a.currentJob)}</strong></div>
+    <div><small>KPI</small><strong>${esc(a.kpi)}</strong></div>
+    <div><small>PERMISSION</small><strong>${esc(a.permission)}</strong></div>
+    <div><small>SUPERVISOR</small><strong>${esc(a.supervisor)}</strong></div>
+    <div><small>SKILL LEVEL</small><strong>L${esc(a.skillLevel)}</strong></div>
+   </div>
+   <button class="primary" id="assignAgentDraft">Create assignment draft</button>`;
+ $('#agentDrawer').classList.add('open');$('#agentDrawer').setAttribute('aria-hidden','false');
+ $('#assignAgentDraft').onclick=()=>addDraft({type:'ASSIGN_AGENT',agentId:a.id,agent:a.name,currentJob:a.currentJob,at:new Date().toISOString()});
+}
+function closeAgent(){const d=$('#agentDrawer');d?.classList.remove('open');d?.setAttribute('aria-hidden','true')}
+function populateOfficeFilters(){
+ const depts=[...new Set((DATA.agents100||[]).map(a=>a.department))];
+ $('#officeDepartment').innerHTML='<option value="">All departments</option>'+depts.map(d=>`<option>${esc(d)}</option>`).join('');
+}
 
 function renderJobs(jobs){
  $('#jobBoard').innerHTML=jobs.map(j=>`<article class="job"><div class="job-top"><span>${esc(j.id)}</span><span class="status ${statusClass(j.status)}">${esc(j.status)}</span></div><h3>${esc(j.title)}</h3><p>${esc(j.objective)}</p><footer><span>${esc(j.owner)}</span><span>${esc(j.metric||'')}</span></footer><div class="job-actions"><button data-job="${esc(j.id)}" data-action="ACTIVE">Start</button><button data-job="${esc(j.id)}" data-action="REVIEW">Review</button><button data-job="${esc(j.id)}" data-action="DONE">Approve</button></div></article>`).join('');
@@ -32,15 +84,15 @@ function renderScore(metrics){
  $('#lastUpdated').textContent='Last updated '+(metrics.updated||'—');
 }
 function renderSchedule(items){$('#scheduleGrid').innerHTML=items.map(s=>`<div class="schedule-item"><strong>${esc(s.time)}</strong><div><b>${esc(s.name)}</b><small>${esc(s.purpose)}</small></div><span class="status ${statusClass(s.status)}">${esc(s.status)}</span></div>`).join('')}
-function populateOwners(){ $('#jobOwner').innerHTML=DATA.team.map(a=>`<option>${esc(a.name)}</option>`).join('') }
+function populateOwners(){ const src=(DATA.agents100&&DATA.agents100.length)?DATA.agents100:DATA.team; $('#jobOwner').innerHTML=src.map(a=>`<option>${esc(a.name)}</option>`).join('') }
 function addDraft(item){const d=drafts();d.unshift({id:'D-'+Date.now(),...item});saveDrafts(d)}
 function renderDrafts(){const d=drafts();$('#draftCount').textContent=String(d.length);$('#draftQueue').innerHTML=d.length?d.map(x=>`<div class="draft-item"><b>${esc(x.type)}</b><span>${esc(x.title||x.jobId||x.rndId||x.url||'')}</span><small>${new Date(x.at).toLocaleString('th-TH')}</small></div>`).join(''):'<div class="empty">No local control actions yet.</div>'}
 
 async function boot(){
  const fallbackMetrics={target:10000000,verifiedRevenue:0,qualifiedPipeline:0,mathStatus:'YELLOW',compressionFactor:1,constraint:'Collect real customer evidence',constraintWhy:'No verified customer economics yet.',nextAction:'Quantify the Golden Workflow baseline.',assets:[],updated:new Date().toLocaleDateString()};
- const [m,j,t,k,l,r,s]=await Promise.all([load('./data/metrics.json',fallbackMetrics),load('./data/jobs.json',[]),load('./data/team.json',[]),load('./data/knowledge.json',[]),load('./data/training.json',[]),load('./data/rnd.json',[]),load('./data/schedule.json',[])]);
- DATA={metrics:m,jobs:j,team:t,knowledge:k,training:l,rnd:r,schedule:s};
- renderScore(m);renderJobs(j);renderTeam(t);renderKnowledge(k);renderTraining(l);renderRND(r);renderSchedule(s);populateOwners();renderDrafts();
+ const [m,j,t,k,l,r,s,a100,act]=await Promise.all([load('./data/metrics.json',fallbackMetrics),load('./data/jobs.json',[]),load('./data/team.json',[]),load('./data/knowledge.json',[]),load('./data/training.json',[]),load('./data/rnd.json',[]),load('./data/schedule.json',[]),load('./data/agents100.json',{agents:[]}),load('./data/agent_activity.json',{events:[]})]);
+ DATA={metrics:m,jobs:j,team:t,knowledge:k,training:l,rnd:r,schedule:s,agents100:a100.agents||[],activity:act.events||[]};
+ renderScore(m);renderJobs(j);renderTeam(t);renderKnowledge(k);renderTraining(l);renderRND(r);renderSchedule(s);populateOwners();populateOfficeFilters();renderOffice();renderActivity();renderDrafts();
 }
 $$('.tab').forEach(b=>b.onclick=()=>{$$('.tab,.view').forEach(x=>x.classList.remove('active'));b.classList.add('active');$('#'+b.dataset.view).classList.add('active')});
 setInterval(()=>$('#clock').textContent=new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit',second:'2-digit'}),1000);
@@ -48,5 +100,8 @@ setInterval(()=>$('#clock').textContent=new Date().toLocaleTimeString('th-TH',{h
 $('#jobForm').onsubmit=e=>{e.preventDefault();addDraft({type:'CREATE_JOB',title:$('#jobTitle').value,owner:$('#jobOwner').value,objective:$('#jobObjective').value,acceptance:$('#jobAcceptance').value,metric:$('#jobMetric').value,status:'QUEUED',at:new Date().toISOString()});e.target.reset();populateOwners()};
 $('#addChannelBtn').onclick=()=>{const url=$('#channelInput').value.trim();if(url)addDraft({type:'ADD_SOURCE',url,scope:'RELEVANT_ONLY',at:new Date().toISOString()})};
 $('#clearBtn').onclick=()=>{if(confirm('Clear local draft actions?'))saveDrafts([])};
-$('#exportBtn').onclick=()=>{const payload={phase:'PHASE_1_FOUNDATION',exportedAt:new Date().toISOString(),metrics:DATA.metrics,localDrafts:drafts()};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='agis-phase1-snapshot.json';a.click();URL.revokeObjectURL(a.href)};
+$('#exportBtn').onclick=()=>{const payload={phase:'PHASE_2A_AGENT_OFFICE',exportedAt:new Date().toISOString(),metrics:DATA.metrics,localDrafts:drafts()};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='agis-phase2a-snapshot.json';a.click();URL.revokeObjectURL(a.href)};
+['officeSearch','officeDepartment','officeStatus'].forEach(id=>$('#'+id)?.addEventListener(id==='officeSearch'?'input':'change',renderOffice));
+$('[data-close-drawer]').forEach(x=>x.onclick=closeAgent);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAgent()});
 boot();
