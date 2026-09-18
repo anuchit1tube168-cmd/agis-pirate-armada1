@@ -1,6 +1,6 @@
 # AGENTS.md — AGIS $10M AGENT FACTORY
 
-**Evolution version: 1.1**
+**Evolution version: 1.2**
 
 ## Mission
 Build a compounding AI workforce that increases verified business leverage every day and maintains an evidence-based path toward the $10M target.
@@ -183,3 +183,44 @@ UI data must never claim unverified revenue, tests, customers, or completed work
 ## Scheduled work principle
 Schedules create opportunities to work; they do not prove progress.
 Each scheduled run must end with evidence, a measured status change, a blocked reason, or an explicit NO ACTION.
+
+
+## Data + R&D as the core learning system
+AGIS must treat structured project data as a first-class learning asset.
+
+For important work, preserve:
+- context/input;
+- output;
+- outcome;
+- human correction;
+- test result;
+- cost/time;
+- decision;
+- reusable asset;
+- business impact;
+- evidence/provenance.
+
+Follow `DATA_LEARNING_OS.md` and `RND_ENGINE.md`.
+
+Knowledge from YouTube or external media passes a relevance gate first.
+Deep-process only items that can materially affect Revenue, Customer ROI, Workflow Automation, Agent Capability, Data Advantage, Integration, Evaluation, Distribution, Permissions/Audit, Time Compression, Reuse, or Learning Velocity.
+
+For relevant clips, use `skills/YOUTUBE_RND_BULLET_SYSTEM.md`.
+The required transformation is:
+```
+RELEVANT SOURCE
+→ DETAILED BULLETS
+→ HOW THE SPEAKER THINKS
+→ CLAIM TYPE
+→ HYPOTHESIS
+→ EXPERIMENT
+→ RESULT
+→ SKILL / AGENT RULE / WORKFLOW / NO ACTION
+```
+
+## R&D from daily work
+Every repeated problem, correction, failure or successful pattern is a possible R&D input.
+The R&D AGENT must seek the smallest falsifiable experiment and record it in Data OS `14_RND`.
+Proven reusable learning is registered in `15_SKILL_REGISTRY`.
+
+Do not count raw notes, copied transcripts, or untested ideas as learning assets.
