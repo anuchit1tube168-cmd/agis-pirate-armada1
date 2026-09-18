@@ -1,7 +1,7 @@
 const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
 const fmt=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(n||0);
 const STORAGE_KEY='agis10m.phase1.drafts.v1';
-let DATA={metrics:{},jobs:[],team:[],knowledge:[],training:[],rnd:[],schedule:[],agents100:[],activity:[]};
+let DATA={metrics:{},jobs:[],team:[],knowledge:[],training:[],rnd:[],schedule:[],agents:[],activity:[]};
 
 async function load(path,fallback){try{const r=await fetch(path+'?v='+Date.now());if(!r.ok)throw 0;return await r.json()}catch{return fallback}}
 function esc(v=''){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -13,7 +13,7 @@ function saveDrafts(v){localStorage.setItem(STORAGE_KEY,JSON.stringify(v));rende
 
 async function applyRuntimeSnapshot(snapshot){
  if(!snapshot?.agents?.length)return;
- DATA.agents100=snapshot.agents;
+ DATA.agents=snapshot.agents;
  if(Array.isArray(snapshot.events)) DATA.activity=snapshot.events;
  renderOffice();renderActivity();populateOwners();
  const badge=document.querySelector('#office .section-title .pill');
@@ -36,7 +36,7 @@ async function connectRuntime(){
 function officeStateClass(s){return 'state-'+String(s||'READY').toLowerCase()}
 function initials(name='AI'){return name.split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase()}
 function renderOffice(){
- const agents=DATA.agents100||[];
+ const agents=DATA.agents||[];
  const q=($('#officeSearch')?.value||'').toLowerCase().trim();
  const dept=$('#officeDepartment')?.value||'';
  const state=$('#officeStatus')?.value||'';
@@ -60,7 +60,7 @@ function renderActivity(){
  $('#activityFeed').innerHTML=items.map(x=>`<div class="activity-item"><time>${esc(x.time)}</time><div><b>${esc(x.agent)}</b><small>${esc(x.type)}</small><p>${esc(x.text)}</p></div></div>`).join('')||'<div class="empty">No activity evidence yet.</div>';
 }
 function openAgent(id){
- const a=(DATA.agents100||[]).find(x=>x.id===id); if(!a)return;
+ const a=(DATA.agents||[]).find(x=>x.id===id); if(!a)return;
  $('#agentProfile').innerHTML=`
    <div class="profile-state ${officeStateClass(a.status)}">${esc(a.status)}</div>
    <div class="profile-avatar">${esc(initials(a.name))}</div>
@@ -80,7 +80,7 @@ function openAgent(id){
 }
 function closeAgent(){const d=$('#agentDrawer');d?.classList.remove('open');d?.setAttribute('aria-hidden','true')}
 function populateOfficeFilters(){
- const depts=[...new Set((DATA.agents100||[]).map(a=>a.department))];
+ const depts=[...new Set((DATA.agents||[]).map(a=>a.department))];
  $('#officeDepartment').innerHTML='<option value="">All departments</option>'+depts.map(d=>`<option>${esc(d)}</option>`).join('');
 }
 
@@ -107,14 +107,14 @@ function renderScore(metrics){
  $('#lastUpdated').textContent='Last updated '+(metrics.updated||'—');
 }
 function renderSchedule(items){$('#scheduleGrid').innerHTML=items.map(s=>`<div class="schedule-item"><strong>${esc(s.time)}</strong><div><b>${esc(s.name)}</b><small>${esc(s.purpose)}</small></div><span class="status ${statusClass(s.status)}">${esc(s.status)}</span></div>`).join('')}
-function populateOwners(){ const src=(DATA.agents100&&DATA.agents100.length)?DATA.agents100:DATA.team; $('#jobOwner').innerHTML=src.map(a=>`<option>${esc(a.name)}</option>`).join('') }
+function populateOwners(){ const src=(DATA.agents&&DATA.agents.length)?DATA.agents:DATA.team; $('#jobOwner').innerHTML=src.map(a=>`<option>${esc(a.name)}</option>`).join('') }
 function addDraft(item){const d=drafts();d.unshift({id:'D-'+Date.now(),...item});saveDrafts(d)}
 function renderDrafts(){const d=drafts();$('#draftCount').textContent=String(d.length);$('#draftQueue').innerHTML=d.length?d.map(x=>`<div class="draft-item"><b>${esc(x.type)}</b><span>${esc(x.title||x.jobId||x.rndId||x.url||'')}</span><small>${new Date(x.at).toLocaleString('th-TH')}</small></div>`).join(''):'<div class="empty">No local control actions yet.</div>'}
 
 async function boot(){
  const fallbackMetrics={target:10000000,verifiedRevenue:0,qualifiedPipeline:0,mathStatus:'YELLOW',compressionFactor:1,constraint:'Collect real customer evidence',constraintWhy:'No verified customer economics yet.',nextAction:'Quantify the Golden Workflow baseline.',assets:[],updated:new Date().toLocaleDateString()};
- const [m,j,t,k,l,r,s,a100,act]=await Promise.all([load('./data/metrics.json',fallbackMetrics),load('./data/jobs.json',[]),load('./data/team.json',[]),load('./data/knowledge.json',[]),load('./data/training.json',[]),load('./data/rnd.json',[]),load('./data/schedule.json',[]),load('./data/agents100.json',{agents:[]}),load('./data/agent_activity.json',{events:[]})]);
- DATA={metrics:m,jobs:j,team:t,knowledge:k,training:l,rnd:r,schedule:s,agents100:a100.agents||[],activity:act.events||[]};
+ const [m,j,t,k,l,r,s,acore,act]=await Promise.all([load('./data/metrics.json',fallbackMetrics),load('./data/jobs.json',[]),load('./data/team.json',[]),load('./data/knowledge.json',[]),load('./data/training.json',[]),load('./data/rnd.json',[]),load('./data/schedule.json',[]),load('./data/agents.json',{agents:[]}),load('./data/agent_activity.json',{events:[]})]);
+ DATA={metrics:m,jobs:j,team:t,knowledge:k,training:l,rnd:r,schedule:s,agents:acore.agents||[],activity:act.events||[]};
  renderScore(m);renderJobs(j);renderTeam(t);renderKnowledge(k);renderTraining(l);renderRND(r);renderSchedule(s);populateOwners();populateOfficeFilters();renderOffice();renderActivity();renderDrafts();connectRuntime();
 }
 $$('.tab').forEach(b=>b.onclick=()=>{$$('.tab,.view').forEach(x=>x.classList.remove('active'));b.classList.add('active');$('#'+b.dataset.view).classList.add('active')});
@@ -123,7 +123,7 @@ setInterval(()=>$('#clock').textContent=new Date().toLocaleTimeString('th-TH',{h
 $('#jobForm').onsubmit=e=>{e.preventDefault();addDraft({type:'CREATE_JOB',title:$('#jobTitle').value,owner:$('#jobOwner').value,objective:$('#jobObjective').value,acceptance:$('#jobAcceptance').value,metric:$('#jobMetric').value,status:'QUEUED',at:new Date().toISOString()});e.target.reset();populateOwners()};
 $('#addChannelBtn').onclick=()=>{const url=$('#channelInput').value.trim();if(url)addDraft({type:'ADD_SOURCE',url,scope:'RELEVANT_ONLY',at:new Date().toISOString()})};
 $('#clearBtn').onclick=()=>{if(confirm('Clear local draft actions?'))saveDrafts([])};
-$('#exportBtn').onclick=()=>{const payload={phase:'PHASE_2A_AGENT_OFFICE',exportedAt:new Date().toISOString(),metrics:DATA.metrics,localDrafts:drafts()};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='agis-phase2a-snapshot.json';a.click();URL.revokeObjectURL(a.href)};
+$('#exportBtn').onclick=()=>{const payload={phase:'QUALITY_FIRST_AGENT_OFFICE',exportedAt:new Date().toISOString(),metrics:DATA.metrics,localDrafts:drafts()};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='agis-quality-agent-snapshot.json';a.click();URL.revokeObjectURL(a.href)};
 ['officeSearch','officeDepartment','officeStatus'].forEach(id=>$('#'+id)?.addEventListener(id==='officeSearch'?'input':'change',renderOffice));
 $('[data-close-drawer]').forEach(x=>x.onclick=closeAgent);
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAgent()});
