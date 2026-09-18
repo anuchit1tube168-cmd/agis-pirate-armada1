@@ -1,0 +1,20 @@
+[
+  {
+    "time": "08:00",
+    "name": "Morning Command",
+    "purpose": "DO THE MATH → constraint → assign jobs → execute safe work",
+    "status": "ACTIVE"
+  },
+  {
+    "time": "Daily",
+    "name": "Knowledge/R&D Intake",
+    "purpose": "Relevant-only source intake → experiment → skill candidate",
+    "status": "ACTIVE"
+  },
+  {
+    "time": "Weekly",
+    "name": "Leverage Review",
+    "purpose": "Revenue/pipeline/reuse/time compression/eval review",
+    "status": "PLANNED"
+  }
+]
