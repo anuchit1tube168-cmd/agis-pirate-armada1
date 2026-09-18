@@ -33,9 +33,11 @@ Turn the quality-first Core Agent organization into a truthful runtime control p
 - [x] public runtime-config placeholder with no secrets.
 - [ ] D1 staging instance deployed.
 - [ ] Core Agent registry seeded into D1.
+- [x] Deterministic Core Agent seed artifact generated from data/agents_core.json.
 - [ ] Worker staging deployed.
 - [ ] live UI connected.
 - [ ] E2E heartbeat → office update passes.
+- [x] Runtime contract test passes in CI: auth → heartbeat → office → job → approval → audit.
 - [ ] approval test passes.
 - [ ] security review passes.
 
