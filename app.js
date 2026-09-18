@@ -5,6 +5,7 @@ function statusClass(s){s=(s||'').toLowerCase();return s.includes('block')?'red'
 function renderJobs(jobs){$('#jobBoard').innerHTML=jobs.map(j=>`<article class="job"><div class="job-top"><span>${j.id}</span><span class="status ${statusClass(j.status)}">${j.status}</span></div><h3>${j.title}</h3><p>${j.objective}</p><footer><span>${j.owner}</span><span>${j.metric||''}</span></footer></article>`).join('')}
 function renderTeam(team){$('#teamGrid').innerHTML=team.map((a,i)=>`<article class="agent"><div class="agent-head"><div class="avatar">${String(i+1).padStart(2,'0')}</div><div><h3>${a.name}</h3><div class="role">${a.role}</div></div></div><p>${a.mission}</p><div class="meta"><span>KPI: ${a.kpi}</span><span>${a.status}</span></div></article>`).join('')}
 function renderKnowledge(items){$('#knowledgeQueue').innerHTML=items.map(k=>`<article class="knowledge-item"><div class="k-top"><span class="badge">${k.source}</span><span class="status ${statusClass(k.state)}">${k.state}</span></div><h3>${k.title}</h3><p>${k.signal}</p><div class="meta"><small>Next: ${k.next}</small></div></article>`).join('')}
+function renderRND(items){const el=$('#rndGrid');if(!el)return;el.innerHTML=items.map(r=>`<article class="knowledge-item"><div class="k-top"><span class="badge">${r.id}</span><span class="status ${statusClass(r.status)}">${r.status}</span></div><h3>${r.problem}</h3><p><strong>Hypothesis:</strong> ${r.hypothesis}</p><p><strong>Experiment:</strong> ${r.experiment}</p><div class="meta"><small>Metric: ${r.metric}</small></div></article>`).join('')}
 function renderTraining(items){$('#trainingLog').innerHTML=items.map(x=>`<div class="event"><small>${x.date} • ${x.agent}</small><h4>${x.lesson}</h4><p>${x.evidence}</p></div>`).join('')}
 function renderScore(metrics){
  const rev=metrics.verifiedRevenue||0,target=metrics.target||10000000,gap=Math.max(0,target-rev);
@@ -18,8 +19,8 @@ function renderScore(metrics){
 }
 async function boot(){
  const fallbackMetrics={target:10000000,verifiedRevenue:0,qualifiedPipeline:0,mathStatus:'YELLOW',compressionFactor:1,constraint:'Collect real customer evidence',constraintWhy:'No verified customer economics yet.',nextAction:'Quantify the Golden Workflow baseline.',assets:[],updated:new Date().toLocaleDateString()};
- const [m,j,t,k,l]=await Promise.all([load('./data/metrics.json',fallbackMetrics),load('./data/jobs.json',[]),load('./data/team.json',[]),load('./data/knowledge.json',[]),load('./data/training.json',[])]);
- renderScore(m);renderJobs(j);renderTeam(t);renderKnowledge(k);renderTraining(l);
+ const [m,j,t,k,l,r]=await Promise.all([load('./data/metrics.json',fallbackMetrics),load('./data/jobs.json',[]),load('./data/team.json',[]),load('./data/knowledge.json',[]),load('./data/training.json',[]),load('./data/rnd.json',[])]);
+ renderScore(m);renderJobs(j);renderTeam(t);renderKnowledge(k);renderTraining(l);renderRND(r);
 }
 $$('.tab').forEach(b=>b.onclick=()=>{$$('.tab,.view').forEach(x=>x.classList.remove('active'));b.classList.add('active');$('#'+b.dataset.view).classList.add('active')});
 setInterval(()=>$('#clock').textContent=new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'}),1000);
