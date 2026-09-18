@@ -25,5 +25,12 @@ jobs:
         run: node --check app.js
       - name: Check Worker JavaScript syntax
         run: node --check runtime/worker.js
+      - name: Verify generated Core Agent seed is current
+        run: |
+          cp runtime/seed-core-agents.sql /tmp/seed-before.sql
+          node scripts/build-runtime-seed.mjs
+          diff -u /tmp/seed-before.sql runtime/seed-core-agents.sql
       - name: Run Phase 2B foundation checks
         run: node scripts/phase2b-smoke.mjs
+      - name: Run Phase 2B runtime contract test
+        run: node scripts/phase2b-contract.mjs
