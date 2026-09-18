@@ -10,6 +10,29 @@ function drafts(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]')
 function saveDrafts(v){localStorage.setItem(STORAGE_KEY,JSON.stringify(v));renderDrafts()}
 
 
+
+async function applyRuntimeSnapshot(snapshot){
+ if(!snapshot?.agents?.length)return;
+ DATA.agents100=snapshot.agents;
+ if(Array.isArray(snapshot.events)) DATA.activity=snapshot.events;
+ renderOffice();renderActivity();populateOwners();
+ const badge=document.querySelector('#office .section-title .pill');
+ if(badge) badge.textContent='LIVE RUNTIME • '+(snapshot.serverTime?new Date(snapshot.serverTime).toLocaleTimeString('th-TH'):'CONNECTED');
+}
+async function connectRuntime(){
+ const base=String(window.AG_RUNTIME_API||'').replace(/\/$/,'');
+ if(!base)return;
+ try{
+   const r=await fetch(base+'/api/office',{cache:'no-store'});
+   if(r.ok) await applyRuntimeSnapshot(await r.json());
+ }catch(e){console.warn('AGIS runtime snapshot unavailable',e)}
+ try{
+   const es=new EventSource(base+'/api/events');
+   es.addEventListener('office',e=>{try{applyRuntimeSnapshot(JSON.parse(e.data))}catch{}});
+   es.onerror=()=>console.warn('AGIS runtime event stream reconnecting');
+ }catch(e){console.warn('AGIS runtime EventSource unavailable',e)}
+}
+
 function officeStateClass(s){return 'state-'+String(s||'READY').toLowerCase()}
 function initials(name='AI'){return name.split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase()}
 function renderOffice(){
@@ -92,7 +115,7 @@ async function boot(){
  const fallbackMetrics={target:10000000,verifiedRevenue:0,qualifiedPipeline:0,mathStatus:'YELLOW',compressionFactor:1,constraint:'Collect real customer evidence',constraintWhy:'No verified customer economics yet.',nextAction:'Quantify the Golden Workflow baseline.',assets:[],updated:new Date().toLocaleDateString()};
  const [m,j,t,k,l,r,s,a100,act]=await Promise.all([load('./data/metrics.json',fallbackMetrics),load('./data/jobs.json',[]),load('./data/team.json',[]),load('./data/knowledge.json',[]),load('./data/training.json',[]),load('./data/rnd.json',[]),load('./data/schedule.json',[]),load('./data/agents100.json',{agents:[]}),load('./data/agent_activity.json',{events:[]})]);
  DATA={metrics:m,jobs:j,team:t,knowledge:k,training:l,rnd:r,schedule:s,agents100:a100.agents||[],activity:act.events||[]};
- renderScore(m);renderJobs(j);renderTeam(t);renderKnowledge(k);renderTraining(l);renderRND(r);renderSchedule(s);populateOwners();populateOfficeFilters();renderOffice();renderActivity();renderDrafts();
+ renderScore(m);renderJobs(j);renderTeam(t);renderKnowledge(k);renderTraining(l);renderRND(r);renderSchedule(s);populateOwners();populateOfficeFilters();renderOffice();renderActivity();renderDrafts();connectRuntime();
 }
 $$('.tab').forEach(b=>b.onclick=()=>{$$('.tab,.view').forEach(x=>x.classList.remove('active'));b.classList.add('active');$('#'+b.dataset.view).classList.add('active')});
 setInterval(()=>$('#clock').textContent=new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit',second:'2-digit'}),1000);
