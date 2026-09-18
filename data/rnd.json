@@ -1,0 +1,32 @@
+[
+  {
+    "id": "RND-001",
+    "source": "DOAC / Daniel Kokotajlo",
+    "problem": "Can AGIS reduce founder time by automating its own build/review loop?",
+    "bullets": [
+      "AI R&D may itself be automated",
+      "Agentic workflows can compound speed",
+      "Control/eval must scale with autonomy"
+    ],
+    "claimType": "FORECAST + FIRSTHAND",
+    "hypothesis": "A structured agent pipeline can cut cycle time without reducing eval quality.",
+    "experiment": "Run Requirement→Plan→Build→Test→Review→Staging on one Golden Workflow and compare baseline.",
+    "metric": "Cycle time / eval pass / human intervention",
+    "status": "PLANNED"
+  },
+  {
+    "id": "RND-002",
+    "source": "Project work",
+    "problem": "How should AGIS improve from daily work without prompt drift?",
+    "bullets": [
+      "Failures have high learning value",
+      "Corrections should become evals",
+      "Rules should only promote after retest"
+    ],
+    "claimType": "PROJECT HYPOTHESIS",
+    "hypothesis": "Versioned evidence-based instruction updates reduce repeated failures.",
+    "experiment": "Track one recurring failure before/after checklist/test change.",
+    "metric": "Repeated failure rate / cycle time",
+    "status": "ACTIVE"
+  }
+]
