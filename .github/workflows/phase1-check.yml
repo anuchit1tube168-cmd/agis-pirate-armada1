@@ -1,0 +1,27 @@
+name: Phase 1 Smoke Test
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "index.html"
+      - "app.js"
+      - "styles.css"
+      - "data/**"
+      - "AGENTS.md"
+      - "EVOLUTION.md"
+      - "PHASE-1-DONE.md"
+      - "scripts/phase1-smoke.mjs"
+      - ".github/workflows/phase1-check.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run Phase 1 smoke test
+        run: node scripts/phase1-smoke.mjs
