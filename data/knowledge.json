@@ -1,0 +1,30 @@
+[
+  {
+    "source": "DOAC",
+    "state": "EXTRACTED",
+    "title": "Daniel Kokotajlo — former OpenAI researcher",
+    "signal": "Agentic cognitive work and AI R&D may accelerate; treat timelines as forecasts, but test automation of our own build loop.",
+    "next": "Run Requirement→Plan→Build→Test benchmark"
+  },
+  {
+    "source": "DOAC",
+    "state": "EXTRACTED",
+    "title": "Karen Hao — OpenAI reporting",
+    "signal": "Separate frontier-company claims from evidence; vendor concentration and incentives are governance risks.",
+    "next": "Add source-confidence + multi-model benchmark"
+  },
+  {
+    "source": "CHANNEL",
+    "state": "REGISTERED",
+    "title": "The Diary Of A CEO",
+    "signal": "Recurring AI/OpenAI/frontier-model intelligence source.",
+    "next": "Enumerate channel clips and queue each clip"
+  },
+  {
+    "source": "SYSTEM",
+    "state": "BLOCKED_TRANSCRIPT",
+    "title": "Full-channel transcript ingestion",
+    "signal": "Public YouTube Data API can enumerate uploads, but caption download requires authorization/rights for the video.",
+    "next": "Use authorized transcript provider / user-supplied transcript / connector"
+  }
+]
