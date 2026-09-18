@@ -1,0 +1,29 @@
+name: Phase 2A Agent Office Test
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "index.html"
+      - "app.js"
+      - "styles.css"
+      - "data/agents100.json"
+      - "data/agent_activity.json"
+      - "agents/ORGANIZATION_100.md"
+      - "PHASE-2A.md"
+      - "scripts/phase2a-smoke.mjs"
+      - ".github/workflows/phase2a-check.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check JavaScript syntax
+        run: node --check app.js
+      - name: Run Phase 2A registry and office tests
+        run: node scripts/phase2a-smoke.mjs
