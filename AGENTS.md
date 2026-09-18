@@ -224,3 +224,17 @@ The R&D AGENT must seek the smallest falsifiable experiment and record it in Dat
 Proven reusable learning is registered in `15_SKILL_REGISTRY`.
 
 Do not count raw notes, copied transcripts, or untested ideas as learning assets.
+
+
+## Phase 2A — 100-Agent Organization
+Canonical AI workforce registry: `data/agents100.json`.
+
+Rules:
+- Exactly 100 registered specialist roles, organized as 10 departments × 10 agents.
+- Boss Agis remains the human owner/final authority and is not counted in the 100.
+- `AGIS Commander` is the top AI orchestrator; department leads coordinate specialists.
+- Every agent requires ID, mission, KPI, permission, supervisor, current job, state and skill maturity.
+- State must be truthful: WORKING/REVIEW/LEARNING requires current evidence; otherwise use READY/BLOCKED.
+- Never animate an agent as “working” merely to make the office look active.
+- Shared learning uses DATA_LEARNING_OS.md and EVOLUTION.md; customer/private data must remain isolated by scope.
+- Phase 2A is visualization + registry only. Real dispatch/heartbeat/audit write-back belongs to Phase 2B.
