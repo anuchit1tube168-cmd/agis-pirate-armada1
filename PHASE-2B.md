@@ -5,12 +5,12 @@
 **Production write:** OFF
 
 ## Goal
-Turn the Phase-2A organization/visualization into a truthful runtime control plane.
+Turn the quality-first Core Agent organization into a truthful runtime control plane.
 
 ## Build order
 1. Runtime API contract.
 2. Staging D1 schema.
-3. Seed 100 agents.
+3. Seed the current Core Agent registry.
 4. Heartbeat endpoint.
 5. Sanitized office snapshot endpoint.
 6. SSE/reconnect state feed.
@@ -32,7 +32,7 @@ Turn the Phase-2A organization/visualization into a truthful runtime control pla
 - [x] audit write contract.
 - [x] public runtime-config placeholder with no secrets.
 - [ ] D1 staging instance deployed.
-- [ ] 100 agents seeded into D1.
+- [ ] Core Agent registry seeded into D1.
 - [ ] Worker staging deployed.
 - [ ] live UI connected.
 - [ ] E2E heartbeat → office update passes.
@@ -40,3 +40,9 @@ Turn the Phase-2A organization/visualization into a truthful runtime control pla
 - [ ] security review passes.
 
 Do not mark Phase 2B complete without deployment + E2E evidence.
+
+
+## Agent creation boundary
+Runtime must not auto-spawn permanent agents.
+New agents require the Capability Gap Gate in `agents/QUALITY_POLICY.md` and independent QA/EVAL approval.
+Temporary specialists must be sandboxed and retired/merged if they do not show measurable value.
