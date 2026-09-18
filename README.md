@@ -2,13 +2,21 @@
 
 > **DO THE MATH. BUILD LEVERAGE. COMPOUND EVERY DAY.**
 
-This repository is the source of truth for the 90-day project to build a credible path toward **USD 10,000,000 cumulative revenue / business value capture** through ASTRA AI Workforce OS.
+This repository is the source of truth for the 90-day project to build a credible path toward **USD 10,000,000 cumulative verified revenue** through ASTRA / AGIS AI Workforce OS.
+
+## Current status
+**Phase 1 — FOUNDATION COMPLETE / STAGING READY**
+
+Live Mission Control: https://anuchit1tube168-cmd.github.io/agis-pirate-armada1/
+
+Phase-1 acceptance record: [PHASE-1-DONE.md](PHASE-1-DONE.md)
+
+The web control surface is intentionally safe: it reads repository data and stores command drafts locally in the browser. It does **not** expose credentials or perform production writes.
 
 ## North Star
-
 Do not optimize for number of features. Optimize for compounding assets and verified economics.
 
-**Compounding assets**
+Compounding assets:
 1. Data
 2. Workflow
 3. Integration
@@ -19,63 +27,32 @@ Do not optimize for number of features. Optimize for compounding assets and veri
 8. Customer Relationship
 
 ## Daily loop
-
 ```
 OBSERVE
-  ↓
-DO THE MATH
-  ↓
-PICK ONE HIGHEST-LEVERAGE BOTTLENECK
-  ↓
-BUILD / SELL / TEST
-  ↓
-MEASURE
-  ↓
-LOG EVIDENCE
-  ↓
-EXTRACT REUSABLE ASSET
-  ↓
-REPEAT
+→ DO THE MATH
+→ PICK ONE HIGHEST-LEVERAGE BOTTLENECK
+→ ASSIGN
+→ BUILD / SELL / TEST
+→ REVIEW
+→ MEASURE
+→ LOG EVIDENCE
+→ EXTRACT REUSABLE ASSET
+→ REPEAT
 ```
 
-## Non-negotiable question
+## Core files
+- [TODO-100.md](TODO-100.md)
+- [DO_THE_MATH.md](DO_THE_MATH.md)
+- [TIME_COMPRESSION.md](TIME_COMPRESSION.md)
+- [ROADMAP-90D.md](ROADMAP-90D.md)
+- [AGENTS.md](AGENTS.md)
+- [EVOLUTION.md](EVOLUTION.md)
+- [DATA_LEARNING_OS.md](DATA_LEARNING_OS.md)
+- [RND_ENGINE.md](RND_ENGINE.md)
+- [SCOREBOARD.md](SCOREBOARD.md)
+- [PHASE-1-DONE.md](PHASE-1-DONE.md)
 
-Every task must answer at least one:
-
-- Does it increase revenue?
-- Does it increase conversion or distribution?
-- Does it reduce time-to-value?
-- Does it increase reuse?
-- Does it reduce cost?
-- Does it reduce risk?
-- Does it improve verified customer ROI?
-- Does it improve learning velocity?
-
-If not, backlog it.
-
-## Files
-
-- [TODO-100.md](TODO-100.md) — the 100-item execution backlog.
-- [DO_THE_MATH.md](DO_THE_MATH.md) — revenue math and daily gap calculation.
-- [ROADMAP-90D.md](ROADMAP-90D.md) — 90-day execution plan.
-- [AGENTS.md](AGENTS.md) — operating rules for AI agents/Codex.
-- [SCOREBOARD.md](SCOREBOARD.md) — weekly evidence and leverage score.
-
-## Day-90 definition of progress
-
-Day 90 is not judged by hype or feature count. It is judged by:
-- paying customers/design partners,
-- verified ROI,
-- reusable workflows and connectors,
-- reduced founder time per delivery,
-- lower cost per successful outcome,
-- repeatable distribution,
-- an evidence-based path to $10M.
-
-## Safety / governance
-
-No secret reuse. No uncontrolled production writes. Least privilege. Human approval for high-impact actions. Keep audit trails. Never invent revenue, customers, test results, or market evidence.
-
----
+## Safety
+No secret reuse. No uncontrolled production writes. Least privilege. Human approval for high-impact actions. Keep audit trails. Never invent revenue, customers, test results, ROI, or market evidence.
 
 **Rule #1: DO THE MATH BEFORE ADDING THE FEATURE.**
