@@ -25,7 +25,7 @@ for (const id of ['mission','command','team','knowledge','learning','rnd','jobBo
 }
 
 const js=fs.readFileSync('app.js','utf8');
-for (const token of ['localStorage','renderJobs','renderTeam','renderKnowledge','renderRND','renderSchedule','Export Snapshot JSON']) {
+for (const token of ['localStorage','renderJobs','renderTeam','renderKnowledge','renderRND','renderSchedule','agis-phase1-snapshot.json']) {
   if (!js.includes(token)) errors.push(`missing app capability token: ${token}`);
 }
 
