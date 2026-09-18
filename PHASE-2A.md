@@ -1,30 +1,24 @@
-# PHASE 2A — 100-AGENT ORGANIZATION + AI OFFICE
+# PHASE 2A — AGENT OFFICE FOUNDATION
 
-**Status:** COMPLETE / STAGING VISUALIZATION READY  
+**Status:** COMPLETE / SUPERSEDED BY QUALITY-FIRST POLICY  
 **Completed:** 2026-09-18
 
-## Acceptance criteria
-- [x] Exactly 100 specialized AI roles registered.
-- [x] 10 departments × 10 agents.
-- [x] Each agent has ID, mission, KPI, permission, supervisor, state and current job.
-- [x] AI Office page renders the 100-agent registry.
-- [x] Department rooms expose state counts.
-- [x] Clicking an agent opens its profile.
-- [x] Activity feed loads from repository data.
-- [x] Search, department and state filters exist.
-- [x] Job owner selector can use the 100-agent registry.
-- [x] Smoke test verifies count, unique IDs, 10×10 structure, JS syntax and UI anchors.
-- [x] Phase 2A CI passed.
-- [x] GitHub Pages UI deployment passed.
-- [x] 100-agent registry synced into Data OS sheet 10_AGENT_REGISTRY.
-- [x] No production credential/write path is exposed.
+Phase 2A proved the visualization, registry, profile, filtering and activity-feed mechanics.
 
-## Truth rule
-A visual avatar is not proof of autonomous execution.
-WORKING/REVIEW/LEARNING is shown only when backed by current project state.
+An early experiment modeled 100 specialist roles. That design is **not the active workforce strategy**.
 
-## Result
-Phase 2A establishes the **organizational/control visualization layer**.
+## Learning
+More agents do not automatically create more intelligence or leverage. Large fixed agent counts add orchestration cost, duplicated context and false activity.
 
-Phase 2B adds the runtime layer:
-heartbeat → job dispatch → state events → SSE/live updates → audit → approval gateway.
+The active strategy is now:
+- 12 Core Agents;
+- shared Data / R&D / Skills / AGENTS.md evolution;
+- temporary specialist only for a measured capability gap;
+- permanent new agent only after independent evaluation.
+
+See:
+- `data/agents_core.json`
+- `agents/QUALITY_POLICY.md`
+- `evals/AGENT_QUALITY.md`
+
+The Office UI remains useful, but it now visualizes the actual core team rather than optimizing for headcount.
