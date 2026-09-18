@@ -13,18 +13,20 @@
       <div class="brand">
         <div class="mark">A</div>
         <div>
-          <div class="eyebrow">AGIS AI COMPANY</div>
+          <div class="eyebrow">AGIS AI COMPANY • PHASE 1</div>
           <h1>$10M LEVERAGE MISSION CONTROL</h1>
         </div>
       </div>
       <div class="top-actions">
         <span id="clock" class="clock">--:--</span>
-        <span class="pill live"><span class="dot"></span>90-DAY MISSION</span>
+        <span class="pill live"><span class="dot"></span>STAGING READY</span>
+        <span class="pill">DAILY 08:00 ICT</span>
       </div>
     </header>
 
     <nav class="tabs" aria-label="Mission sections">
       <button class="tab active" data-view="mission">Mission Control</button>
+      <button class="tab" data-view="command">Command Center</button>
       <button class="tab" data-view="team">Agent Team</button>
       <button class="tab" data-view="knowledge">Knowledge Lab</button>
       <button class="tab" data-view="learning">Learning / Evolution</button>
@@ -35,9 +37,7 @@
       <section id="mission" class="view active">
         <div class="hero-grid">
           <article class="card target-card">
-            <div class="card-head">
-              <span>DO THE MATH</span><span id="mathStatus" class="status yellow">YELLOW</span>
-            </div>
+            <div class="card-head"><span>DO THE MATH</span><span id="mathStatus" class="status yellow">YELLOW</span></div>
             <div class="target">$10,000,000</div>
             <div class="muted">Cumulative verified revenue target</div>
             <div class="progress"><i id="revenueBar"></i></div>
@@ -63,10 +63,7 @@
             <div class="card-head"><span>TODAY'S CONSTRAINT</span><span class="badge hot">P1</span></div>
             <h2 id="constraint">Collect real customer evidence</h2>
             <p id="constraintWhy" class="muted">No verified customer economics yet; product work must not outrun evidence.</p>
-            <div class="next-action">
-              <small>SINGLE NEXT MOVE</small>
-              <strong id="nextAction">Interview and quantify the Golden Workflow baseline.</strong>
-            </div>
+            <div class="next-action"><small>SINGLE NEXT MOVE</small><strong id="nextAction">Interview and quantify the Golden Workflow baseline.</strong></div>
           </article>
         </div>
 
@@ -88,49 +85,67 @@
         </div>
       </section>
 
-      <section id="team" class="view">
+      <section id="command" class="view">
         <div class="section-title">
-          <div><span>AGENT FACTORY</span><h2>AI workforce with jobs, reviewers and permissions</h2></div>
-          <span class="pill">COMMANDER → SPECIALISTS → REVIEW</span>
+          <div><span>PHASE-1 CONTROL</span><h2>Assign → Review → Approve → Learn</h2></div>
+          <span class="pill">LOCAL DRAFT CONTROL • NO SECRETS</span>
         </div>
+        <div class="command-grid">
+          <article class="card">
+            <div class="card-head"><span>CREATE JOB</span><span class="badge">LOCAL</span></div>
+            <form id="jobForm" class="control-form">
+              <label>Job title<input id="jobTitle" required placeholder="e.g. Quantify Golden Workflow baseline"/></label>
+              <label>Owner<select id="jobOwner"></select></label>
+              <label>Objective<textarea id="jobObjective" required placeholder="Business objective and expected output"></textarea></label>
+              <label>Acceptance test<input id="jobAcceptance" required placeholder="What proves this is done?"/></label>
+              <label>Metric<input id="jobMetric" placeholder="Cycle time / ROI / pass rate"/></label>
+              <button class="primary" type="submit">Assign Job</button>
+            </form>
+          </article>
+
+          <article class="card">
+            <div class="card-head"><span>LOCAL ACTION QUEUE</span><span id="draftCount" class="badge">0</span></div>
+            <p class="muted small">Phase 1 persists draft control actions in this browser. Production write-back requires the authenticated backend in Phase 2.</p>
+            <div id="draftQueue" class="draft-list"></div>
+            <div class="button-row">
+              <button id="exportBtn" class="secondary">Export Snapshot JSON</button>
+              <button id="clearBtn" class="ghost">Clear Local Drafts</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-head"><span>DAILY CADENCE</span><span class="badge">08:00 ICT</span></div>
+            <div id="scheduleGrid" class="schedule-grid"></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="team" class="view">
+        <div class="section-title"><div><span>AGENT FACTORY</span><h2>AI workforce with jobs, reviewers and permissions</h2></div><span class="pill">COMMANDER → SPECIALISTS → REVIEW</span></div>
         <div id="teamGrid" class="team-grid"></div>
       </section>
 
       <section id="knowledge" class="view">
-        <div class="section-title">
-          <div><span>KNOWLEDGE FACTORY</span><h2>YouTube → Evidence → Experiment → Skill</h2></div>
-          <span class="pill">EVERY CLIP HAS A STATE</span>
-        </div>
+        <div class="section-title"><div><span>KNOWLEDGE FACTORY</span><h2>YouTube → Evidence → Experiment → Skill</h2></div><span class="pill">RELEVANT ONLY</span></div>
         <div class="knowledge-layout">
           <article class="card pipeline-card">
-            <div class="flowline">
-              <span>CHANNEL</span><i>→</i><span>CLIP QUEUE</span><i>→</i><span>TRANSCRIPT</span><i>→</i><span>EXTRACT</span><i>→</i><span>REVIEW</span><i>→</i><span>SKILL</span>
-            </div>
-            <div class="source-form">
-              <input id="channelInput" value="https://youtube.com/@thediaryofaceo" aria-label="YouTube channel URL"/>
-              <button id="addChannelBtn">Add to Registry</button>
-            </div>
-            <p class="muted small">Channel enumeration can use YouTube Data API. Transcript extraction must use an authorized/available transcript source; unavailable transcripts remain visibly blocked rather than guessed.</p>
+            <div class="flowline"><span>CHANNEL</span><i>→</i><span>CLIP QUEUE</span><i>→</i><span>TRANSCRIPT</span><i>→</i><span>EXTRACT</span><i>→</i><span>REVIEW</span><i>→</i><span>SKILL</span></div>
+            <div class="source-form"><input id="channelInput" value="https://youtube.com/@thediaryofaceo" aria-label="YouTube channel URL"/><button id="addChannelBtn">Add Draft Source</button></div>
+            <p class="muted small">Only materially relevant clips are deeply processed. Transcript access must be authorized/available; unavailable transcripts stay blocked rather than guessed.</p>
           </article>
           <div id="knowledgeQueue" class="knowledge-list"></div>
         </div>
       </section>
 
       <section id="learning" class="view">
-        <div class="section-title">
-          <div><span>SELF-IMPROVEMENT</span><h2>Teach agents from evidence, not longer prompts</h2></div>
-          <span class="pill">TEST BEFORE PROMOTE</span>
-        </div>
+        <div class="section-title"><div><span>SELF-IMPROVEMENT</span><h2>Teach agents from evidence, not longer prompts</h2></div><span class="pill">TEST BEFORE PROMOTE</span></div>
         <div class="split">
           <article class="card">
-            <div class="learning-loop">
-              <span>FAIL / SLOW</span><i>→</i><span>ROOT CAUSE</span><i>→</i><span>UPDATE RULE</span><i>→</i><span>RETEST</span><i>→</i><span>PROMOTE SKILL</span>
-            </div>
+            <div class="learning-loop"><span>FAIL / SLOW</span><i>→</i><span>ROOT CAUSE</span><i>→</i><span>UPDATE RULE</span><i>→</i><span>RETEST</span><i>→</i><span>PROMOTE SKILL</span></div>
             <div id="trainingLog" class="timeline"></div>
           </article>
           <article class="card">
-            <div class="card-head"><span>AGENTS.MD EVOLUTION</span><span id="agentVersion" class="badge">v1</span></div>
-            <h3>Promotion rules</h3>
+            <div class="card-head"><span>AGENTS.MD EVOLUTION</span><span id="agentVersion" class="badge">v1.2</span></div>
             <ul class="rules">
               <li>No agent rule is promoted without evidence.</li>
               <li>Every meaningful failure becomes root cause + test.</li>
@@ -138,34 +153,22 @@
               <li>Conflicting rules are retired, not endlessly appended.</li>
               <li>High-impact permission changes remain human-approved.</li>
             </ul>
-            <div class="next-action">
-              <small>NEXT EVOLUTION</small>
-              <strong id="nextEvolution">Measure first real before/after cycle-time lesson.</strong>
-            </div>
+            <div class="next-action"><small>NEXT EVOLUTION</small><strong id="nextEvolution">Measure first real before/after cycle-time lesson.</strong></div>
           </article>
         </div>
       </section>
 
       <section id="rnd" class="view">
-        <div class="section-title">
-          <div><span>R&D ENGINE</span><h2>Work + Data + Knowledge → Experiment → Skill → Business Leverage</h2></div>
-          <span class="pill">RELEVANT ONLY</span>
-        </div>
+        <div class="section-title"><div><span>R&D ENGINE</span><h2>Work + Data + Knowledge → Experiment → Skill → Business Leverage</h2></div><span class="pill">RELEVANT ONLY</span></div>
         <article class="card">
-          <div class="flowline">
-            <span>WORK / SOURCE</span><i>→</i><span>BULLETS</span><i>→</i><span>HYPOTHESIS</span><i>→</i><span>EXPERIMENT</span><i>→</i><span>RESULT</span><i>→</i><span>SKILL</span><i>→</i><span>REUSE</span>
-          </div>
+          <div class="flowline"><span>WORK / SOURCE</span><i>→</i><span>BULLETS</span><i>→</i><span>HYPOTHESIS</span><i>→</i><span>EXPERIMENT</span><i>→</i><span>RESULT</span><i>→</i><span>SKILL</span><i>→</i><span>REUSE</span></div>
           <p class="muted small">R&D is promoted only when it improves a measured decision, workflow, agent, customer outcome, cost, speed, reuse or risk.</p>
         </article>
         <div id="rndGrid" class="knowledge-list" style="margin-top:14px"></div>
       </section>
-
     </main>
 
-    <footer>
-      <span>AGIS $10M • Evidence over activity</span>
-      <span id="lastUpdated">Last updated —</span>
-    </footer>
+    <footer><span>AGIS $10M • Phase 1 Foundation • Evidence over activity</span><span id="lastUpdated">Last updated —</span></footer>
   </div>
   <script src="./app.js"></script>
 </body>
