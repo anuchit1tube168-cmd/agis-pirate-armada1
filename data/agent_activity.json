@@ -1,48 +1,42 @@
 {
   "updated": "2026-09-18",
-  "mode": "PHASE_2B_FOUNDATION",
+  "mode": "QUALITY_FIRST_CORE_TEAM",
   "events": [
     {
-      "time": "22:20",
-      "agent": "AGIS Commander",
-      "type": "ASSIGN",
-      "text": "Opened Phase 2B — live runtime + heartbeat foundation."
+      "time": "22:24",
+      "agent": "AGIS COMMANDER",
+      "type": "DECISION",
+      "text": "Stopped optimizing for agent count; adopted quality-first Core Agent policy."
     },
     {
-      "time": "22:20",
-      "agent": "Backend Engineer",
-      "type": "BUILD",
-      "text": "Implemented authenticated job, heartbeat and approval API contracts."
+      "time": "22:24",
+      "agent": "RESEARCH",
+      "type": "R&D",
+      "text": "Focus narrowed to evidence-based research on how to build and improve AI agents."
     },
     {
-      "time": "22:20",
-      "agent": "Data Modeler",
-      "type": "BUILD",
-      "text": "Defined staging D1 schema for agents, jobs, events, approvals and audit."
+      "time": "22:25",
+      "agent": "ARCHITECT",
+      "type": "DESIGN",
+      "text": "New-agent creation now requires a proven capability gap and independent evaluation."
     },
     {
-      "time": "22:21",
-      "agent": "Agent Runtime Engineer",
-      "type": "BUILD",
-      "text": "Added office snapshot and SSE-compatible state feed."
+      "time": "22:25",
+      "agent": "LEARNING COACH",
+      "type": "LEARNING",
+      "text": "Improvement order set to data/context → eval → skill → tool → routing/memory → new agent last."
     },
     {
-      "time": "22:21",
-      "agent": "Integration Lead",
-      "type": "INTEGRATE",
-      "text": "Connected AI Office frontend to optional runtime API with repo-data fallback."
-    },
-    {
-      "time": "22:22",
-      "agent": "Security Architect",
+      "time": "22:25",
+      "agent": "QA / EVAL",
       "type": "REVIEW",
-      "text": "Confirmed client runtime config carries no write secret."
+      "text": "Added honesty-centered quality gates: verified fact / claim / inference / hypothesis / forecast / unknown."
     },
     {
-      "time": "22:22",
-      "agent": "QA Engineer",
+      "time": "22:25",
+      "agent": "SECURITY",
       "type": "REVIEW",
-      "text": "Running Phase 1, 2A and 2B regression checks."
+      "text": "Confirmed new agents cannot bypass permission, review or production-write boundaries."
     }
   ]
 }
