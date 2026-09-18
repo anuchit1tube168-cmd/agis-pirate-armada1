@@ -1,0 +1,29 @@
+name: Phase 2B Runtime Foundation Test
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "runtime/**"
+      - "runtime-config.js"
+      - "index.html"
+      - "app.js"
+      - "PHASE-2B.md"
+      - "scripts/phase2b-smoke.mjs"
+      - ".github/workflows/phase2b-check.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check frontend JavaScript syntax
+        run: node --check app.js
+      - name: Check Worker JavaScript syntax
+        run: node --check runtime/worker.js
+      - name: Run Phase 2B foundation checks
+        run: node scripts/phase2b-smoke.mjs
