@@ -3,6 +3,18 @@
   "mode": "QUALITY_FIRST_CORE_TEAM",
   "events": [
     {
+      "time": "22:37",
+      "agent": "BUILDER",
+      "type": "BUILD",
+      "text": "Generated deterministic staging seed for all 12 Core Agents from the canonical registry."
+    },
+    {
+      "time": "22:37",
+      "agent": "QA / EVAL",
+      "type": "PASS",
+      "text": "Phase 2B CI passed seed consistency, foundation checks, and runtime contract: auth → heartbeat → office → job → approval → audit."
+    },
+    {
       "time": "22:24",
       "agent": "AGIS COMMANDER",
       "type": "DECISION",
