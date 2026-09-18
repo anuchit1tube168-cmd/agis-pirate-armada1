@@ -1,36 +1,48 @@
 {
   "updated": "2026-09-18",
-  "mode": "STAGING_REGISTRY",
+  "mode": "PHASE_2B_FOUNDATION",
   "events": [
     {
-      "time": "22:09",
+      "time": "22:20",
       "agent": "AGIS Commander",
       "type": "ASSIGN",
-      "text": "Opened Phase 2A — 100-Agent Organization + AI Office."
+      "text": "Opened Phase 2B — live runtime + heartbeat foundation."
     },
     {
-      "time": "22:10",
-      "agent": "Data Lead",
+      "time": "22:20",
+      "agent": "Backend Engineer",
       "type": "BUILD",
-      "text": "Creating canonical registry for exactly 100 specialized agents."
+      "text": "Implemented authenticated job, heartbeat and approval API contracts."
     },
     {
-      "time": "22:10",
-      "agent": "Frontend Engineer",
+      "time": "22:20",
+      "agent": "Data Modeler",
       "type": "BUILD",
-      "text": "Building live-style office visualization from repository state."
+      "text": "Defined staging D1 schema for agents, jobs, events, approvals and audit."
     },
     {
-      "time": "22:11",
-      "agent": "Eval Lead",
-      "type": "REVIEW",
-      "text": "Defining truthful status rules: registry state is not execution proof."
+      "time": "22:21",
+      "agent": "Agent Runtime Engineer",
+      "type": "BUILD",
+      "text": "Added office snapshot and SSE-compatible state feed."
     },
     {
-      "time": "22:11",
+      "time": "22:21",
+      "agent": "Integration Lead",
+      "type": "INTEGRATE",
+      "text": "Connected AI Office frontend to optional runtime API with repo-data fallback."
+    },
+    {
+      "time": "22:22",
       "agent": "Security Architect",
       "type": "REVIEW",
-      "text": "Keeping production write credentials out of public Pages."
+      "text": "Confirmed client runtime config carries no write secret."
+    },
+    {
+      "time": "22:22",
+      "agent": "QA Engineer",
+      "type": "REVIEW",
+      "text": "Running Phase 1, 2A and 2B regression checks."
     }
   ]
 }
