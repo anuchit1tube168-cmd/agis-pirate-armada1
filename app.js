@@ -113,7 +113,7 @@ function renderDrafts(){const d=drafts();$('#draftCount').textContent=String(d.l
 
 async function boot(){
  const fallbackMetrics={target:10000000,verifiedRevenue:0,qualifiedPipeline:0,mathStatus:'YELLOW',compressionFactor:1,constraint:'Collect real customer evidence',constraintWhy:'No verified customer economics yet.',nextAction:'Quantify the Golden Workflow baseline.',assets:[],updated:new Date().toLocaleDateString()};
- const [m,j,t,k,l,r,s,acore,act]=await Promise.all([load('./data/metrics.json',fallbackMetrics),load('./data/jobs.json',[]),load('./data/team.json',[]),load('./data/knowledge.json',[]),load('./data/training.json',[]),load('./data/rnd.json',[]),load('./data/schedule.json',[]),load('./data/agents.json',{agents:[]}),load('./data/agent_activity.json',{events:[]})]);
+ const [m,j,t,k,l,r,s,acore,act]=await Promise.all([load('./data/metrics.json',fallbackMetrics),load('./data/jobs.json',[]),load('./data/team.json',[]),load('./data/knowledge.json',[]),load('./data/training.json',[]),load('./data/rnd.json',[]),load('./data/schedule.json',[]),load('./data/agents_core.json',{agents:[]}),load('./data/agent_activity.json',{events:[]})]);
  DATA={metrics:m,jobs:j,team:t,knowledge:k,training:l,rnd:r,schedule:s,agents:acore.agents||[],activity:act.events||[]};
  renderScore(m);renderJobs(j);renderTeam(t);renderKnowledge(k);renderTraining(l);renderRND(r);renderSchedule(s);populateOwners();populateOfficeFilters();renderOffice();renderActivity();renderDrafts();connectRuntime();
 }
