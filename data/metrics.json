@@ -1,0 +1,51 @@
+{
+  "target": 10000000,
+  "verifiedRevenue": 0,
+  "qualifiedPipeline": 0,
+  "mathStatus": "YELLOW",
+  "compressionFactor": 1,
+  "payingPartners": "0 / 3",
+  "reuseRatio": "0%",
+  "timeToValue": "Unknown",
+  "evalPass": "Threshold not set",
+  "founderHours": "Unknown",
+  "costPerSuccess": "Unknown",
+  "constraint": "Collect real customer evidence",
+  "constraintWhy": "Verified revenue, ACV and funnel conversion are still unknown; product work must not outrun customer evidence.",
+  "nextAction": "Lock one Golden Workflow and measure its real baseline time/cost/error.",
+  "assets": [
+    {
+      "name": "Data",
+      "count": 1
+    },
+    {
+      "name": "Workflow",
+      "count": 3
+    },
+    {
+      "name": "Integration",
+      "count": 0
+    },
+    {
+      "name": "Evaluation",
+      "count": 0
+    },
+    {
+      "name": "Distribution",
+      "count": 0
+    },
+    {
+      "name": "Permissions",
+      "count": 1
+    },
+    {
+      "name": "Audit",
+      "count": 1
+    },
+    {
+      "name": "Customer",
+      "count": 0
+    }
+  ],
+  "updated": "2026-09-18"
+}
