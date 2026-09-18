@@ -5,7 +5,7 @@
 This repository is the source of truth for the 90-day project to build a credible path toward **USD 10,000,000 cumulative verified revenue** through ASTRA / AGIS AI Workforce OS.
 
 ## Current status
-**Phase 1 — FOUNDATION COMPLETE / STAGING READY**
+**Phase 1 — COMPLETE**\n\n**Phase 2A — 100-AGENT ORGANIZATION + AI OFFICE — IN PROGRESS**
 
 Live Mission Control: https://anuchit1tube168-cmd.github.io/agis-pirate-armada1/
 
@@ -50,7 +50,7 @@ OBSERVE
 - [DATA_LEARNING_OS.md](DATA_LEARNING_OS.md)
 - [RND_ENGINE.md](RND_ENGINE.md)
 - [SCOREBOARD.md](SCOREBOARD.md)
-- [PHASE-1-DONE.md](PHASE-1-DONE.md)
+- [PHASE-1-DONE.md](PHASE-1-DONE.md)\n- [PHASE-2A.md](PHASE-2A.md)\n- [agents/ORGANIZATION_100.md](agents/ORGANIZATION_100.md)
 
 ## Safety
 No secret reuse. No uncontrolled production writes. Least privilege. Human approval for high-impact actions. Keep audit trails. Never invent revenue, customers, test results, ROI, or market evidence.
