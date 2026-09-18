@@ -1,0 +1,14 @@
+name = "agis-10m-runtime"
+main = "worker.js"
+compatibility_date = "2026-09-18"
+
+# Bind after creating a D1 database.
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "agis-10m-staging"
+# database_id = "<STAGING_D1_ID>"
+
+[vars]
+CORS_ORIGIN = "https://anuchit1tube168-cmd.github.io"
+# CONTROL_TOKEN must be configured as a secret, never committed:
+# wrangler secret put CONTROL_TOKEN
