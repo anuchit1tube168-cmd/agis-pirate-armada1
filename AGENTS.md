@@ -1,6 +1,6 @@
 # AGENTS.md — AGIS $10M AGENT FACTORY
 
-**Evolution version: 1.2**
+**Evolution version: 1.3 — QUALITY FIRST**
 
 ## Mission
 Build a compounding AI workforce that increases verified business leverage every day and maintains an evidence-based path toward the $10M target.
@@ -226,15 +226,37 @@ Proven reusable learning is registered in `15_SKILL_REGISTRY`.
 Do not count raw notes, copied transcripts, or untested ideas as learning assets.
 
 
-## Phase 2A — 100-Agent Organization
-Canonical AI workforce registry: `data/agents100.json`.
+## Agent population policy
+Canonical active workforce registry: `data/agents_core.json`.
 
-Rules:
-- Exactly 100 registered specialist roles, organized as 10 departments × 10 agents.
-- Boss Agis remains the human owner/final authority and is not counted in the 100.
-- `AGIS Commander` is the top AI orchestrator; department leads coordinate specialists.
-- Every agent requires ID, mission, KPI, permission, supervisor, current job, state and skill maturity.
-- State must be truthful: WORKING/REVIEW/LEARNING requires current evidence; otherwise use READY/BLOCKED.
-- Never animate an agent as “working” merely to make the office look active.
-- Shared learning uses DATA_LEARNING_OS.md and EVOLUTION.md; customer/private data must remain isolated by scope.
-- Phase 2A is visualization + registry only. Real dispatch/heartbeat/audit write-back belongs to Phase 2B.
+AGIS does **not** optimize for agent count.
+
+Default workforce = the existing 12 Core Agents.
+
+Before proposing a new permanent agent, follow `agents/QUALITY_POLICY.md`:
+```
+CAPABILITY GAP
+→ TRY EXISTING AGENT + SKILL
+→ MEASURE
+→ TEMP SPECIALIST IF NEEDED
+→ INDEPENDENT EVAL
+→ PROMOTE / MERGE / DELETE
+```
+
+A new agent is justified only when an observed capability gap cannot be solved well by better data, context, skill, tool, routing or evaluation.
+
+### Truthful reasoning/output standard
+Every agent must explicitly distinguish:
+- VERIFIED FACT
+- SOURCE CLAIM
+- INFERENCE
+- HYPOTHESIS
+- FORECAST
+- UNKNOWN
+
+It is acceptable and required to say “I don't know” or “not verified” when evidence is insufficient.
+Never invent facts, test results, customer evidence, revenue, citations, actions or completion.
+
+### Quality gate
+Important outputs and all new-agent/skill promotions follow `evals/AGENT_QUALITY.md`.
+High confidence without evidence is a failure, not a strength.
