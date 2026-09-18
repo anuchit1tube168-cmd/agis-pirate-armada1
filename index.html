@@ -13,7 +13,7 @@
       <div class="brand">
         <div class="mark">A</div>
         <div>
-          <div class="eyebrow">AGIS AI COMPANY • PHASE 1</div>
+          <div class="eyebrow">AGIS AI COMPANY • PHASE 2A</div>
           <h1>$10M LEVERAGE MISSION CONTROL</h1>
         </div>
       </div>
@@ -27,6 +27,7 @@
     <nav class="tabs" aria-label="Mission sections">
       <button class="tab active" data-view="mission">Mission Control</button>
       <button class="tab" data-view="command">Command Center</button>
+      <button class="tab" data-view="office">AI Office 100</button>
       <button class="tab" data-view="team">Agent Team</button>
       <button class="tab" data-view="knowledge">Knowledge Lab</button>
       <button class="tab" data-view="learning">Learning / Evolution</button>
@@ -120,6 +121,47 @@
         </div>
       </section>
 
+
+      <section id="office" class="view">
+        <div class="section-title">
+          <div><span>PHASE 2A • AGENT OFFICE</span><h2>100 specialized AI workers — visible, inspectable, truthful state</h2></div>
+          <span class="pill">10 DEPARTMENTS × 10 AGENTS</span>
+        </div>
+
+        <div class="office-kpis">
+          <div class="office-kpi"><small>Total Agents</small><strong id="officeTotal">100</strong></div>
+          <div class="office-kpi working"><small>Working</small><strong id="officeWorking">0</strong></div>
+          <div class="office-kpi review"><small>Review</small><strong id="officeReview">0</strong></div>
+          <div class="office-kpi learning"><small>Learning</small><strong id="officeLearning">0</strong></div>
+          <div class="office-kpi ready"><small>Ready</small><strong id="officeReady">0</strong></div>
+        </div>
+
+        <article class="card office-toolbar">
+          <div>
+            <label>Search<input id="officeSearch" placeholder="Agent / specialty / job"/></label>
+            <label>Department<select id="officeDepartment"><option value="">All departments</option></select></label>
+            <label>Status<select id="officeStatus"><option value="">All states</option><option>WORKING</option><option>REVIEW</option><option>LEARNING</option><option>BLOCKED</option><option>READY</option></select></label>
+          </div>
+          <p class="muted small">WORKING means a current project activity/job is attached. READY means the agent exists in the organization but is not executing.</p>
+        </article>
+
+        <div class="office-main">
+          <div id="officeRooms" class="office-rooms"></div>
+          <aside class="card activity-panel">
+            <div class="card-head"><span>LIVE ACTIVITY FEED</span><span class="badge">STAGING</span></div>
+            <div id="activityFeed" class="activity-feed"></div>
+          </aside>
+        </div>
+
+        <div id="agentDrawer" class="agent-drawer" aria-hidden="true">
+          <div class="drawer-backdrop" data-close-drawer></div>
+          <aside class="drawer-panel">
+            <button class="drawer-close" data-close-drawer>×</button>
+            <div id="agentProfile"></div>
+          </aside>
+        </div>
+      </section>
+
       <section id="team" class="view">
         <div class="section-title"><div><span>AGENT FACTORY</span><h2>AI workforce with jobs, reviewers and permissions</h2></div><span class="pill">COMMANDER → SPECIALISTS → REVIEW</span></div>
         <div id="teamGrid" class="team-grid"></div>
@@ -168,7 +210,7 @@
       </section>
     </main>
 
-    <footer><span>AGIS $10M • Phase 1 Foundation • Evidence over activity</span><span id="lastUpdated">Last updated —</span></footer>
+    <footer><span>AGIS $10M • Phase 2A Agent Office • Evidence over activity</span><span id="lastUpdated">Last updated —</span></footer>
   </div>
   <script src="./app.js"></script>
 </body>
