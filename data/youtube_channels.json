@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "channels": [
+    {
+      "id": "doac-main",
+      "name": "The Diary Of A CEO",
+      "url": "https://youtube.com/@thediaryofaceo",
+      "mode": "ALL_CLIPS_QUEUE",
+      "priority": "HIGH",
+      "status": "ACTIVE",
+      "last_scan": null,
+      "notes": "AI/OpenAI/frontier episodes get HIGH relevance, but all discovered clips can be indexed/queued."
+    }
+  ],
+  "policy": {
+    "enumerate": "YouTube Data API when configured",
+    "transcript": "authorized provider or user-supplied; otherwise BLOCKED_TRANSCRIPT",
+    "dedupeBy": "videoId",
+    "batchPerRun": 3
+  }
+}
