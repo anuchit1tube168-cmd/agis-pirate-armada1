@@ -1,0 +1,50 @@
+[
+  {
+    "id": "JOB-001",
+    "status": "ACTIVE",
+    "title": "Lock $10M Math",
+    "objective": "Define target date, scenarios and funnel math using verified vs assumed values.",
+    "owner": "CFO / MATH",
+    "metric": "Traceability"
+  },
+  {
+    "id": "JOB-002",
+    "status": "QUEUED",
+    "title": "Select Golden Workflow",
+    "objective": "Choose the workflow with fastest path to measurable paid ROI.",
+    "owner": "CUSTOMER + PRODUCT",
+    "metric": "10 evidence points"
+  },
+  {
+    "id": "JOB-003",
+    "status": "QUEUED",
+    "title": "Baseline Time Study",
+    "objective": "Measure current steps, minutes, errors, handoffs and cost.",
+    "owner": "PRODUCT",
+    "metric": "Baseline"
+  },
+  {
+    "id": "JOB-006",
+    "status": "ACTIVE",
+    "title": "DOAC AI Intelligence Watch",
+    "objective": "Convert AI/OpenAI interviews into testable project hypotheses.",
+    "owner": "RESEARCH",
+    "metric": "Claim→Experiment"
+  },
+  {
+    "id": "JOB-007",
+    "status": "ACTIVE",
+    "title": "Time Compression Benchmark",
+    "objective": "Measure compounding speed gains without quality loss.",
+    "owner": "ARCHITECT + LEARNING",
+    "metric": "Compression factor"
+  },
+  {
+    "id": "JOB-008",
+    "status": "QUEUED",
+    "title": "Multi-Model Independence",
+    "objective": "Run one eval contract across multiple model backends in staging.",
+    "owner": "INTEGRATION",
+    "metric": "Switch effort"
+  }
+]
