@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="theme-color" content="#f4f7fb"/>
+  <title>AGIS $10M — AI Company Mission Control</title>
+  <link rel="stylesheet" href="./styles.css"/>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="mark">A</div>
+        <div>
+          <div class="eyebrow">AGIS AI COMPANY</div>
+          <h1>$10M LEVERAGE MISSION CONTROL</h1>
+        </div>
+      </div>
+      <div class="top-actions">
+        <span id="clock" class="clock">--:--</span>
+        <span class="pill live"><span class="dot"></span>90-DAY MISSION</span>
+      </div>
+    </header>
+
+    <nav class="tabs" aria-label="Mission sections">
+      <button class="tab active" data-view="mission">Mission Control</button>
+      <button class="tab" data-view="team">Agent Team</button>
+      <button class="tab" data-view="knowledge">Knowledge Lab</button>
+      <button class="tab" data-view="learning">Learning / Evolution</button>
+    </nav>
+
+    <main>
+      <section id="mission" class="view active">
+        <div class="hero-grid">
+          <article class="card target-card">
+            <div class="card-head">
+              <span>DO THE MATH</span><span id="mathStatus" class="status yellow">YELLOW</span>
+            </div>
+            <div class="target">$10,000,000</div>
+            <div class="muted">Cumulative verified revenue target</div>
+            <div class="progress"><i id="revenueBar"></i></div>
+            <div class="metric-row">
+              <div><small>Verified Revenue</small><strong id="verifiedRevenue">$0</strong></div>
+              <div><small>Gap</small><strong id="revenueGap">$10,000,000</strong></div>
+              <div><small>Qualified Pipeline</small><strong id="pipeline">$0</strong></div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-head"><span>TIME COMPRESSION</span><span class="badge">QUALITY-GATED</span></div>
+            <div class="compression"><strong id="compressionFactor">1.0×</strong><span>current leverage</span></div>
+            <div class="mini-chart">
+              <div><b>Day 0</b><span style="width:100%"></span><em>1×</em></div>
+              <div><b>Day 30</b><span style="width:50%"></span><em>2× target</em></div>
+              <div><b>Day 60</b><span style="width:25%"></span><em>4× target</em></div>
+              <div><b>Day 90</b><span style="width:12.5%"></span><em>8× test target</em></div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-head"><span>TODAY'S CONSTRAINT</span><span class="badge hot">P1</span></div>
+            <h2 id="constraint">Collect real customer evidence</h2>
+            <p id="constraintWhy" class="muted">No verified customer economics yet; product work must not outrun evidence.</p>
+            <div class="next-action">
+              <small>SINGLE NEXT MOVE</small>
+              <strong id="nextAction">Interview and quantify the Golden Workflow baseline.</strong>
+            </div>
+          </article>
+        </div>
+
+        <div class="section-title">
+          <div><span>ACTIVE JOBS</span><h2>What the company is doing now</h2></div>
+          <div class="legend"><i class="l-active"></i>Active <i class="l-review"></i>Review <i class="l-blocked"></i>Blocked</div>
+        </div>
+        <div id="jobBoard" class="job-board"></div>
+
+        <div class="split">
+          <article class="card">
+            <div class="card-head"><span>LEVERAGE SCOREBOARD</span><span class="badge">WEEKLY</span></div>
+            <div id="scoreGrid" class="score-grid"></div>
+          </article>
+          <article class="card">
+            <div class="card-head"><span>COMPOUNDING ASSETS</span><span class="badge">8 LAYERS</span></div>
+            <div id="assetGrid" class="asset-grid"></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="team" class="view">
+        <div class="section-title">
+          <div><span>AGENT FACTORY</span><h2>AI workforce with jobs, reviewers and permissions</h2></div>
+          <span class="pill">COMMANDER → SPECIALISTS → REVIEW</span>
+        </div>
+        <div id="teamGrid" class="team-grid"></div>
+      </section>
+
+      <section id="knowledge" class="view">
+        <div class="section-title">
+          <div><span>KNOWLEDGE FACTORY</span><h2>YouTube → Evidence → Experiment → Skill</h2></div>
+          <span class="pill">EVERY CLIP HAS A STATE</span>
+        </div>
+        <div class="knowledge-layout">
+          <article class="card pipeline-card">
+            <div class="flowline">
+              <span>CHANNEL</span><i>→</i><span>CLIP QUEUE</span><i>→</i><span>TRANSCRIPT</span><i>→</i><span>EXTRACT</span><i>→</i><span>REVIEW</span><i>→</i><span>SKILL</span>
+            </div>
+            <div class="source-form">
+              <input id="channelInput" value="https://youtube.com/@thediaryofaceo" aria-label="YouTube channel URL"/>
+              <button id="addChannelBtn">Add to Registry</button>
+            </div>
+            <p class="muted small">Channel enumeration can use YouTube Data API. Transcript extraction must use an authorized/available transcript source; unavailable transcripts remain visibly blocked rather than guessed.</p>
+          </article>
+          <div id="knowledgeQueue" class="knowledge-list"></div>
+        </div>
+      </section>
+
+      <section id="learning" class="view">
+        <div class="section-title">
+          <div><span>SELF-IMPROVEMENT</span><h2>Teach agents from evidence, not longer prompts</h2></div>
+          <span class="pill">TEST BEFORE PROMOTE</span>
+        </div>
+        <div class="split">
+          <article class="card">
+            <div class="learning-loop">
+              <span>FAIL / SLOW</span><i>→</i><span>ROOT CAUSE</span><i>→</i><span>UPDATE RULE</span><i>→</i><span>RETEST</span><i>→</i><span>PROMOTE SKILL</span>
+            </div>
+            <div id="trainingLog" class="timeline"></div>
+          </article>
+          <article class="card">
+            <div class="card-head"><span>AGENTS.MD EVOLUTION</span><span id="agentVersion" class="badge">v1</span></div>
+            <h3>Promotion rules</h3>
+            <ul class="rules">
+              <li>No agent rule is promoted without evidence.</li>
+              <li>Every meaningful failure becomes root cause + test.</li>
+              <li>Repeated success becomes a checklist/template/skill.</li>
+              <li>Conflicting rules are retired, not endlessly appended.</li>
+              <li>High-impact permission changes remain human-approved.</li>
+            </ul>
+            <div class="next-action">
+              <small>NEXT EVOLUTION</small>
+              <strong id="nextEvolution">Measure first real before/after cycle-time lesson.</strong>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>AGIS $10M • Evidence over activity</span>
+      <span id="lastUpdated">Last updated —</span>
+    </footer>
+  </div>
+  <script src="./app.js"></script>
+</body>
+</html>
