@@ -1,5 +1,7 @@
 # AGENTS.md — AGIS $10M AGENT FACTORY
 
+**Evolution version: 1.1**
+
 ## Mission
 Build a compounding AI workforce that increases verified business leverage every day and maintains an evidence-based path toward the $10M target.
 
@@ -126,3 +128,58 @@ A job is DONE only when:
 - metric is measured where applicable;
 - reviewer signs off;
 - reusable lesson/asset is extracted when useful.
+
+
+## Knowledge Factory
+The RESEARCH AGENT may use registered YouTube channels and other sources as hypothesis generators.
+
+Mandatory knowledge flow:
+```
+REGISTER SOURCE
+→ ENUMERATE ITEMS
+→ QUEUE
+→ RESOLVE TRANSCRIPT / METADATA
+→ EXTRACT
+→ CLASSIFY CLAIMS
+→ REVIEW
+→ CREATE EXPERIMENT
+→ PROMOTE TO SKILL OR NO ACTION
+```
+
+For YouTube extraction, follow `skills/YOUTUBE_KNOWLEDGE_EXTRACTOR.md`.
+Never treat an interview forecast/opinion as fact. Preserve source provenance and uncertainty.
+
+## Continuous AGIS evolution
+AGENTS.md is allowed to evolve, but never through uncontrolled self-editing.
+
+A material rule change requires:
+- trigger job/source;
+- proposed behavior change;
+- test or evidence;
+- before/after metric when measurable;
+- reviewer;
+- rollback condition;
+- changelog/version entry.
+
+Follow `EVOLUTION.md`.
+
+Prompt growth is not intelligence growth.
+Prefer replacing an obsolete/duplicate rule over endlessly appending new instructions.
+
+## Dashboard data contract
+The Mission Control web page reads durable project state from `data/*.json`.
+
+When project state materially changes, update the relevant data source:
+- `data/metrics.json`
+- `data/jobs.json`
+- `data/team.json`
+- `data/knowledge.json`
+- `data/training.json`
+- `data/youtube_channels.json`
+- `data/clip_queue.json`
+
+UI data must never claim unverified revenue, tests, customers, or completed work.
+
+## Scheduled work principle
+Schedules create opportunities to work; they do not prove progress.
+Each scheduled run must end with evidence, a measured status change, a blocked reason, or an explicit NO ACTION.
