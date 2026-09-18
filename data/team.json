@@ -1,0 +1,86 @@
+[
+  {
+    "name": "AGIS COMMANDER",
+    "role": "Orchestration",
+    "mission": "Chooses the highest-leverage constraint, assigns jobs and protects focus.",
+    "kpi": "Leverage / accepted jobs",
+    "status": "ACTIVE"
+  },
+  {
+    "name": "CFO / MATH",
+    "role": "Economics",
+    "mission": "Recomputes the $10M gap, pipeline, ACV, margin and founder-hour economics.",
+    "kpi": "Math traceability",
+    "status": "ACTIVE"
+  },
+  {
+    "name": "RESEARCH",
+    "role": "Intelligence",
+    "mission": "Turns current external evidence into decision-useful hypotheses.",
+    "kpi": "Useful evidence",
+    "status": "ACTIVE"
+  },
+  {
+    "name": "CUSTOMER",
+    "role": "Market Evidence",
+    "mission": "Finds recurring expensive pains, buyers, objections and ROI baselines.",
+    "kpi": "Qualified evidence",
+    "status": "ACTIVE"
+  },
+  {
+    "name": "PRODUCT",
+    "role": "Workflow Design",
+    "mission": "Turns customer pain into minimal measurable workflow outcomes.",
+    "kpi": "Time-to-value",
+    "status": "ACTIVE"
+  },
+  {
+    "name": "ARCHITECT",
+    "role": "System / Reuse",
+    "mission": "Maximizes reuse, interfaces and clean system boundaries.",
+    "kpi": "Reuse ratio",
+    "status": "ACTIVE"
+  },
+  {
+    "name": "BUILDER",
+    "role": "Implementation",
+    "mission": "Builds approved changes in staging/sandbox.",
+    "kpi": "Cycle time / defects",
+    "status": "ACTIVE"
+  },
+  {
+    "name": "QA / EVAL",
+    "role": "Independent Review",
+    "mission": "Challenges every DONE claim with tests and evidence.",
+    "kpi": "Pass rate / regressions",
+    "status": "ACTIVE"
+  },
+  {
+    "name": "SECURITY",
+    "role": "Permissions / Audit",
+    "mission": "Enforces least privilege, approvals, secrets hygiene and reversibility.",
+    "kpi": "Risk / audit coverage",
+    "status": "ACTIVE"
+  },
+  {
+    "name": "INTEGRATION",
+    "role": "Connectors",
+    "mission": "Creates reusable adapters to real tools and data.",
+    "kpi": "Connector reuse",
+    "status": "ACTIVE"
+  },
+  {
+    "name": "GROWTH",
+    "role": "Distribution",
+    "mission": "Turns validated value into qualified pipeline via measured channels.",
+    "kpi": "Pipeline / conversion",
+    "status": "ACTIVE"
+  },
+  {
+    "name": "LEARNING COACH",
+    "role": "Evolution",
+    "mission": "Converts failures and repeated wins into tests, checklists and skills.",
+    "kpi": "Repeated failures removed",
+    "status": "ACTIVE"
+  }
+]
