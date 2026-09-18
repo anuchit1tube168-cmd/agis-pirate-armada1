@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "updated": "2026-09-18",
+  "items": [
+    {
+      "videoId": "_g4l7YkDQwA",
+      "channel": "The Diary Of A CEO",
+      "title": "Daniel Kokotajlo / OpenAI interview",
+      "url": "https://www.youtube.com/watch?v=_g4l7YkDQwA",
+      "state": "EXTRACTED",
+      "priority": "HIGH",
+      "skillCandidate": "Agentic workflow + governance"
+    },
+    {
+      "videoId": "CANDIDATE-KAREN-HAO",
+      "channel": "The Diary Of A CEO",
+      "title": "Karen Hao / OpenAI reporting",
+      "url": "https://www.youtube.com/@thediaryofaceo",
+      "state": "EXTRACTED",
+      "priority": "HIGH",
+      "skillCandidate": "Source confidence + vendor independence"
+    }
+  ]
+}
