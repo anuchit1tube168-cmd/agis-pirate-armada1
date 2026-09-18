@@ -1,0 +1,14 @@
+[
+  {
+    "date": "2026-09-18",
+    "agent": "LEARNING COACH",
+    "lesson": "Activity is not progress.",
+    "evidence": "Job completion now requires deliverable + test + evidence + metric where applicable."
+  },
+  {
+    "date": "2026-09-18",
+    "agent": "RESEARCH",
+    "lesson": "Media claims create hypotheses, not strategy.",
+    "evidence": "Added SOURCE→CLAIM→CONFIDENCE→EXPERIMENT→METRIC→DECISION pipeline."
+  }
+]
