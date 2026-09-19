@@ -3,6 +3,24 @@
   "mode": "PHASE_2B_DEPLOY_READY_BLOCKED",
   "events": [
     {
+      "time": "16:44",
+      "agent": "SECURITY",
+      "type": "HARDEN",
+      "text": "Consequential writes now require Idempotency-Key; job/approval + audit + idempotency record use transactional D1 batch."
+    },
+    {
+      "time": "16:44",
+      "agent": "QA / EVAL",
+      "type": "PASS",
+      "text": "CI run 35435245952 proved same-key retries do not duplicate jobs, approvals or audit events."
+    },
+    {
+      "time": "16:45",
+      "agent": "LEARNING COACH",
+      "type": "R&D",
+      "text": "RND-RUNTIME-001 recorded as CI-validated, but skill promotion is withheld until remote D1 staging replay test passes."
+    },
+    {
       "time": "16:38",
       "agent": "QA / EVAL",
       "type": "FAIL",
@@ -85,18 +103,6 @@
       "agent": "QA / EVAL",
       "type": "PASS",
       "text": "Phase 2B CI passed seed consistency, foundation checks, and runtime contract: auth → heartbeat → office → job → approval → audit."
-    },
-    {
-      "time": "22:24",
-      "agent": "AGIS COMMANDER",
-      "type": "DECISION",
-      "text": "Stopped optimizing for agent count; adopted quality-first Core Agent policy."
-    },
-    {
-      "time": "22:24",
-      "agent": "RESEARCH",
-      "type": "R&D",
-      "text": "Focus narrowed to evidence-based research on how to build and improve AI agents."
     }
   ]
 }
