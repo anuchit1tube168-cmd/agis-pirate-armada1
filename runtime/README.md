@@ -35,3 +35,13 @@ Phase 2B is complete only after:
 6. approval gate works;
 7. no secrets appear in client/repo;
 8. E2E test passes.
+
+
+## Stable seed rule
+`seed-core-agents.sql` intentionally seeds only durable agent identity/configuration.
+Volatile runtime fields are normalized:
+- status = READY
+- current_job = Awaiting approved job
+- learning_state = READY
+
+Runtime state is then changed only by heartbeat/job execution. This prevents ordinary activity updates from changing the deterministic bootstrap artifact or creating false CI drift.
