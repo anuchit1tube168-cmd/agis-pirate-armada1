@@ -66,3 +66,15 @@ The repository can perform a staging-only deployment through `.github/workflows/
 - `AG_RUNTIME_CONTROL_TOKEN`
 
 This is an explicit evidence boundary: do not claim live runtime until the remote workflow and E2E evidence exist.
+
+
+## Verified CI evidence — 2026-09-19
+GitHub Actions run **35435028739** completed successfully with:
+- frontend JavaScript syntax PASS;
+- Worker JavaScript syntax PASS;
+- deterministic Core Agent seed consistency PASS;
+- Phase 2B foundation checks PASS;
+- SQLite compatibility / 12-agent seed PASS;
+- runtime contract auth → heartbeat → office → job → approval → audit PASS.
+
+This is local/CI evidence only; it is not remote Cloudflare deployment evidence.
