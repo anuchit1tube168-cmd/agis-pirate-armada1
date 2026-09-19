@@ -7,8 +7,8 @@ This folder is the staging backend foundation for the quality-first Core Agent o
 - GET /api/office — sanitized public office snapshot.
 - GET /api/events — SSE-compatible snapshot stream; EventSource reconnects using retry.
 - POST /api/heartbeat — authenticated agent state/current-job update.
-- POST /api/jobs — authenticated job creation.
-- POST /api/approvals — authenticated human approval/rejection.
+- POST /api/jobs — authenticated + idempotent job creation (requires `Idempotency-Key`).
+- POST /api/approvals — authenticated + idempotent human approval/rejection (requires `Idempotency-Key`).
 
 ## Security boundary
 - Public browser receives no control token.
@@ -45,3 +45,11 @@ Volatile runtime fields are normalized:
 - learning_state = READY
 
 Runtime state is then changed only by heartbeat/job execution. This prevents ordinary activity updates from changing the deterministic bootstrap artifact or creating false CI drift.
+
+
+## Idempotency / replay safety
+Consequential write endpoints `POST /api/jobs` and `POST /api/approvals` require an `Idempotency-Key` header (8–128 safe characters).
+
+The runtime stores the first successful response by route + idempotency key. Retrying the same request with the same key returns the cached response and does not create a second job/approval/audit event.
+
+Job/approval write + audit + idempotency record are executed with D1 `batch()`, which is transactional in D1. Heartbeats are intentionally not idempotency-gated because repeated heartbeats are expected state/event signals.
