@@ -46,5 +46,15 @@
     "objective": "Run one eval contract across multiple model backends in staging.",
     "owner": "INTEGRATION",
     "metric": "Switch effort"
+  },
+  {
+    "id": "JOB-014",
+    "status": "BLOCKED",
+    "title": "Deploy Cloudflare Staging Runtime",
+    "objective": "Create/bind staging D1, seed 12 Core Agents, deploy Worker, then prove heartbeat → Office → approval E2E remotely.",
+    "owner": "INTEGRATION + SECURITY",
+    "metric": "Remote E2E PASS + audit evidence",
+    "blocker": "Missing verified Cloudflare staging credentials / account / D1 database ID in connected tools",
+    "next": "Configure GitHub staging secrets and run runtime-staging-deploy workflow with STAGING confirmation"
   }
 ]
