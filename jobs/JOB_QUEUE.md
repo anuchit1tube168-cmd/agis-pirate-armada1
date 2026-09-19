@@ -66,3 +66,19 @@ BUSINESS_OBJECTIVE: ensure failures create durable improvement.
 DELIVERABLE: training log + measurable before/after rule.
 ACCEPTANCE_TEST: no lesson promoted without retest evidence.
 TARGET_METRIC: eliminate repeated identical failure patterns.
+
+### JOB-006 — Builder E1-A Mission Dashboard Baseline
+STATUS: ACTIVE
+OWNER_AGENT: BUILDER
+REVIEWER: QA / EVAL
+BUSINESS_OBJECTIVE: turn the web/frontend capability gap into measurable evidence before adding agents or promoting a skill.
+CONTEXT: Use skills/WEB_APP_FULLSTACK_GAMEDEV.md E1-A. This is a staging-only training experiment, not a production feature and not evidence of revenue.
+DELIVERABLE: small mission dashboard implementation plus reproducible build/test evidence and an eval record.
+ACCEPTANCE_TEST: component boundaries documented; loading/error/empty states; responsive keyboard-usable UI; lint/typecheck/build pass; >=1 critical-state test; no secrets/client privileged writes; QA records defects, elapsed time and rework.
+TARGET_METRIC: establish the first reproducible Builder web-app baseline for pass/fail, defects, elapsed time, rework and reused assets.
+TIME_BUDGET: measure actual elapsed/human time; do not invent a target duration before baseline exists.
+DEPENDENCIES: WEB_APP_FULLSTACK_GAMEDEV skill candidate; existing staging/sandbox only.
+PERMISSION_LEVEL: staging/sandbox write only; production write OFF.
+EVIDENCE_REQUIRED: commit/artifact, test/build output, QA result, elapsed/human time, defects/rework, reused assets.
+IF_PASS: run E1-B design-to-code comparison and evaluate skill promotion evidence.
+IF_FAIL: enter OODA/root-cause loop, change the build hypothesis/checklist/tooling, retest, and record the failed approach.
