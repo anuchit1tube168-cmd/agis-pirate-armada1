@@ -71,3 +71,36 @@ Do **not** create a Web Developer/Game Developer agent yet. First run this skill
 
 ## Promotion metric
 Record pass/fail, defects, elapsed/human time, rework and reused assets. Promote only if quality holds or improves and repeated work becomes measurably faster/more reliable.
+
+
+## Research-backed training update — 2026-09-19
+**Evidence state:** CANDIDATE; source material informs experiments but does not itself prove Builder improvement.
+
+### Verified source observations
+- MilerDev publicly structures learning around understanding the problem/reason first, coding concepts/examples, and connecting lessons into projects that can be explained, tested, and extended.
+- Its public catalog exposes HTML/CSS, JavaScript, Figma-to-Code, and ReactJS tracks.
+- The public React track starts with project setup/structure, JSX, components, props, conditional rendering, and list rendering.
+
+### Builder training rule derived for evaluation
+For frontend missions, use:
+PROBLEM/GOAL -> VISUAL/COMPONENT DECOMPOSITION -> DATA/STATE -> IMPLEMENT -> ERROR/EMPTY/LOADING -> RESPONSIVE/A11Y -> TEST -> BUILD -> REVIEW
+
+Treat this sequence as a HYPOTHESIS until E1/E5 produce before/after evidence.
+
+### E1-A — Project-first React web app
+Build a small staging-only mission dashboard using reusable components and explicit state.
+Acceptance:
+1. component boundaries documented;
+2. loading/error/empty states;
+3. responsive keyboard-usable UI;
+4. lint/typecheck/build pass;
+5. at least one critical state test;
+6. no secrets/client privileged writes;
+7. QA records defects, elapsed time and rework.
+
+### E1-B — Design-to-code
+Given one approved design/screenshot, first create a component/layout map, then implement it responsively.
+Measure: visual defects, responsive defects, accessibility defects and number of rework rounds.
+
+### Promotion
+If E1-A/E1-B show repeatable quality/time improvement under independent QA, promote the validated rules into stable skill guidance. Otherwise revise or reject them.
