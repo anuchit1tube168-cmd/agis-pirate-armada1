@@ -39,7 +39,11 @@ Turn the quality-first Core Agent organization into a truthful runtime control p
 - [ ] E2E heartbeat → office update passes.
 - [x] Runtime contract test passes in CI: auth → heartbeat → office → job → approval → audit.
 - [ ] approval test passes.
-- [ ] security review passes.
+- [x] Security review 01 passes for staging preparation (not production).
+- [x] SQLite compatibility test added for D1 schema + deterministic 12-agent seed.
+- [x] Manual-gated Cloudflare staging deploy workflow added.
+- [ ] Required Cloudflare staging secrets/environment configured.
+- [ ] security review passes for production.
 
 Do not mark Phase 2B complete without deployment + E2E evidence.
 
@@ -48,3 +52,17 @@ Do not mark Phase 2B complete without deployment + E2E evidence.
 Runtime must not auto-spawn permanent agents.
 New agents require the Capability Gap Gate in `agents/QUALITY_POLICY.md` and independent QA/EVAL approval.
 Temporary specialists must be sandboxed and retired/merged if they do not show measurable value.
+
+
+## Immediate blocker — 2026-09-19
+No Cloudflare connector is available in the current connected-tool set, and no verified staging Cloudflare credentials/D1 database ID are exposed to this session.
+
+Therefore this phase is now **DEPLOY-READY BUT NOT DEPLOYED**.
+
+The repository can perform a staging-only deployment through `.github/workflows/runtime-staging-deploy.yml` once these GitHub staging secrets are configured:
+- `CLOUDFLARE_API_TOKEN`
+- `CLOUDFLARE_ACCOUNT_ID`
+- `AG_RUNTIME_D1_DATABASE_ID`
+- `AG_RUNTIME_CONTROL_TOKEN`
+
+This is an explicit evidence boundary: do not claim live runtime until the remote workflow and E2E evidence exist.
