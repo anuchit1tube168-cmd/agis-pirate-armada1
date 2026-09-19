@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "channels": [
     {
       "id": "doac-main",
@@ -10,12 +10,33 @@
       "status": "ACTIVE",
       "last_scan": null,
       "notes": "AI/OpenAI/frontier episodes get HIGH relevance, but all discovered clips can be indexed/queued."
+    },
+    {
+      "id": "devwithbebz-main",
+      "name": "DevWithBebz",
+      "url": "https://youtube.com/@devwithbebz",
+      "mode": "DEV_CAPABILITY_SCOUT",
+      "priority": "HIGH",
+      "status": "ACTIVE",
+      "last_scan": null,
+      "notes": "Boss-supplied source. Scout JavaScript, frontend/backend, web apps, AI-assisted development, 2D/3D game development, testing, build and deployment. Preserve provenance; do not infer unavailable transcript content."
+    },
+    {
+      "id": "milerdev-main",
+      "name": "MilerDev",
+      "url": "https://youtube.com/@milerdev",
+      "mode": "DEV_CAPABILITY_SCOUT",
+      "priority": "HIGH",
+      "status": "ACTIVE",
+      "last_scan": null,
+      "notes": "Boss-supplied source. Scout HTML/CSS, JavaScript, React/Next/TypeScript, design-to-code, AI workflow, testing, build/deploy and relevant 2D/3D patterns. Source claims require reproduction before skill promotion."
     }
   ],
   "policy": {
-    "enumerate": "YouTube Data API when configured",
+    "enumerate": "YouTube Data API when configured; otherwise use public source discovery and leave unavailable inventory UNKNOWN",
     "transcript": "authorized provider or user-supplied; otherwise BLOCKED_TRANSCRIPT",
     "dedupeBy": "videoId",
-    "batchPerRun": 3
+    "batchPerRun": 3,
+    "promotion": "SOURCE -> RESEARCH -> BUILDER EXPERIMENT -> ARCHITECT REVIEW -> QA/EVAL -> LEARNING COACH -> SKILL.md only after reproducible evidence"
   }
 }
