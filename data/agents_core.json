@@ -1,7 +1,7 @@
 {
   "version": "QUALITY-FIRST-1.0",
   "policy": "CORE_ONLY_UNLESS_PROVEN_CAPABILITY_GAP",
-  "updated": "2026-09-18",
+  "updated": "2026-09-19",
   "agents": [
     {
       "id": "AG-001",
@@ -11,11 +11,11 @@
       "mission": "Select the highest-leverage constraint, coordinate the smallest sufficient team, and preserve focus.",
       "kpi": "Accepted outcomes / leverage",
       "permission": "Project orchestration; no uncontrolled production write",
-      "status": "WORKING",
-      "currentJob": "Quality-first agent architecture",
+      "status": "READY",
+      "currentJob": "Cycle complete; awaiting next Boss Agis command or 4-hour fallback",
       "supervisor": "Boss Agis",
       "skillLevel": 5,
-      "learningState": "ACTIVE"
+      "learningState": "READY"
     },
     {
       "id": "AG-002",
@@ -26,7 +26,7 @@
       "kpi": "Math traceability / unit economics",
       "permission": "Planning data only",
       "status": "READY",
-      "currentJob": "Awaiting approved job",
+      "currentJob": "Awaiting command or 4-hour fallback",
       "supervisor": "AGIS COMMANDER",
       "skillLevel": 3,
       "learningState": "READY"
@@ -39,11 +39,11 @@
       "mission": "Turn relevant external and internal evidence into falsifiable hypotheses, not hype.",
       "kpi": "Decision-useful evidence",
       "permission": "Read/search/project notes",
-      "status": "WORKING",
-      "currentJob": "AI-agent construction research and evidence model",
+      "status": "READY",
+      "currentJob": "Awaiting command or 4-hour fallback",
       "supervisor": "AGIS COMMANDER",
       "skillLevel": 4,
-      "learningState": "ACTIVE"
+      "learningState": "READY"
     },
     {
       "id": "AG-004",
@@ -54,7 +54,7 @@
       "kpi": "Qualified customer evidence",
       "permission": "Scoped customer data",
       "status": "READY",
-      "currentJob": "Awaiting approved job",
+      "currentJob": "Awaiting command or 4-hour fallback",
       "supervisor": "AGIS COMMANDER",
       "skillLevel": 3,
       "learningState": "READY"
@@ -68,7 +68,7 @@
       "kpi": "Time-to-value / scope discipline",
       "permission": "Project specs",
       "status": "READY",
-      "currentJob": "Awaiting approved job",
+      "currentJob": "Awaiting command or 4-hour fallback",
       "supervisor": "AGIS COMMANDER",
       "skillLevel": 3,
       "learningState": "READY"
@@ -81,11 +81,11 @@
       "mission": "Design reusable boundaries, interfaces, memory and agent/tool architecture before adding complexity.",
       "kpi": "Reuse / maintainability",
       "permission": "Design and staging review",
-      "status": "WORKING",
-      "currentJob": "Core-agent runtime and capability-gap design",
+      "status": "READY",
+      "currentJob": "Awaiting command or 4-hour fallback",
       "supervisor": "AGIS COMMANDER",
       "skillLevel": 4,
-      "learningState": "ACTIVE"
+      "learningState": "READY"
     },
     {
       "id": "AG-007",
@@ -95,11 +95,11 @@
       "mission": "Build approved changes in staging/sandbox and keep implementation evidence reproducible.",
       "kpi": "Accepted cycle time / defect rate",
       "permission": "Staging/sandbox write",
-      "status": "WORKING",
-      "currentJob": "Refactor AI Office to core-agent model",
+      "status": "READY",
+      "currentJob": "Awaiting command or 4-hour fallback",
       "supervisor": "ARCHITECT",
       "skillLevel": 4,
-      "learningState": "ACTIVE"
+      "learningState": "READY"
     },
     {
       "id": "AG-008",
@@ -109,11 +109,11 @@
       "mission": "Challenge every DONE claim, agent behavior and new skill with explicit tests and evidence.",
       "kpi": "Eval pass / regression catches",
       "permission": "Read/test; no production write",
-      "status": "REVIEW",
-      "currentJob": "Validate quality-first agent policy and regressions",
+      "status": "READY",
+      "currentJob": "Awaiting command or 4-hour fallback",
       "supervisor": "AGIS COMMANDER",
       "skillLevel": 4,
-      "learningState": "ACTIVE"
+      "learningState": "READY"
     },
     {
       "id": "AG-009",
@@ -124,10 +124,10 @@
       "kpi": "Risk reduction / audit coverage",
       "permission": "Security review / approval gate",
       "status": "REVIEW",
-      "currentJob": "Review runtime and agent-spawn permission boundary",
+      "currentJob": "Staging deployment security gate — preparation PASS, production NOT APPROVED",
       "supervisor": "AGIS COMMANDER",
       "skillLevel": 4,
-      "learningState": "ACTIVE"
+      "learningState": "READY"
     },
     {
       "id": "AG-010",
@@ -137,8 +137,8 @@
       "mission": "Build reusable, observable interfaces to external systems only when an active workflow needs them.",
       "kpi": "Connector reuse / reliability",
       "permission": "Staging connector access",
-      "status": "READY",
-      "currentJob": "Awaiting approved job",
+      "status": "BLOCKED",
+      "currentJob": "Cloudflare staging deploy blocked by missing verified credentials/D1 ID",
       "supervisor": "ARCHITECT",
       "skillLevel": 3,
       "learningState": "READY"
@@ -152,7 +152,7 @@
       "kpi": "Qualified pipeline / conversion",
       "permission": "Draft-only external actions unless approved",
       "status": "READY",
-      "currentJob": "Awaiting validated offer",
+      "currentJob": "Awaiting command or 4-hour fallback",
       "supervisor": "AGIS COMMANDER",
       "skillLevel": 3,
       "learningState": "READY"
@@ -165,11 +165,11 @@
       "mission": "Convert repeated failures, corrections and wins into tests, skills and AGENTS.md improvements only after evidence.",
       "kpi": "Repeated failures removed / skill reuse",
       "permission": "Project docs/tests; reviewed rule changes",
-      "status": "LEARNING",
-      "currentJob": "Define capability-gap and honesty standards",
+      "status": "READY",
+      "currentJob": "Awaiting command or 4-hour fallback",
       "supervisor": "AGIS COMMANDER",
       "skillLevel": 4,
-      "learningState": "ACTIVE"
+      "learningState": "READY"
     }
   ]
 }
