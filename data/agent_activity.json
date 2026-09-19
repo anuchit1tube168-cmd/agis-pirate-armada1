@@ -3,6 +3,30 @@
   "mode": "PHASE_2B_DEPLOY_READY_BLOCKED",
   "events": [
     {
+      "time": "16:38",
+      "agent": "QA / EVAL",
+      "type": "FAIL",
+      "text": "Regression detected: CI run 35435087962 failed deterministic seed check after normal Agent status changes."
+    },
+    {
+      "time": "16:39",
+      "agent": "ARCHITECT",
+      "type": "ROOT_CAUSE",
+      "text": "Bootstrap seed incorrectly included volatile runtime state (status/currentJob/learningState)."
+    },
+    {
+      "time": "16:40",
+      "agent": "BUILDER",
+      "type": "FIX",
+      "text": "Separated stable Agent identity/config from volatile runtime state; seed now normalizes agents to READY."
+    },
+    {
+      "time": "16:40",
+      "agent": "LEARNING COACH",
+      "type": "LEARNING",
+      "text": "New rule: bootstrap artifacts must contain durable configuration only; live state belongs to runtime/event storage."
+    },
+    {
       "time": "16:36",
       "agent": "QA / EVAL",
       "type": "PASS",
@@ -73,12 +97,6 @@
       "agent": "RESEARCH",
       "type": "R&D",
       "text": "Focus narrowed to evidence-based research on how to build and improve AI agents."
-    },
-    {
-      "time": "22:25",
-      "agent": "ARCHITECT",
-      "type": "DESIGN",
-      "text": "New-agent creation now requires a proven capability gap and independent evaluation."
     }
   ]
 }
