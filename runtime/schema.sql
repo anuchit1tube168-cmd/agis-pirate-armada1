@@ -60,3 +60,14 @@ CREATE TABLE IF NOT EXISTS audit_events (
   detail_json TEXT NOT NULL DEFAULT '{}'
 );
 CREATE INDEX IF NOT EXISTS idx_audit_events_ts ON audit_events(ts DESC);
+
+
+CREATE TABLE IF NOT EXISTS idempotency_keys (
+  route TEXT NOT NULL,
+  idem_key TEXT NOT NULL,
+  response_json TEXT NOT NULL,
+  status_code INTEGER NOT NULL,
+  created_at TEXT NOT NULL,
+  PRIMARY KEY(route, idem_key)
+);
+CREATE INDEX IF NOT EXISTS idx_idempotency_created_at ON idempotency_keys(created_at DESC);
