@@ -40,6 +40,21 @@ Do NOT approve production until:
 - Cloudflare token scope is least-privilege reviewed;
 - CORS is verified against the final Pages origin;
 - rate limiting/abuse controls are added;
-- replay/idempotency strategy is tested for consequential writes;
+- replay/idempotency strategy is tested for consequential writes; ✅ foundation implemented + contract test added, remote staging verification still required;
 - rollback/export procedure is rehearsed;
 - human approval is recorded.
+
+
+## Security hardening 02 — idempotent consequential writes
+Implemented before remote staging:
+- `POST /api/jobs` requires `Idempotency-Key`;
+- `POST /api/approvals` requires `Idempotency-Key`;
+- retries return the original response;
+- retries do not duplicate jobs, approvals or audit events;
+- unknown owner Agent is rejected before job creation;
+- D1 batch groups business write + audit + idempotency record transactionally.
+
+Still required after staging deployment:
+- remote replay test;
+- abuse/rate limiting;
+- token-scope inspection.
