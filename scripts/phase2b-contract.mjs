@@ -9,7 +9,7 @@ class MockDB {
       permission:a.permission,status:a.status,current_job:a.currentJob,supervisor:a.supervisor,
       skill_level:a.skillLevel,learning_state:a.learningState,last_seen:null,updated_at:reg.updated
     }]));
-    this.jobs=[]; this.events=[]; this.approvals=[]; this.audits=[];
+    this.jobs=[]; this.events=[]; this.approvals=[]; this.audits=[]; this.idempotency=new Map();
   }
   prepare(sql){
     const db=this;
@@ -19,6 +19,9 @@ class MockDB {
       async first(){
         if(sql.includes('SELECT name FROM agents WHERE id=?')){
           const a=db.agents.get(this._args[0]); return a?{name:a.name}:null;
+        }
+        if(sql.includes('SELECT response_json,status_code FROM idempotency_keys')){
+          return db.idempotency.get(this._args[0]+'|'+this._args[1])||null;
         }
         return null;
       },
@@ -50,18 +53,36 @@ class MockDB {
           db.jobs.push({id:a[0],title:a[1],objective:a[2],owner_agent_id:a[3],status:a[4],acceptance_test:a[5],metric:a[6],created_at:a[7],updated_at:a[8]});
         } else if(sql.includes('INSERT INTO approvals')){
           db.approvals.push({id:a[0],ts:a[1],target_type:a[2],target_id:a[3],decision:a[4],reviewer:a[5],note:a[6]});
+        } else if(sql.includes('INSERT INTO idempotency_keys')){
+          db.idempotency.set(a[0]+'|'+a[1],{response_json:a[2],status_code:a[3],created_at:a[4]});
         }
         return {success:true};
       }
     };
   }
+  async batch(statements){
+    const snapshots={
+      jobs:structuredClone(this.jobs),events:structuredClone(this.events),approvals:structuredClone(this.approvals),
+      audits:structuredClone(this.audits),idempotency:new Map(this.idempotency)
+    };
+    try{
+      const out=[];
+      for(const s of statements) out.push(await s.run());
+      return out;
+    }catch(e){
+      this.jobs=snapshots.jobs;this.events=snapshots.events;this.approvals=snapshots.approvals;
+      this.audits=snapshots.audits;this.idempotency=snapshots.idempotency;
+      throw e;
+    }
+  }
 }
 
 const DB=new MockDB();
 const env={DB,CONTROL_TOKEN:'test-control-token',CORS_ORIGIN:'https://example.test'};
-async function call(path,{method='GET',token=false,json}={}){
+async function call(path,{method='GET',token=false,idem,json}={}){
   const headers={'content-type':'application/json'};
   if(token) headers.authorization='Bearer test-control-token';
+  if(idem) headers['idempotency-key']=idem;
   const req=new Request('https://runtime.test'+path,{method,headers,body:json?JSON.stringify(json):undefined});
   return worker.fetch(req,env);
 }
@@ -87,14 +108,43 @@ r=await call('/api/office');
 j=await r.json();
 ok(j.agents.find(x=>x.id==='AG-007')?.currentJob==='Runtime contract test','office must reflect heartbeat');
 
-r=await call('/api/jobs',{method:'POST',token:true,json:{id:'JOB-TEST',title:'Contract test job',objective:'Verify runtime contract',ownerAgentId:'AG-007',acceptanceTest:'contract passes',metric:'pass/fail'}});
-ok(r.status===201,'job create must be 201');
-ok(DB.jobs.length===1 && DB.jobs[0].owner_agent_id==='AG-007','job must persist');
+const jobBody={id:'JOB-TEST',title:'Contract test job',objective:'Verify runtime contract',ownerAgentId:'AG-007',acceptanceTest:'contract passes',metric:'pass/fail'};
+r=await call('/api/jobs',{method:'POST',token:true,json:jobBody});
+ok(r.status===400,'job create without idempotency key must be 400');
 
-r=await call('/api/approvals',{method:'POST',token:true,json:{targetType:'job',targetId:'JOB-TEST',decision:'APPROVE',reviewer:'Boss Agis',note:'test approval'}});
+r=await call('/api/jobs',{method:'POST',token:true,idem:'job-contract-001',json:jobBody});
+ok(r.status===201,'job create must be 201');
+const jobResponse=await r.json();
+ok(DB.jobs.length===1 && DB.jobs[0].owner_agent_id==='AG-007','job must persist');
+const auditsAfterJob=DB.audits.length;
+
+r=await call('/api/jobs',{method:'POST',token:true,idem:'job-contract-001',json:jobBody});
+ok(r.status===201,'job retry with same idempotency key must return cached 201');
+j=await r.json();
+ok(j.id===jobResponse.id,'job retry must return same response');
+ok(DB.jobs.length===1,'job retry must not duplicate job');
+ok(DB.audits.length===auditsAfterJob,'job retry must not duplicate audit');
+
+r=await call('/api/jobs',{method:'POST',token:true,idem:'job-contract-002',json:{...jobBody,ownerAgentId:'UNKNOWN',id:'JOB-BAD'}});
+ok(r.status===404,'unknown owner must be rejected');
+
+const approvalBody={targetType:'job',targetId:'JOB-TEST',decision:'APPROVE',reviewer:'Boss Agis',note:'test approval'};
+r=await call('/api/approvals',{method:'POST',token:true,json:approvalBody});
+ok(r.status===400,'approval without idempotency key must be 400');
+
+r=await call('/api/approvals',{method:'POST',token:true,idem:'approval-contract-001',json:approvalBody});
 ok(r.status===201,'approval must be 201');
+const approvalResponse=await r.json();
 ok(DB.approvals.length===1,'approval must persist');
 ok(DB.audits.some(x=>x.action==='APPROVAL'),'approval must create audit');
+const auditsAfterApproval=DB.audits.length;
+
+r=await call('/api/approvals',{method:'POST',token:true,idem:'approval-contract-001',json:approvalBody});
+ok(r.status===201,'approval retry must return cached 201');
+j=await r.json();
+ok(j.id===approvalResponse.id,'approval retry must return same response');
+ok(DB.approvals.length===1,'approval retry must not duplicate approval');
+ok(DB.audits.length===auditsAfterApproval,'approval retry must not duplicate audit');
 
 r=await call('/api/heartbeat',{method:'POST',token:true,json:{agentId:'UNKNOWN',status:'WORKING'}});
 ok(r.status===404,'unknown agent heartbeat must be 404');
@@ -108,5 +158,6 @@ console.log(JSON.stringify({
   events:DB.events.length,
   jobs:DB.jobs.length,
   approvals:DB.approvals.length,
-  audits:DB.audits.length
+  audits:DB.audits.length,
+  idempotency:DB.idempotency.size
 },null,2));
