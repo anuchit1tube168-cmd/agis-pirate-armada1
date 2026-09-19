@@ -3,10 +3,10 @@
 **Execution rule:** prioritize by evidence and leverage. Every checked item needs a link/log proving completion.
 
 ## 001–010 — DO THE MATH
-- [ ] 001 Define $10M primary target precisely.
+- [x] 001 Define $10M primary target precisely. Evidence: `DO_THE_MATH.md` Primary target = USD 10,000,000 cumulative verified revenue unless Boss Agis explicitly changes it.
 - [ ] 002 Set target date and months remaining.
 - [ ] 003 Build daily gap-to-$10M calculation.
-- [ ] 004 Maintain Enterprise, Mid-market and Hybrid revenue scenarios.
+- [x] 004 Maintain Enterprise, Mid-market and Hybrid revenue scenarios. Evidence: `DO_THE_MATH.md` Revenue scenarios; explicitly planning examples, not forecasts.
 - [ ] 005 Calculate customer count required at multiple ACVs.
 - [ ] 006 Calculate qualified pipeline required from observed win rate.
 - [ ] 007 Calculate lead/meeting requirements from observed funnel.
