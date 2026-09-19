@@ -1,0 +1,92 @@
+name: Deploy Phase 2B Runtime to Cloudflare Staging
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_staging:
+        description: "Type STAGING to confirm this is not production"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    outputs:
+      allowed: ${{ steps.gate.outputs.allowed }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: gate
+        name: Enforce staging-only gate
+        shell: bash
+        run: |
+          if [ "${{ inputs.confirm_staging }}" != "STAGING" ]; then
+            echo "Refusing deploy: confirm_staging must equal STAGING"
+            exit 1
+          fi
+          test -n "${{ secrets.CLOUDFLARE_API_TOKEN }}" || (echo "Missing CLOUDFLARE_API_TOKEN" && exit 1)
+          test -n "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}" || (echo "Missing CLOUDFLARE_ACCOUNT_ID" && exit 1)
+          test -n "${{ secrets.AG_RUNTIME_D1_DATABASE_ID }}" || (echo "Missing AG_RUNTIME_D1_DATABASE_ID" && exit 1)
+          test -n "${{ secrets.AG_RUNTIME_CONTROL_TOKEN }}" || (echo "Missing AG_RUNTIME_CONTROL_TOKEN" && exit 1)
+          echo "allowed=true" >> "$GITHUB_OUTPUT"
+
+  deploy:
+    needs: preflight
+    if: needs.preflight.outputs.allowed == 'true'
+    runs-on: ubuntu-latest
+    environment: staging
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      AG_RUNTIME_D1_DATABASE_ID: ${{ secrets.AG_RUNTIME_D1_DATABASE_ID }}
+      AG_RUNTIME_CONTROL_TOKEN: ${{ secrets.AG_RUNTIME_CONTROL_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Build deterministic Core Agent seed
+        run: node scripts/build-runtime-seed.mjs
+
+      - name: Verify generated seed is committed and current
+        run: git diff --exit-code -- runtime/seed-core-agents.sql
+
+      - name: Generate staging Wrangler config
+        shell: bash
+        run: |
+          cat > runtime/wrangler.staging.toml <<EOF
+          name = "agis-10m-runtime-staging"
+          main = "worker.js"
+          compatibility_date = "2026-09-18"
+
+          [[d1_databases]]
+          binding = "DB"
+          database_name = "agis-10m-staging"
+          database_id = "$AG_RUNTIME_D1_DATABASE_ID"
+
+          [vars]
+          CORS_ORIGIN = "https://anuchit1tube168-cmd.github.io"
+          EOF
+
+      - name: Apply schema to staging D1
+        run: npx --yes wrangler@latest d1 execute agis-10m-staging --remote --yes --file=runtime/schema.sql --config runtime/wrangler.staging.toml
+
+      - name: Seed Core Agents to staging D1
+        run: npx --yes wrangler@latest d1 execute agis-10m-staging --remote --yes --file=runtime/seed-core-agents.sql --config runtime/wrangler.staging.toml
+
+      - name: Configure runtime control secret
+        working-directory: runtime
+        shell: bash
+        run: printf '%s' "$AG_RUNTIME_CONTROL_TOKEN" | npx --yes wrangler@latest secret put CONTROL_TOKEN --config wrangler.staging.toml
+
+      - name: Deploy staging Worker
+        working-directory: runtime
+        run: npx --yes wrangler@latest deploy --config wrangler.staging.toml
+
+      - name: Record safety boundary
+        run: |
+          echo "STAGING deployment completed."
+          echo "Production write remains OFF by project policy."
