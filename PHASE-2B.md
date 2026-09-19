@@ -97,3 +97,20 @@ Retest:
 - GitHub Actions **35435140111** passed all Phase 2B checks.
 
 This rule is now considered evidence-backed and reusable.
+
+
+## Consequential write replay safety — 2026-09-19
+Implemented in the Phase 2B runtime foundation:
+- `POST /api/jobs` requires `Idempotency-Key`;
+- `POST /api/approvals` requires `Idempotency-Key`;
+- duplicate same-key retries return the cached original response;
+- duplicate same-key retries do not create a second job/approval/audit;
+- unknown owner Agent is rejected before job creation;
+- business write + audit + idempotency persistence use D1 `batch()`.
+
+CI evidence:
+- GitHub Actions **35435245952** passed the runtime contract with replay tests.
+
+Evidence boundary:
+- this is verified in CI/mock + SQL compatibility only;
+- remote D1 replay behavior remains unverified until staging deployment.
