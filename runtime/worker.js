@@ -1,17 +1,26 @@
 const JSON_HEADERS={'content-type':'application/json; charset=utf-8'};
 const ALLOWED_STATES=new Set(['WORKING','REVIEW','LEARNING','BLOCKED','READY']);
+const IDEM_RE=/^[A-Za-z0-9._:-]{8,128}$/;
 
 function json(data,status=200,extra={}){return new Response(JSON.stringify(data),{status,headers:{...JSON_HEADERS,...extra}})}
 function cors(env){return {
   'access-control-allow-origin': env.CORS_ORIGIN || '*',
   'access-control-allow-methods':'GET,POST,OPTIONS',
-  'access-control-allow-headers':'content-type,authorization',
+  'access-control-allow-headers':'content-type,authorization,idempotency-key',
   'cache-control':'no-store'
 }}
 function authorized(req,env){
   const expected=env.CONTROL_TOKEN;
   if(!expected) return false;
   return req.headers.get('authorization')===`Bearer ${expected}`;
+}
+function idempotencyKey(req){
+  const key=(req.headers.get('idempotency-key')||'').trim();
+  return IDEM_RE.test(key)?key:null;
+}
+async function cachedWrite(env,route,key){
+  return env.DB.prepare('SELECT response_json,status_code FROM idempotency_keys WHERE route=? AND idem_key=? LIMIT 1')
+    .bind(route,key).first();
 }
 async function body(req){try{return await req.json()}catch{return null}}
 async function audit(env,actor,action,target,detail={}){
@@ -58,23 +67,53 @@ async function route(req,env){
   }
 
   if(url.pathname==='/api/jobs' && req.method==='POST'){
+    const idem=idempotencyKey(req);
+    if(!idem) return json({error:'valid Idempotency-Key required'},400,cors(env));
+    const cached=await cachedWrite(env,'POST:/api/jobs',idem);
+    if(cached) return json(JSON.parse(cached.response_json),cached.status_code,cors(env));
+
     const x=await body(req);
     if(!x?.title || !x?.ownerAgentId || !x?.acceptanceTest) return json({error:'missing job fields'},400,cors(env));
-    const id=x.id||`JOB-${Date.now()}`; const now=new Date().toISOString();
-    await env.DB.prepare(`INSERT INTO jobs(id,title,objective,owner_agent_id,status,acceptance_test,metric,created_at,updated_at)
-      VALUES(?,?,?,?,?,?,?,?,?)`).bind(id,x.title,x.objective||'',x.ownerAgentId,'QUEUED',x.acceptanceTest,x.metric||'',now,now).run();
-    await audit(env,'CONTROL','CREATE_JOB',id,{ownerAgentId:x.ownerAgentId,title:x.title});
-    return json({ok:true,id,status:'QUEUED'},201,cors(env));
+    const owner=await env.DB.prepare('SELECT name FROM agents WHERE id=?').bind(x.ownerAgentId).first();
+    if(!owner) return json({error:'unknown owner agent'},404,cors(env));
+
+    const id=x.id||`JOB-${crypto.randomUUID()}`;
+    const now=new Date().toISOString();
+    const response={ok:true,id,status:'QUEUED'};
+    const responseJson=JSON.stringify(response);
+    await env.DB.batch([
+      env.DB.prepare(`INSERT INTO jobs(id,title,objective,owner_agent_id,status,acceptance_test,metric,created_at,updated_at)
+        VALUES(?,?,?,?,?,?,?,?,?)`).bind(id,x.title,x.objective||'',x.ownerAgentId,'QUEUED',x.acceptanceTest,x.metric||'',now,now),
+      env.DB.prepare('INSERT INTO audit_events(id,ts,actor,action,target,detail_json) VALUES(?,?,?,?,?,?)')
+        .bind(crypto.randomUUID(),now,'CONTROL','CREATE_JOB',id,JSON.stringify({ownerAgentId:x.ownerAgentId,title:x.title,idempotencyKey:idem})),
+      env.DB.prepare('INSERT INTO idempotency_keys(route,idem_key,response_json,status_code,created_at) VALUES(?,?,?,?,?)')
+        .bind('POST:/api/jobs',idem,responseJson,201,now)
+    ]);
+    return json(response,201,cors(env));
   }
 
   if(url.pathname==='/api/approvals' && req.method==='POST'){
+    const idem=idempotencyKey(req);
+    if(!idem) return json({error:'valid Idempotency-Key required'},400,cors(env));
+    const cached=await cachedWrite(env,'POST:/api/approvals',idem);
+    if(cached) return json(JSON.parse(cached.response_json),cached.status_code,cors(env));
+
     const x=await body(req);
     if(!x?.targetType || !x?.targetId || !['APPROVE','REJECT'].includes(x.decision)) return json({error:'invalid approval'},400,cors(env));
-    const id=crypto.randomUUID(); const now=new Date().toISOString();
-    await env.DB.prepare('INSERT INTO approvals(id,ts,target_type,target_id,decision,reviewer,note) VALUES(?,?,?,?,?,?,?)')
-      .bind(id,now,x.targetType,x.targetId,x.decision,x.reviewer||'Boss Agis',x.note||'').run();
-    await audit(env,x.reviewer||'Boss Agis','APPROVAL',`${x.targetType}:${x.targetId}`,{decision:x.decision});
-    return json({ok:true,id,decision:x.decision},201,cors(env));
+    const id=crypto.randomUUID();
+    const now=new Date().toISOString();
+    const reviewer=x.reviewer||'Boss Agis';
+    const response={ok:true,id,decision:x.decision};
+    const responseJson=JSON.stringify(response);
+    await env.DB.batch([
+      env.DB.prepare('INSERT INTO approvals(id,ts,target_type,target_id,decision,reviewer,note) VALUES(?,?,?,?,?,?,?)')
+        .bind(id,now,x.targetType,x.targetId,x.decision,reviewer,x.note||''),
+      env.DB.prepare('INSERT INTO audit_events(id,ts,actor,action,target,detail_json) VALUES(?,?,?,?,?,?)')
+        .bind(crypto.randomUUID(),now,reviewer,'APPROVAL',`${x.targetType}:${x.targetId}`,JSON.stringify({decision:x.decision,idempotencyKey:idem})),
+      env.DB.prepare('INSERT INTO idempotency_keys(route,idem_key,response_json,status_code,created_at) VALUES(?,?,?,?,?)')
+        .bind('POST:/api/approvals',idem,responseJson,201,now)
+    ]);
+    return json(response,201,cors(env));
   }
   return json({error:'not found'},404,cors(env));
 }
