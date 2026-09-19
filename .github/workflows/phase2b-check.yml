@@ -32,5 +32,7 @@ jobs:
           diff -u /tmp/seed-before.sql runtime/seed-core-agents.sql
       - name: Run Phase 2B foundation checks
         run: node scripts/phase2b-smoke.mjs
+      - name: Validate D1 SQL compatibility and deterministic seed
+        run: bash scripts/phase2b-sqlite-check.sh
       - name: Run Phase 2B runtime contract test
         run: node scripts/phase2b-contract.mjs
