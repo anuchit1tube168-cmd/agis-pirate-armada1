@@ -69,7 +69,7 @@ This is an explicit evidence boundary: do not claim live runtime until the remot
 
 
 ## Verified CI evidence — 2026-09-19
-GitHub Actions run **35435028739** completed successfully with:
+GitHub Actions run **35435140111** is the latest verified green run and completed successfully with:
 - frontend JavaScript syntax PASS;
 - Worker JavaScript syntax PASS;
 - deterministic Core Agent seed consistency PASS;
@@ -78,3 +78,22 @@ GitHub Actions run **35435028739** completed successfully with:
 - runtime contract auth → heartbeat → office → job → approval → audit PASS.
 
 This is local/CI evidence only; it is not remote Cloudflare deployment evidence.
+
+
+## Stable seed learning — promoted after retest
+A normal Agent status change caused CI run **35435087962** to fail because the bootstrap seed contained volatile runtime fields.
+
+Root cause:
+- identity/configuration and live execution state were mixed in one deterministic artifact.
+
+Fix:
+- seed now contains durable Agent identity/configuration;
+- status is initialized to `READY`;
+- current job is initialized to `Awaiting approved job`;
+- learning state is initialized to `READY`;
+- heartbeat/runtime storage owns subsequent live state.
+
+Retest:
+- GitHub Actions **35435140111** passed all Phase 2B checks.
+
+This rule is now considered evidence-backed and reusable.
