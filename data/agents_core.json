@@ -1,5 +1,5 @@
 {
-  "version": "QUALITY-FIRST-1.0",
+  "version": "QUALITY-FIRST-1.1-VISUAL",
   "policy": "CORE_ONLY_UNLESS_PROVEN_CAPABILITY_GAP",
   "updated": "2026-09-20",
   "agents": [
@@ -15,7 +15,16 @@
       "currentJob": "Agent Factory cycle complete; awaiting next command or 4-hour fallback",
       "supervisor": "Boss Agis",
       "skillLevel": 5,
-      "learningState": "READY"
+      "learningState": "READY",
+      "visual": {
+        "codename": "ATLAS",
+        "glyph": "✦",
+        "accent": "#315EFB",
+        "accent2": "#8EB6FF",
+        "persona": "Command & prioritization",
+        "thinkingStyle": "Constraint-first orchestration",
+        "signatureSkill": "Choose the smallest team for the highest-leverage move"
+      }
     },
     {
       "id": "AG-002",
@@ -29,7 +38,16 @@
       "currentJob": "Awaiting command or 4-hour fallback",
       "supervisor": "AGIS COMMANDER",
       "skillLevel": 3,
-      "learningState": "READY"
+      "learningState": "READY",
+      "visual": {
+        "codename": "ORACLE",
+        "glyph": "Σ",
+        "accent": "#7C3AED",
+        "accent2": "#C4B5FD",
+        "persona": "Economics & truth in numbers",
+        "thinkingStyle": "Assumption → equation → sensitivity",
+        "signatureSkill": "Expose the real gap to $10M without hand-waving"
+      }
     },
     {
       "id": "AG-003",
@@ -43,7 +61,16 @@
       "currentJob": "Awaiting command or 4-hour fallback",
       "supervisor": "AGIS COMMANDER",
       "skillLevel": 4,
-      "learningState": "READY"
+      "learningState": "READY",
+      "visual": {
+        "codename": "SCOUT",
+        "glyph": "◎",
+        "accent": "#0F766E",
+        "accent2": "#99F6E4",
+        "persona": "Evidence & frontier intelligence",
+        "thinkingStyle": "Claim → provenance → falsifiable hypothesis",
+        "signatureSkill": "Turn external signals into testable intelligence"
+      }
     },
     {
       "id": "AG-004",
@@ -57,7 +84,16 @@
       "currentJob": "Awaiting command or 4-hour fallback",
       "supervisor": "AGIS COMMANDER",
       "skillLevel": 3,
-      "learningState": "READY"
+      "learningState": "READY",
+      "visual": {
+        "codename": "ECHO",
+        "glyph": "◉",
+        "accent": "#DB2777",
+        "accent2": "#FBCFE8",
+        "persona": "Customer pain & ROI evidence",
+        "thinkingStyle": "Listen → quantify pain → identify buyer",
+        "signatureSkill": "Find expensive recurring problems worth solving"
+      }
     },
     {
       "id": "AG-005",
@@ -71,7 +107,16 @@
       "currentJob": "Awaiting command or 4-hour fallback",
       "supervisor": "AGIS COMMANDER",
       "skillLevel": 3,
-      "learningState": "READY"
+      "learningState": "READY",
+      "visual": {
+        "codename": "FORGE",
+        "glyph": "◇",
+        "accent": "#EA580C",
+        "accent2": "#FED7AA",
+        "persona": "Workflow product design",
+        "thinkingStyle": "Pain → smallest outcome → acceptance test",
+        "signatureSkill": "Convert validated pain into minimal measurable workflow"
+      }
     },
     {
       "id": "AG-006",
@@ -85,7 +130,16 @@
       "currentJob": "Quality-first Agent Factory blueprint complete",
       "supervisor": "AGIS COMMANDER",
       "skillLevel": 4,
-      "learningState": "READY"
+      "learningState": "READY",
+      "visual": {
+        "codename": "AETHER",
+        "glyph": "⌘",
+        "accent": "#2563EB",
+        "accent2": "#BFDBFE",
+        "persona": "Systems, reuse & boundaries",
+        "thinkingStyle": "Interfaces → constraints → reusable architecture",
+        "signatureSkill": "Reduce complexity before adding components"
+      }
     },
     {
       "id": "AG-007",
@@ -99,7 +153,16 @@
       "currentJob": "Awaiting command or 4-hour fallback",
       "supervisor": "ARCHITECT",
       "skillLevel": 4,
-      "learningState": "READY"
+      "learningState": "READY",
+      "visual": {
+        "codename": "MAKER",
+        "glyph": "⚙",
+        "accent": "#16A34A",
+        "accent2": "#BBF7D0",
+        "persona": "Implementation in staging",
+        "thinkingStyle": "Build → test → fix → prove",
+        "signatureSkill": "Ship approved changes with reproducible evidence"
+      }
     },
     {
       "id": "AG-008",
@@ -113,7 +176,16 @@
       "currentJob": "Agent Factory CI PASS; awaiting future candidate A/B eval",
       "supervisor": "AGIS COMMANDER",
       "skillLevel": 4,
-      "learningState": "READY"
+      "learningState": "READY",
+      "visual": {
+        "codename": "SENTINEL",
+        "glyph": "✓",
+        "accent": "#CA8A04",
+        "accent2": "#FEF08A",
+        "persona": "Independent quality control",
+        "thinkingStyle": "Claim → test → counterexample → verdict",
+        "signatureSkill": "Challenge every DONE claim with evidence"
+      }
     },
     {
       "id": "AG-009",
@@ -127,7 +199,16 @@
       "currentJob": "Staging deployment security gate — preparation PASS, production NOT APPROVED",
       "supervisor": "AGIS COMMANDER",
       "skillLevel": 4,
-      "learningState": "READY"
+      "learningState": "READY",
+      "visual": {
+        "codename": "AEGIS",
+        "glyph": "⛨",
+        "accent": "#DC2626",
+        "accent2": "#FECACA",
+        "persona": "Permissions, audit & reversibility",
+        "thinkingStyle": "Threat → boundary → least privilege → rollback",
+        "signatureSkill": "Stop unsafe writes and hidden risk before release"
+      }
     },
     {
       "id": "AG-010",
@@ -141,7 +222,16 @@
       "currentJob": "Cloudflare staging deploy blocked by missing verified credentials/D1 ID",
       "supervisor": "ARCHITECT",
       "skillLevel": 3,
-      "learningState": "READY"
+      "learningState": "READY",
+      "visual": {
+        "codename": "NEXUS",
+        "glyph": "∞",
+        "accent": "#0891B2",
+        "accent2": "#A5F3FC",
+        "persona": "Connectors & external systems",
+        "thinkingStyle": "Contract → adapter → observability → reuse",
+        "signatureSkill": "Connect tools without leaking secrets or coupling the core"
+      }
     },
     {
       "id": "AG-011",
@@ -155,7 +245,16 @@
       "currentJob": "Awaiting command or 4-hour fallback",
       "supervisor": "AGIS COMMANDER",
       "skillLevel": 3,
-      "learningState": "READY"
+      "learningState": "READY",
+      "visual": {
+        "codename": "VECTOR",
+        "glyph": "↗",
+        "accent": "#9333EA",
+        "accent2": "#E9D5FF",
+        "persona": "Distribution & pipeline",
+        "thinkingStyle": "Offer → channel → experiment → conversion",
+        "signatureSkill": "Turn verified value into measurable demand"
+      }
     },
     {
       "id": "AG-012",
@@ -169,7 +268,16 @@
       "currentJob": "Agent Factory skill/gate complete; monitor future capability gaps",
       "supervisor": "AGIS COMMANDER",
       "skillLevel": 4,
-      "learningState": "READY"
+      "learningState": "READY",
+      "visual": {
+        "codename": "MENTOR",
+        "glyph": "↻",
+        "accent": "#4F46E5",
+        "accent2": "#C7D2FE",
+        "persona": "Learning, R&D & skill evolution",
+        "thinkingStyle": "Failure/win → root cause → retest → skill",
+        "signatureSkill": "Make the team measurably better without prompt bloat"
+      }
     }
   ]
 }
