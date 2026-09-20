@@ -28,6 +28,22 @@ Required Sales Meetings / Lead→Meeting Rate
 
 Use actual observed conversion rates as soon as data exists. Until then label assumptions clearly.
 
+## ACV sensitivity — customer/win count for $10M
+This is deterministic target math, not a forecast. Counts are rounded up to whole wins where required.
+
+| Assumed ACV | Required wins/customers | Revenue at required count |
+|---:|---:|---:|
+| $10,000 | 1,000 | $10,000,000 |
+| $25,000 | 400 | $10,000,000 |
+| $50,000 | 200 | $10,000,000 |
+| $100,000 | 100 | $10,000,000 |
+| $150,000 | 67 | $10,050,000 |
+| $250,000 | 40 | $10,000,000 |
+| $500,000 | 20 | $10,000,000 |
+| $1,000,000 | 10 | $10,000,000 |
+
+Formula: `Required wins = ceil(10,000,000 / assumed ACV)` while verified cumulative revenue remains $0. Recalculate against the remaining revenue gap once verified revenue exists.
+
 ## Revenue scenarios to maintain
 
 ### Scenario A — Enterprise
