@@ -13,9 +13,10 @@ function saveDrafts(v){localStorage.setItem(STORAGE_KEY,JSON.stringify(v));rende
 
 async function applyRuntimeSnapshot(snapshot){
  if(!snapshot?.agents?.length)return;
- DATA.agents=snapshot.agents;
+ const visualById=new Map((DATA.agents||[]).map(a=>[a.id,a.visual]));
+ DATA.agents=snapshot.agents.map(a=>({...a,visual:visualById.get(a.id)||a.visual}));
  if(Array.isArray(snapshot.events)) DATA.activity=snapshot.events;
- renderOffice();renderActivity();populateOwners();
+ renderOffice();renderTeam(DATA.agents);renderActivity();populateOwners();
  const badge=document.querySelector('#office .section-title .pill');
  if(badge) badge.textContent='LIVE RUNTIME • '+(snapshot.serverTime?new Date(snapshot.serverTime).toLocaleTimeString('th-TH'):'CONNECTED');
 }
@@ -40,16 +41,27 @@ function renderOffice(){
  const q=($('#officeSearch')?.value||'').toLowerCase().trim();
  const dept=$('#officeDepartment')?.value||'';
  const state=$('#officeStatus')?.value||'';
- const filtered=agents.filter(a=>(!dept||a.department===dept)&&(!state||a.status===state)&&(!q||[a.name,a.specialty,a.currentJob,a.department].join(' ').toLowerCase().includes(q)));
+ const filtered=agents.filter(a=>(!dept||a.department===dept)&&(!state||a.status===state)&&(!q||[a.name,a.visual?.codename,a.specialty,a.currentJob,a.department,a.visual?.persona].join(' ').toLowerCase().includes(q)));
  const groups={}; for(const a of filtered)(groups[a.department]??=[]).push(a);
  $('#officeRooms').innerHTML=Object.entries(groups).map(([department,list])=>`
   <section class="office-room">
     <div class="room-head"><div><small>DEPARTMENT</small><h3>${esc(department)}</h3></div><span class="badge">${list.length} visible</span></div>
-    <div class="desk-grid">${list.map(a=>`
-      <button class="agent-desk ${officeStateClass(a.status)}" data-agent-id="${esc(a.id)}">
-        <span class="person"><i class="head"></i><i class="body"></i><i class="deskline"></i></span>
-        <span class="desk-copy"><b>${esc(a.name)}</b><small>${esc(a.specialty)}</small><em>${esc(a.status)}</em></span>
-      </button>`).join('')}</div>
+    <div class="desk-grid">${list.map(a=>{
+      const v=a.visual||{};
+      return `
+      <button class="agent-desk agent-unit-card ${officeStateClass(a.status)}" data-agent-id="${esc(a.id)}" style="--agent:${esc(v.accent||'#315EFB')};--agent2:${esc(v.accent2||'#BFDBFE')}">
+        <span class="unit-avatar">
+          <span class="unit-orbit"></span>
+          <span class="unit-core">${esc(v.glyph||initials(a.name))}</span>
+          <span class="unit-status-dot"></span>
+        </span>
+        <span class="desk-copy">
+          <small class="unit-codename">${esc(v.codename||a.id)}</small>
+          <b>${esc(a.name)}</b>
+          <small>${esc(a.specialty)}</small>
+          <em>${esc(a.status)}</em>
+        </span>
+      </button>`}).join('')}</div>
   </section>`).join('') || '<div class="empty">No agents match this filter.</div>';
  $('[data-agent-id]').forEach(b=>b.onclick=()=>openAgent(b.dataset.agentId));
  const count=s=>agents.filter(a=>a.status===s).length;
@@ -61,18 +73,26 @@ function renderActivity(){
 }
 function openAgent(id){
  const a=(DATA.agents||[]).find(x=>x.id===id); if(!a)return;
+ const v=a.visual||{};
  $('#agentProfile').innerHTML=`
-   <div class="profile-state ${officeStateClass(a.status)}">${esc(a.status)}</div>
-   <div class="profile-avatar">${esc(initials(a.name))}</div>
-   <div class="eyebrow">${esc(a.id)} • ${esc(a.department)}</div>
-   <h2>${esc(a.name)}</h2><p class="muted">${esc(a.specialty)}</p>
+   <div class="profile-hero" style="--agent:${esc(v.accent||'#315EFB')};--agent2:${esc(v.accent2||'#BFDBFE')}">
+     <div class="profile-state ${officeStateClass(a.status)}">${esc(a.status)}</div>
+     <div class="profile-avatar designed"><span>${esc(v.glyph||initials(a.name))}</span></div>
+     <div class="profile-codename">${esc(v.codename||a.id)}</div>
+     <div class="eyebrow">${esc(a.id)} • ${esc(a.department)}</div>
+     <h2>${esc(a.name)}</h2>
+     <p class="profile-persona">${esc(v.persona||a.specialty)}</p>
+   </div>
+   <div class="profile-signature"><small>SIGNATURE SKILL</small><strong>${esc(v.signatureSkill||a.mission)}</strong></div>
    <div class="profile-grid">
     <div><small>MISSION</small><strong>${esc(a.mission)}</strong></div>
+    <div><small>THINKING STYLE</small><strong>${esc(v.thinkingStyle||'Evidence-first')}</strong></div>
     <div><small>CURRENT JOB</small><strong>${esc(a.currentJob)}</strong></div>
     <div><small>KPI</small><strong>${esc(a.kpi)}</strong></div>
     <div><small>PERMISSION</small><strong>${esc(a.permission)}</strong></div>
     <div><small>SUPERVISOR</small><strong>${esc(a.supervisor)}</strong></div>
     <div><small>SKILL LEVEL</small><strong>L${esc(a.skillLevel)}</strong></div>
+    <div><small>LEARNING</small><strong>${esc(a.learningState||'READY')}</strong></div>
    </div>
    <button class="primary" id="assignAgentDraft">Create assignment draft</button>`;
  $('#agentDrawer').classList.add('open');$('#agentDrawer').setAttribute('aria-hidden','false');
@@ -125,7 +145,27 @@ function renderJobs(jobs){
  $('#jobBoard').innerHTML=jobs.map(j=>`<article class="job"><div class="job-top"><span>${esc(j.id)}</span><span class="status ${statusClass(j.status)}">${esc(j.status)}</span></div><h3>${esc(j.title)}</h3><p>${esc(j.objective)}</p><footer><span>${esc(j.owner)}</span><span>${esc(j.metric||'')}</span></footer><div class="job-actions"><button data-job="${esc(j.id)}" data-action="ACTIVE">Start</button><button data-job="${esc(j.id)}" data-action="REVIEW">Review</button><button data-job="${esc(j.id)}" data-action="DONE">Approve</button></div></article>`).join('');
  $$('.job-actions button').forEach(b=>b.onclick=()=>addDraft({type:'JOB_STATUS',jobId:b.dataset.job,status:b.dataset.action,at:new Date().toISOString()}));
 }
-function renderTeam(team){$('#teamGrid').innerHTML=team.map((a,i)=>`<article class="agent"><div class="agent-head"><div class="avatar">${String(i+1).padStart(2,'0')}</div><div><h3>${esc(a.name)}</h3><div class="role">${esc(a.role)}</div></div></div><p>${esc(a.mission)}</p><div class="meta"><span>KPI: ${esc(a.kpi)}</span><span>${esc(a.status)}</span></div></article>`).join('')}
+function renderTeam(team){
+ const source=(DATA.agents&&DATA.agents.length)?DATA.agents:team;
+ $('#teamGrid').innerHTML=source.map(a=>{
+   const v=a.visual||{};
+   return `<article class="agent agent-identity-card" data-agent-id="${esc(a.id||'')}" style="--agent:${esc(v.accent||'#315EFB')};--agent2:${esc(v.accent2||'#BFDBFE')}">
+     <div class="agent-identity-top">
+       <div class="agent-portrait"><span class="agent-halo"></span><b>${esc(v.glyph||initials(a.name))}</b></div>
+       <div class="agent-identity-name">
+         <small>${esc(v.codename||a.id||'CORE')}</small>
+         <h3>${esc(a.name)}</h3>
+         <div class="role">${esc(a.specialty||a.role||'')}</div>
+       </div>
+       <span class="status ${statusClass(a.status)}">${esc(a.status||'READY')}</span>
+     </div>
+     <p class="agent-persona">${esc(v.persona||a.mission)}</p>
+     <div class="agent-thinking"><small>THINKING STYLE</small><strong>${esc(v.thinkingStyle||'Evidence-first')}</strong></div>
+     <div class="agent-signature"><small>SIGNATURE</small><strong>${esc(v.signatureSkill||a.mission)}</strong></div>
+     <div class="agent-footer"><span>KPI: ${esc(a.kpi||'')}</span><span>L${esc(a.skillLevel||'?')}</span></div>
+   </article>`}).join('');
+ $$('#teamGrid [data-agent-id]').forEach(c=>c.onclick=()=>openAgent(c.dataset.agentId));
+}
 function renderKnowledge(items){$('#knowledgeQueue').innerHTML=items.map((k,i)=>`<article class="knowledge-item"><div class="k-top"><span class="badge">${esc(k.source)}</span><span class="status ${statusClass(k.state)}">${esc(k.state)}</span></div><h3>${esc(k.title)}</h3><p>${esc(k.signal)}</p><div class="meta"><small>Next: ${esc(k.next)}</small></div><div class="job-actions"><button data-k="${i}" data-action="REVIEWED">Review</button><button data-k="${i}" data-action="PROMOTE">Promote Skill Draft</button></div></article>`).join('');
  $$('[data-k]').forEach(b=>b.onclick=()=>{const k=DATA.knowledge[Number(b.dataset.k)];addDraft({type:b.dataset.action==='PROMOTE'?'SKILL_PROMOTION':'KNOWLEDGE_REVIEW',title:k.title,source:k.source,at:new Date().toISOString()})});
 }
@@ -152,7 +192,7 @@ async function boot(){
  const fallbackMetrics={target:10000000,verifiedRevenue:0,qualifiedPipeline:0,mathStatus:'YELLOW',compressionFactor:1,constraint:'Collect real customer evidence',constraintWhy:'No verified customer economics yet.',nextAction:'Quantify the Golden Workflow baseline.',assets:[],updated:new Date().toLocaleDateString()};
  const [m,j,t,k,l,r,s,acore,act,ss,sg,ac]=await Promise.all([load('./data/metrics.json',fallbackMetrics),load('./data/jobs.json',[]),load('./data/team.json',[]),load('./data/knowledge.json',[]),load('./data/training.json',[]),load('./data/rnd.json',[]),load('./data/schedule.json',[]),load('./data/agents_core.json',{agents:[]}),load('./data/agent_activity.json',{events:[]}),load('./data/scout_sources.json',{sources:[]}),load('./data/scout_signals.json',{items:[]}),load('./data/agent_candidates.json',{candidates:[],latestDecision:null})]);
  DATA={metrics:m,jobs:j,team:t,knowledge:k,training:l,rnd:r,schedule:s,agents:acore.agents||[],activity:act.events||[],scoutSources:ss.sources||[],scoutSignals:sg.items||[],agentCandidates:ac.candidates||[],agentCandidateDecision:ac.latestDecision||null};
- renderScore(m);renderJobs(j);renderTeam(t);renderAgentFactory();renderScout();renderKnowledge(k);renderTraining(l);renderRND(r);renderSchedule(s);populateOwners();populateOfficeFilters();renderOffice();renderActivity();renderDrafts();connectRuntime();
+ renderScore(m);renderJobs(j);renderTeam(acore.agents||t);renderAgentFactory();renderScout();renderKnowledge(k);renderTraining(l);renderRND(r);renderSchedule(s);populateOwners();populateOfficeFilters();renderOffice();renderActivity();renderDrafts();connectRuntime();
 }
 $$('.tab').forEach(b=>b.onclick=()=>{$$('.tab,.view').forEach(x=>x.classList.remove('active'));b.classList.add('active');$('#'+b.dataset.view).classList.add('active')});
 setInterval(()=>$('#clock').textContent=new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit',second:'2-digit'}),1000);
