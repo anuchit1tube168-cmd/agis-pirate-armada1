@@ -28,6 +28,16 @@ Required Sales Meetings / Lead→Meeting Rate
 
 Use actual observed conversion rates as soon as data exists. Until then label assumptions clearly.
 
+## Math control status gate
+The control status is evidence-based and must never convert missing inputs into fake trajectory certainty.
+
+- **UNKNOWN** — target date/months remaining is not set, or required observed inputs are missing, so trajectory cannot yet be evaluated.
+- **RED** — sufficient observed inputs exist and the current trajectory/pipeline is mathematically below the level required to close the remaining revenue gap by the target date, or any red-alert condition below is verified.
+- **YELLOW** — trajectory can be calculated but evidence is still thin/volatile or coverage is only marginally above the required level.
+- **GREEN** — observed trajectory and pipeline coverage meet/exceed the required math with current evidence and no verified red-alert condition.
+
+Current status (2026-09-20): **UNKNOWN**, not RED. Verified cumulative revenue is $0 and the gap is $10,000,000, but target date/months remaining and observed funnel rates are not yet available; therefore a time-based trajectory claim would be invented.
+
 ## ACV sensitivity — customer/win count for $10M
 This is deterministic target math, not a forecast. Counts are rounded up to whole wins where required.
 
