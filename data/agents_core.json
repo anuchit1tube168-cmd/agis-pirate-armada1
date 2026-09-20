@@ -1,7 +1,7 @@
 {
   "version": "QUALITY-FIRST-1.0",
   "policy": "CORE_ONLY_UNLESS_PROVEN_CAPABILITY_GAP",
-  "updated": "2026-09-19",
+  "updated": "2026-09-20",
   "agents": [
     {
       "id": "AG-001",
@@ -12,7 +12,7 @@
       "kpi": "Accepted outcomes / leverage",
       "permission": "Project orchestration; no uncontrolled production write",
       "status": "READY",
-      "currentJob": "Cycle complete; awaiting next Boss Agis command or 4-hour fallback",
+      "currentJob": "Agent Factory cycle complete; awaiting next command or 4-hour fallback",
       "supervisor": "Boss Agis",
       "skillLevel": 5,
       "learningState": "READY"
@@ -82,7 +82,7 @@
       "kpi": "Reuse / maintainability",
       "permission": "Design and staging review",
       "status": "READY",
-      "currentJob": "Awaiting command or 4-hour fallback",
+      "currentJob": "Quality-first Agent Factory blueprint complete",
       "supervisor": "AGIS COMMANDER",
       "skillLevel": 4,
       "learningState": "READY"
@@ -110,7 +110,7 @@
       "kpi": "Eval pass / regression catches",
       "permission": "Read/test; no production write",
       "status": "READY",
-      "currentJob": "Awaiting command or 4-hour fallback",
+      "currentJob": "Agent Factory CI PASS; awaiting future candidate A/B eval",
       "supervisor": "AGIS COMMANDER",
       "skillLevel": 4,
       "learningState": "READY"
@@ -166,7 +166,7 @@
       "kpi": "Repeated failures removed / skill reuse",
       "permission": "Project docs/tests; reviewed rule changes",
       "status": "READY",
-      "currentJob": "Awaiting command or 4-hour fallback",
+      "currentJob": "Agent Factory skill/gate complete; monitor future capability gaps",
       "supervisor": "AGIS COMMANDER",
       "skillLevel": 4,
       "learningState": "READY"
