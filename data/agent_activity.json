@@ -3,6 +3,30 @@
   "mode": "ACTIVE_OPERATIONS_V2_1_DEPLOYED",
   "events": [
     {
+      "time": "11:49",
+      "agent": "MAKER",
+      "type": "DEPLOY",
+      "text": "Living Core 12 office deployed: 12 animated pixel Agents now walk between state-driven office zones and workstations."
+    },
+    {
+      "time": "11:49",
+      "agent": "SENTINEL",
+      "type": "PASS",
+      "text": "Core v2 living-office contract 35490073038 PASS; Owner/Security/Quality/Credential/CI gates PASS."
+    },
+    {
+      "time": "11:49",
+      "agent": "AETHER",
+      "type": "DESIGN",
+      "text": "Agent motion maps to operational state: READY patrol, WORKING department desk, REVIEW quality zone, LEARNING knowledge lab, BLOCKED blocker bay."
+    },
+    {
+      "time": "11:49",
+      "agent": "MENTOR",
+      "type": "RULE",
+      "text": "Animation is visualization only; execution claims still require job/evidence/audit records."
+    },
+    {
       "time": "11:40",
       "agent": "QA / EVAL",
       "type": "PASS",
@@ -73,36 +97,6 @@
       "agent": "QA / EVAL",
       "type": "PASS",
       "text": "Agent Factory CI run 35488125161 passed JavaScript syntax and Agent Factory contract checks."
-    },
-    {
-      "time": "11:04",
-      "agent": "SECURITY",
-      "type": "DECISION",
-      "text": "Cloudflare deployment blocker is missing authorization/access, not a capability gap. No new Agent is justified."
-    },
-    {
-      "time": "16:44",
-      "agent": "SECURITY",
-      "type": "HARDEN",
-      "text": "Consequential writes now require Idempotency-Key; job/approval + audit + idempotency record use transactional D1 batch."
-    },
-    {
-      "time": "16:44",
-      "agent": "QA / EVAL",
-      "type": "PASS",
-      "text": "CI run 35435245952 proved same-key retries do not duplicate jobs, approvals or audit events."
-    },
-    {
-      "time": "16:45",
-      "agent": "LEARNING COACH",
-      "type": "R&D",
-      "text": "RND-RUNTIME-001 recorded as CI-validated, but skill promotion is withheld until remote D1 staging replay test passes."
-    },
-    {
-      "time": "16:38",
-      "agent": "QA / EVAL",
-      "type": "FAIL",
-      "text": "Regression detected: CI run 35435087962 failed deterministic seed check after normal Agent status changes."
     }
   ]
 }
