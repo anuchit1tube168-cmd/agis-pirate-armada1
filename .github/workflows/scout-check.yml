@@ -1,0 +1,29 @@
+name: Scout Learning Pipeline Test
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "SCOUT_PIPELINE.md"
+      - "skills/SCOUT_INTELLIGENCE_TO_RND.md"
+      - "data/scout_sources.json"
+      - "data/scout_signals.json"
+      - "AGENTS.md"
+      - "index.html"
+      - "app.js"
+      - "scripts/scout-smoke.mjs"
+      - ".github/workflows/scout-check.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check app JavaScript syntax
+        run: node --check app.js
+      - name: Validate Scout data and UI contract
+        run: node scripts/scout-smoke.mjs
