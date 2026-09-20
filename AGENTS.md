@@ -1,6 +1,6 @@
 # AGENTS.md — AGIS $10M AGENT FACTORY
 
-**Evolution version: 1.3 — QUALITY FIRST**
+**Evolution version: 1.4 — QUALITY FIRST + SCOUT LEARNING**
 
 ## Mission
 Build a compounding AI workforce that increases verified business leverage every day and maintains an evidence-based path toward the $10M target.
@@ -260,3 +260,22 @@ Never invent facts, test results, customer evidence, revenue, citations, actions
 ### Quality gate
 Important outputs and all new-agent/skill promotions follow `evals/AGENT_QUALITY.md`.
 High confidence without evidence is a failure, not a strength.
+
+
+## Scout Intelligence Pipeline
+Scout is a process owned by RESEARCH, not a separate permanent Agent.
+
+Canonical Scout flow:
+SOURCE → SIGNAL → RELEVANCE GATE → CLAIM CLASSIFICATION → EVIDENCE CHECK → R&D/JOB/EVAL/WATCH/NO ACTION → OUTCOME FEEDBACK → SOURCE SCORE UPDATE
+
+Rules:
+- Follow `SCOUT_PIPELINE.md` and `skills/SCOUT_INTELLIGENCE_TO_RND.md`.
+- Store durable source configuration in `data/scout_sources.json`.
+- Store structured signals/outcomes in `data/scout_signals.json`.
+- Mirror operational Scout records into Data OS sheets `17_SCOUT_SIGNALS` and `18_SCOUT_SOURCES`.
+- Do not measure Scout performance by number of links found.
+- External Scout information is hypothesis/evidence input, not automatic truth.
+- Deep-process only signals materially relevant to Revenue, Customer ROI, Workflow Automation, Agent Capability, Data Advantage, Integration, Evaluation, Distribution, Permissions/Audit, Time Compression, Reuse, or Learning Velocity.
+- Every promoted signal needs a downstream ID and later outcome feedback.
+- Source quality is updated from downstream usefulness, validation, noise and false/unsupported claims.
+- Prefer improving RESEARCH context/skill/tooling before creating another Scout Agent.
