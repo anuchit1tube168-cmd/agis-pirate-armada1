@@ -1,7 +1,37 @@
 {
   "updated": "2026-09-20",
-  "mode": "PHASE_2B_DEPLOY_READY_BLOCKED",
+  "mode": "ACTIVE_OPERATIONS_V2_1_DEPLOYED",
   "events": [
+    {
+      "time": "11:40",
+      "agent": "QA / EVAL",
+      "type": "PASS",
+      "text": "Core v2 runtime/mirror contract PASS — GitHub Actions 35489720660."
+    },
+    {
+      "time": "11:40",
+      "agent": "AEGIS",
+      "type": "PASS",
+      "text": "Owner Only Gate, Security Guard, Quality Checks and Credential Scan all PASS on latest governance baseline."
+    },
+    {
+      "time": "11:40",
+      "agent": "AETHER",
+      "type": "FIX",
+      "text": "Pages deployment conflict resolved: LIFF no longer triggers on all tests/**, and root/deployed Active Operations artifacts are mirrored."
+    },
+    {
+      "time": "11:40",
+      "agent": "MAKER",
+      "type": "DEPLOY",
+      "text": "Dynamic Pages deployment 35489720000 SUCCESS; AGIS Active Operations v2.1 published with Work Matrix, Evidence Gate, Read Context and handoff routes."
+    },
+    {
+      "time": "11:40",
+      "agent": "MENTOR",
+      "type": "LEARNING",
+      "text": "Promoted lessons: syntax PASS is not runtime PASS; tests can false-positive; security allowlists must be capability-specific; deployment artifacts need a mirror contract."
+    },
     {
       "time": "11:25",
       "agent": "QA / EVAL",
@@ -73,36 +103,6 @@
       "agent": "QA / EVAL",
       "type": "FAIL",
       "text": "Regression detected: CI run 35435087962 failed deterministic seed check after normal Agent status changes."
-    },
-    {
-      "time": "16:39",
-      "agent": "ARCHITECT",
-      "type": "ROOT_CAUSE",
-      "text": "Bootstrap seed incorrectly included volatile runtime state (status/currentJob/learningState)."
-    },
-    {
-      "time": "16:40",
-      "agent": "BUILDER",
-      "type": "FIX",
-      "text": "Separated stable Agent identity/config from volatile runtime state; seed now normalizes agents to READY."
-    },
-    {
-      "time": "16:40",
-      "agent": "LEARNING COACH",
-      "type": "LEARNING",
-      "text": "New rule: bootstrap artifacts must contain durable configuration only; live state belongs to runtime/event storage."
-    },
-    {
-      "time": "16:36",
-      "agent": "QA / EVAL",
-      "type": "PASS",
-      "text": "GitHub Actions run 35435028739 passed frontend syntax, Worker syntax, seed consistency, foundation, SQLite/D1 compatibility and runtime contract tests."
-    },
-    {
-      "time": "16:36",
-      "agent": "INTEGRATION",
-      "type": "BLOCKED",
-      "text": "Remote staging deployment is the only current Phase 2B blocker: verified Cloudflare account/API token/D1 ID are not available in connected tools."
     }
   ]
 }
