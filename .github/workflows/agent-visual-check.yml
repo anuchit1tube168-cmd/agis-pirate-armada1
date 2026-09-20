@@ -1,0 +1,26 @@
+name: Core Agent Visual Identity Test
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "data/agents_core.json"
+      - "app.js"
+      - "styles.css"
+      - "index.html"
+      - "scripts/agent-visual-smoke.mjs"
+      - ".github/workflows/agent-visual-check.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check app JavaScript syntax
+        run: node --check app.js
+      - name: Validate all 12 Agent visual identities
+        run: node scripts/agent-visual-smoke.mjs
