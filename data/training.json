@@ -10,5 +10,11 @@
     "agent": "RESEARCH",
     "lesson": "Media claims create hypotheses, not strategy.",
     "evidence": "Added SOURCE→CLAIM→CONFIDENCE→EXPERIMENT→METRIC→DECISION pipeline."
+  },
+  {
+    "date": "2026-09-20",
+    "agent": "BUILDER + QA / EVAL + LEARNING COACH",
+    "lesson": "Syntax PASS is not runtime PASS; collection selectors must be validated as runtime contracts.",
+    "evidence": "Active Operations used single-element selector helpers with .forEach in two places. The defect was found during manual evidence review, fixed to $$ collection selectors, and a regression gate was added before CI verdict."
   }
 ]
