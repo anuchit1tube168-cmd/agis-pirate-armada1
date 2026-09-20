@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "updated": "2026-09-20",
+  "policy": "Quality over volume. External sources generate hypotheses; project evidence decides.",
+  "sources": [
+    {
+      "sourceId": "SRC-DOAC",
+      "name": "The Diary Of A CEO",
+      "type": "YouTube / interview",
+      "domain": "AI / business / people / technology",
+      "url": "https://youtube.com/@thediaryofaceo",
+      "status": "ACTIVE",
+      "priority": "SELECTIVE",
+      "rule": "Deep-process only episodes materially relevant to active AGIS/$10M questions.",
+      "score": {
+        "usefulSignals": 2,
+        "validatedSignals": 0,
+        "falseSignals": 0,
+        "noiseSignals": 0
+      },
+      "notes": "Existing OpenAI/frontier-AI interviews already ingested as hypotheses."
+    },
+    {
+      "sourceId": "SRC-INTERNAL-WORK",
+      "name": "AGIS Project Work",
+      "type": "Internal operational evidence",
+      "domain": "Failures / tests / corrections / outcomes",
+      "url": "",
+      "status": "ACTIVE",
+      "priority": "HIGHEST",
+      "rule": "Failures, corrections and measured wins are first-class Scout/R&D signals.",
+      "score": {
+        "usefulSignals": 2,
+        "validatedSignals": 1,
+        "falseSignals": 0,
+        "noiseSignals": 0
+      },
+      "notes": "Highest-value source because it contains actual project outcomes."
+    }
+  ]
+}
