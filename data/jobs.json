@@ -56,5 +56,17 @@
     "metric": "Remote E2E PASS + audit evidence",
     "blocker": "Missing verified Cloudflare staging credentials / account / D1 database ID in connected tools",
     "next": "Configure GitHub staging secrets and run runtime-staging-deploy workflow with STAGING confirmation"
+  },
+  {
+    "id": "JOB-015",
+    "status": "ACTIVE",
+    "title": "Scout Signal → Outcome Feedback Loop",
+    "objective": "Turn high-relevance Scout discoveries into tested R&D/jobs/evals and feed downstream outcomes back into source quality scores.",
+    "owner": "RESEARCH + LEARNING COACH",
+    "metric": "Promoted signals with closed outcome feedback / useful signal rate",
+    "reviewer": "QA / EVAL",
+    "permission": "Read sources + project data; no production write",
+    "acceptance": "Every promoted Scout signal has claim type, evidence, downstream ID, reviewer, measurable next step and later outcome feedback.",
+    "next": "Process only the highest-priority unresolved signal each cycle; update source score after resolution."
   }
 ]
