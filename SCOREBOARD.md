@@ -19,11 +19,20 @@ Update weekly with verified data.
 | Verified ROI cases | 0 | 0 | 1 | 2 | 3 |
 | Reusable assets | 0 | 0 | 15 | 35 | 60 |
 
+## Current math control
+- Status: **UNKNOWN**
+- Verified cumulative revenue: **$0**
+- Revenue gap to primary target: **$10,000,000**
+- Target date / months remaining: **UNKNOWN**
+- Observed funnel rates: **UNKNOWN**
+- Reason: time-based trajectory cannot be evaluated without target date/months remaining and observed funnel evidence. Do not convert missing inputs into RED/YELLOW/GREEN certainty.
+- Authoritative gate: `DO_THE_MATH.md` → `UNKNOWN / RED / YELLOW / GREEN`.
+
 ## Weekly leverage review
 - Biggest revenue mover:
 - Biggest time saver:
 - Best reused asset:
 - Biggest failure:
 - Lesson extracted:
-- Math status: GREEN / YELLOW / RED
+- Math status: UNKNOWN / GREEN / YELLOW / RED
 - One constraint to attack next:
