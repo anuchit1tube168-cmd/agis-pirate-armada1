@@ -1,0 +1,29 @@
+name: Quality-First Agent Factory Test
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "agents/AGENT_BLUEPRINT.md"
+      - "skills/QUALITY_FIRST_AGENT_FACTORY.md"
+      - "evals/NEW_AGENT_GATE.md"
+      - "data/agent_candidates.json"
+      - "AGENTS.md"
+      - "index.html"
+      - "app.js"
+      - "scripts/agent-factory-smoke.mjs"
+      - ".github/workflows/agent-factory-check.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check app JavaScript syntax
+        run: node --check app.js
+      - name: Validate Agent Factory contracts
+        run: node scripts/agent-factory-smoke.mjs
