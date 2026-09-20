@@ -12,7 +12,7 @@
 - [ ] 007 Calculate lead/meeting requirements from observed funnel.
 - [ ] 008 Define gross-margin floor.
 - [ ] 009 Define maximum delivery cost/customer.
-- [ ] 010 Create RED status when current trajectory fails the math.
+- [x] 010 Create RED status when current trajectory fails the math. Evidence: `DO_THE_MATH.md` Math control status gate defines UNKNOWN/RED/YELLOW/GREEN from observed evidence and explicitly keeps current status UNKNOWN while target date/funnel inputs are missing.
 
 ## 011–020 — CUSTOMER EVIDENCE
 - [ ] 011 Choose one initial ICP.
