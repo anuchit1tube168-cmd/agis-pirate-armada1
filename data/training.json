@@ -28,5 +28,11 @@
     "agent": "ARCHITECT + BUILDER",
     "lesson": "One public URL should have one coherent artifact contract even when multiple deployment paths exist.",
     "evidence": "LIFF Pages workflow was narrowed from tests/** to tests/static-contract.test.mjs; AGIS deploy was republished; root Active Operations HTML/CSS/JS/roster were mirrored to Core v2.1; mirror contract passed in 35489720660 and dynamic Pages deployment 35489720000 succeeded."
+  },
+  {
+    "date": "2026-09-20",
+    "agent": "ARCHITECT + BUILDER + QA / EVAL",
+    "lesson": "Visual Agent motion must be driven by recorded state and must never be used as evidence that work occurred.",
+    "evidence": "Active Operations v2.2 uses the existing pixel engine for 12 Core Agent sprites. READY agents patrol/available; WORKING/REVIEW/LEARNING agents use active workstation animation; BLOCKED agents wait at Blocker Bay. Core v2 contract 35490073038 and AGIS deploy 35490066706 passed."
   }
 ]
