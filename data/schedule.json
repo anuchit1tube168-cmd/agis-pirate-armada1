@@ -1,20 +1,26 @@
 [
   {
-    "time": "08:00",
-    "name": "Morning Command",
-    "purpose": "DO THE MATH → constraint → assign jobs → execute safe work",
+    "time": "ON COMMAND",
+    "name": "Immediate Command Cycle",
+    "purpose": "Boss Agis instruction → DO THE MATH → constraint → smallest sufficient team → execute → test → evidence",
     "status": "ACTIVE"
   },
   {
-    "time": "Daily",
-    "name": "Knowledge/R&D Intake",
-    "purpose": "Relevant-only source intake → experiment → skill candidate",
+    "time": "4H FALLBACK",
+    "name": "Autonomous Fallback Cycle",
+    "purpose": "If no new Boss command arrives, continue the highest-leverage safe work and report evidence.",
     "status": "ACTIVE"
   },
   {
-    "time": "Weekly",
+    "time": "EACH CYCLE",
+    "name": "Scout / R&D / Learning Gate",
+    "purpose": "Review highest-priority unresolved Scout signal; promote only evidence-backed learning.",
+    "status": "ACTIVE"
+  },
+  {
+    "time": "WEEKLY",
     "name": "Leverage Review",
-    "purpose": "Revenue/pipeline/reuse/time compression/eval review",
+    "purpose": "Revenue/pipeline/reuse/time compression/eval/source-quality review.",
     "status": "PLANNED"
   }
 ]
