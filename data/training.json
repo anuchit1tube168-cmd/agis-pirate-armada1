@@ -15,6 +15,18 @@
     "date": "2026-09-20",
     "agent": "BUILDER + QA / EVAL + LEARNING COACH",
     "lesson": "Syntax PASS is not runtime PASS; collection selectors must be validated as runtime contracts.",
-    "evidence": "Active Operations used single-element selector helpers with .forEach in two places. The defect was found during manual evidence review, fixed to $$ collection selectors, and a regression gate was added before CI verdict."
+    "evidence": "Active Operations had two DOM collection-selector defects. A first stricter regression test exposed the issue, the test itself was corrected to avoid false positives, literal $$ selectors were applied, and Core v2 CI run 35489524884 passed. Root/deployed mirror contract later passed in run 35489720660."
+  },
+  {
+    "date": "2026-09-20",
+    "agent": "SECURITY + QA / EVAL",
+    "lesson": "Security exceptions should be capability-specific, not broad workflow bypasses.",
+    "evidence": "Owner Gate previously failed on approved GitHub Pages writes, GitHub-hosted validation artifacts and localhost smoke-test curl. The gate was changed to allow only named Pages permissions/actions, named upload-artifact workflows and curl to 127.0.0.1. Owner Gate run 35489587956 passed while non-allowlisted outbound/write patterns remain blocked."
+  },
+  {
+    "date": "2026-09-20",
+    "agent": "ARCHITECT + BUILDER",
+    "lesson": "One public URL should have one coherent artifact contract even when multiple deployment paths exist.",
+    "evidence": "LIFF Pages workflow was narrowed from tests/** to tests/static-contract.test.mjs; AGIS deploy was republished; root Active Operations HTML/CSS/JS/roster were mirrored to Core v2.1; mirror contract passed in 35489720660 and dynamic Pages deployment 35489720000 succeeded."
   }
 ]
