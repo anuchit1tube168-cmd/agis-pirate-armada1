@@ -1,7 +1,7 @@
 const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
 const fmt=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(n||0);
 const STORAGE_KEY='agis10m.phase1.drafts.v1';
-let DATA={metrics:{},jobs:[],team:[],knowledge:[],training:[],rnd:[],schedule:[],agents:[],activity:[],scoutSources:[],scoutSignals:[]};
+let DATA={metrics:{},jobs:[],team:[],knowledge:[],training:[],rnd:[],schedule:[],agents:[],activity:[],scoutSources:[],scoutSignals:[],agentCandidates:[],agentCandidateDecision:null};
 
 async function load(path,fallback){try{const r=await fetch(path+'?v='+Date.now());if(!r.ok)throw 0;return await r.json()}catch{return fallback}}
 function esc(v=''){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -85,6 +85,20 @@ function populateOfficeFilters(){
 }
 
 
+
+function renderAgentFactory(){
+ const items=DATA.agentCandidates||[], decision=DATA.agentCandidateDecision;
+ if($('#candidateCount')) $('#candidateCount').textContent=String(items.length);
+ if($('#candidateDecision')){
+   $('#candidateDecision').innerHTML=decision
+    ? '<small>LATEST CAPABILITY-GAP DECISION</small><strong>'+esc(decision.newAgentNeeded?'NEW AGENT TEST JUSTIFIED':'NO NEW AGENT NEEDED')+'</strong><p class="muted small">'+esc(decision.reason||'')+'</p><p class="muted small"><b>Route:</b> '+esc(decision.route||'')+'</p>'
+    : '<small>LATEST CAPABILITY-GAP DECISION</small><strong>No decision recorded</strong>';
+ }
+ if($('#candidateList')) $('#candidateList').innerHTML=items.length?items.map(c=>`
+   <div class="scout-item"><div class="k-top"><b>${esc(c.name||c.agentId||'Candidate')}</b><span class="status ${statusClass(c.status)}">${esc(c.status||'CANDIDATE')}</span></div><small>${esc(c.mission||'')}</small><p>${esc(c.evidence||'Awaiting evidence')}</p></div>
+ `).join(''):'<div class="empty">No Agent candidate is currently justified. Core-first policy is working as intended.</div>';
+}
+
 function renderScout(){
  const sources=DATA.scoutSources||[], signals=DATA.scoutSignals||[];
  const sourceEl=$('#scoutSources'), signalEl=$('#scoutSignals');
@@ -136,9 +150,9 @@ function renderDrafts(){const d=drafts();$('#draftCount').textContent=String(d.l
 
 async function boot(){
  const fallbackMetrics={target:10000000,verifiedRevenue:0,qualifiedPipeline:0,mathStatus:'YELLOW',compressionFactor:1,constraint:'Collect real customer evidence',constraintWhy:'No verified customer economics yet.',nextAction:'Quantify the Golden Workflow baseline.',assets:[],updated:new Date().toLocaleDateString()};
- const [m,j,t,k,l,r,s,acore,act,ss,sg]=await Promise.all([load('./data/metrics.json',fallbackMetrics),load('./data/jobs.json',[]),load('./data/team.json',[]),load('./data/knowledge.json',[]),load('./data/training.json',[]),load('./data/rnd.json',[]),load('./data/schedule.json',[]),load('./data/agents_core.json',{agents:[]}),load('./data/agent_activity.json',{events:[]}),load('./data/scout_sources.json',{sources:[]}),load('./data/scout_signals.json',{items:[]})]);
- DATA={metrics:m,jobs:j,team:t,knowledge:k,training:l,rnd:r,schedule:s,agents:acore.agents||[],activity:act.events||[],scoutSources:ss.sources||[],scoutSignals:sg.items||[]};
- renderScore(m);renderJobs(j);renderTeam(t);renderScout();renderKnowledge(k);renderTraining(l);renderRND(r);renderSchedule(s);populateOwners();populateOfficeFilters();renderOffice();renderActivity();renderDrafts();connectRuntime();
+ const [m,j,t,k,l,r,s,acore,act,ss,sg,ac]=await Promise.all([load('./data/metrics.json',fallbackMetrics),load('./data/jobs.json',[]),load('./data/team.json',[]),load('./data/knowledge.json',[]),load('./data/training.json',[]),load('./data/rnd.json',[]),load('./data/schedule.json',[]),load('./data/agents_core.json',{agents:[]}),load('./data/agent_activity.json',{events:[]}),load('./data/scout_sources.json',{sources:[]}),load('./data/scout_signals.json',{items:[]}),load('./data/agent_candidates.json',{candidates:[],latestDecision:null})]);
+ DATA={metrics:m,jobs:j,team:t,knowledge:k,training:l,rnd:r,schedule:s,agents:acore.agents||[],activity:act.events||[],scoutSources:ss.sources||[],scoutSignals:sg.items||[],agentCandidates:ac.candidates||[],agentCandidateDecision:ac.latestDecision||null};
+ renderScore(m);renderJobs(j);renderTeam(t);renderAgentFactory();renderScout();renderKnowledge(k);renderTraining(l);renderRND(r);renderSchedule(s);populateOwners();populateOfficeFilters();renderOffice();renderActivity();renderDrafts();connectRuntime();
 }
 $$('.tab').forEach(b=>b.onclick=()=>{$$('.tab,.view').forEach(x=>x.classList.remove('active'));b.classList.add('active');$('#'+b.dataset.view).classList.add('active')});
 setInterval(()=>$('#clock').textContent=new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit',second:'2-digit'}),1000);
