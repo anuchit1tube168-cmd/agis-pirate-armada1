@@ -1,7 +1,7 @@
 const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
 const fmt=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(n||0);
 const STORAGE_KEY='agis10m.phase1.drafts.v1';
-let DATA={metrics:{},jobs:[],team:[],knowledge:[],training:[],rnd:[],schedule:[],agents:[],activity:[]};
+let DATA={metrics:{},jobs:[],team:[],knowledge:[],training:[],rnd:[],schedule:[],agents:[],activity:[],scoutSources:[],scoutSignals:[]};
 
 async function load(path,fallback){try{const r=await fetch(path+'?v='+Date.now());if(!r.ok)throw 0;return await r.json()}catch{return fallback}}
 function esc(v=''){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -84,6 +84,29 @@ function populateOfficeFilters(){
  $('#officeDepartment').innerHTML='<option value="">All departments</option>'+depts.map(d=>`<option>${esc(d)}</option>`).join('');
 }
 
+
+function renderScout(){
+ const sources=DATA.scoutSources||[], signals=DATA.scoutSignals||[];
+ const sourceEl=$('#scoutSources'), signalEl=$('#scoutSignals');
+ if(sourceEl) sourceEl.innerHTML=sources.map(s=>`
+   <div class="scout-item">
+     <div class="k-top"><b>${esc(s.name)}</b><span class="status ${statusClass(s.status)}">${esc(s.status)}</span></div>
+     <small>${esc(s.type)} • ${esc(s.priority||'')}</small>
+     <p>${esc(s.rule||s.notes||'')}</p>
+     <div class="scout-metrics"><span>Useful <b>${esc(s.score?.usefulSignals??0)}</b></span><span>Validated <b>${esc(s.score?.validatedSignals??0)}</b></span><span>Noise <b>${esc(s.score?.noiseSignals??0)}</b></span></div>
+   </div>`).join('')||'<div class="empty">No Scout sources registered.</div>';
+ if(signalEl) signalEl.innerHTML=signals.map(s=>`
+   <div class="scout-item">
+     <div class="k-top"><span class="badge">${esc(s.signalId)}</span><span class="status ${statusClass(s.status)}">${esc(s.status)}</span></div>
+     <h4>${esc(s.title)}</h4>
+     <small>${esc(s.claimType)} • ${esc(s.confidence)} • Route: ${esc(s.route)}</small>
+     <p>${esc(s.outcome||'Pending downstream outcome.')}</p>
+     <div class="scout-tags">${(s.relevance||[]).slice(0,4).map(x=>`<span>${esc(x)}</span>`).join('')}</div>
+   </div>`).join('')||'<div class="empty">No Scout signals yet.</div>';
+ if($('#scoutSourceCount')) $('#scoutSourceCount').textContent=String(sources.length);
+ if($('#scoutSignalCount')) $('#scoutSignalCount').textContent=String(signals.length);
+}
+
 function renderJobs(jobs){
  $('#jobBoard').innerHTML=jobs.map(j=>`<article class="job"><div class="job-top"><span>${esc(j.id)}</span><span class="status ${statusClass(j.status)}">${esc(j.status)}</span></div><h3>${esc(j.title)}</h3><p>${esc(j.objective)}</p><footer><span>${esc(j.owner)}</span><span>${esc(j.metric||'')}</span></footer><div class="job-actions"><button data-job="${esc(j.id)}" data-action="ACTIVE">Start</button><button data-job="${esc(j.id)}" data-action="REVIEW">Review</button><button data-job="${esc(j.id)}" data-action="DONE">Approve</button></div></article>`).join('');
  $$('.job-actions button').forEach(b=>b.onclick=()=>addDraft({type:'JOB_STATUS',jobId:b.dataset.job,status:b.dataset.action,at:new Date().toISOString()}));
@@ -113,9 +136,9 @@ function renderDrafts(){const d=drafts();$('#draftCount').textContent=String(d.l
 
 async function boot(){
  const fallbackMetrics={target:10000000,verifiedRevenue:0,qualifiedPipeline:0,mathStatus:'YELLOW',compressionFactor:1,constraint:'Collect real customer evidence',constraintWhy:'No verified customer economics yet.',nextAction:'Quantify the Golden Workflow baseline.',assets:[],updated:new Date().toLocaleDateString()};
- const [m,j,t,k,l,r,s,acore,act]=await Promise.all([load('./data/metrics.json',fallbackMetrics),load('./data/jobs.json',[]),load('./data/team.json',[]),load('./data/knowledge.json',[]),load('./data/training.json',[]),load('./data/rnd.json',[]),load('./data/schedule.json',[]),load('./data/agents_core.json',{agents:[]}),load('./data/agent_activity.json',{events:[]})]);
- DATA={metrics:m,jobs:j,team:t,knowledge:k,training:l,rnd:r,schedule:s,agents:acore.agents||[],activity:act.events||[]};
- renderScore(m);renderJobs(j);renderTeam(t);renderKnowledge(k);renderTraining(l);renderRND(r);renderSchedule(s);populateOwners();populateOfficeFilters();renderOffice();renderActivity();renderDrafts();connectRuntime();
+ const [m,j,t,k,l,r,s,acore,act,ss,sg]=await Promise.all([load('./data/metrics.json',fallbackMetrics),load('./data/jobs.json',[]),load('./data/team.json',[]),load('./data/knowledge.json',[]),load('./data/training.json',[]),load('./data/rnd.json',[]),load('./data/schedule.json',[]),load('./data/agents_core.json',{agents:[]}),load('./data/agent_activity.json',{events:[]}),load('./data/scout_sources.json',{sources:[]}),load('./data/scout_signals.json',{items:[]})]);
+ DATA={metrics:m,jobs:j,team:t,knowledge:k,training:l,rnd:r,schedule:s,agents:acore.agents||[],activity:act.events||[],scoutSources:ss.sources||[],scoutSignals:sg.items||[]};
+ renderScore(m);renderJobs(j);renderTeam(t);renderScout();renderKnowledge(k);renderTraining(l);renderRND(r);renderSchedule(s);populateOwners();populateOfficeFilters();renderOffice();renderActivity();renderDrafts();connectRuntime();
 }
 $$('.tab').forEach(b=>b.onclick=()=>{$$('.tab,.view').forEach(x=>x.classList.remove('active'));b.classList.add('active');$('#'+b.dataset.view).classList.add('active')});
 setInterval(()=>$('#clock').textContent=new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit',second:'2-digit'}),1000);
