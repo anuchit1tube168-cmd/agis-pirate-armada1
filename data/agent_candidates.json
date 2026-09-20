@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "updated": "2026-09-20",
+  "policy": "No permanent agent without Capability Gap + A/B Eval.",
+  "candidates": [],
+  "latestDecision": {
+    "capabilityGap": "Cloudflare staging deploy blocked by missing credentials/D1 ID",
+    "newAgentNeeded": false,
+    "reason": "This is an access/deployment dependency, not an agent capability gap. Creating a Cloudflare Agent would not solve missing authorization.",
+    "route": "Keep INTEGRATION Core Agent blocked; improve tooling/access when authorized."
+  }
+}
