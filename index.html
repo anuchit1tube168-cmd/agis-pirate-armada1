@@ -29,6 +29,7 @@
       <button class="tab" data-view="command">Command Center</button>
       <button class="tab" data-view="office">AI Office</button>
       <button class="tab" data-view="team">Agent Team</button>
+      <button class="tab" data-view="scout">Scout Lab</button>
       <button class="tab" data-view="knowledge">Knowledge Lab</button>
       <button class="tab" data-view="learning">Learning / Evolution</button>
       <button class="tab" data-view="rnd">R&D Lab</button>
@@ -165,6 +166,30 @@
       <section id="team" class="view">
         <div class="section-title"><div><span>AGENT FACTORY</span><h2>AI workforce with jobs, reviewers and permissions</h2></div><span class="pill">COMMANDER → SPECIALISTS → REVIEW</span></div>
         <div id="teamGrid" class="team-grid"></div>
+      </section>
+
+
+      <section id="scout" class="view">
+        <div class="section-title">
+          <div><span>SCOUT LEARNING PIPELINE</span><h2>Signal quality → evidence → R&D → durable skill</h2></div>
+          <span class="pill">QUALITY OVER VOLUME</span>
+        </div>
+        <article class="card">
+          <div class="flowline">
+            <span>SOURCE</span><i>→</i><span>SIGNAL</span><i>→</i><span>RELEVANCE</span><i>→</i><span>EVIDENCE</span><i>→</i><span>R&D / JOB / EVAL</span><i>→</i><span>OUTCOME</span><i>→</i><span>SOURCE SCORE</span>
+          </div>
+          <p class="muted small">External media can create hypotheses. Only tested project evidence can promote durable skills or strategy.</p>
+        </article>
+        <div class="split">
+          <article class="card">
+            <div class="card-head"><span>SOURCE SCORECARD</span><span id="scoutSourceCount" class="badge">0</span></div>
+            <div id="scoutSources" class="scout-list"></div>
+          </article>
+          <article class="card">
+            <div class="card-head"><span>SIGNAL INBOX</span><span id="scoutSignalCount" class="badge">0</span></div>
+            <div id="scoutSignals" class="scout-list"></div>
+          </article>
+        </div>
       </section>
 
       <section id="knowledge" class="view">
