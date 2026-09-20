@@ -3,6 +3,24 @@
   "mode": "PHASE_2B_DEPLOY_READY_BLOCKED",
   "events": [
     {
+      "time": "11:25",
+      "agent": "QA / EVAL",
+      "type": "FAIL",
+      "text": "Runtime review found two selector defects that syntax-only CI could not detect: single-element selector helpers were used with forEach."
+    },
+    {
+      "time": "11:26",
+      "agent": "BUILDER",
+      "type": "FIX",
+      "text": "Operations Agent bindings and Learning-card collection now use collection selectors; Agent profile also exposes Read Context and Stop/Escalation rules."
+    },
+    {
+      "time": "11:27",
+      "agent": "LEARNING COACH",
+      "type": "LEARNING",
+      "text": "Regression rule added: syntax PASS is insufficient for DOM collection behavior; runtime selector contracts must fail CI before verdict."
+    },
+    {
       "time": "11:02",
       "agent": "AGIS COMMANDER",
       "type": "DECISION",
@@ -85,24 +103,6 @@
       "agent": "INTEGRATION",
       "type": "BLOCKED",
       "text": "Remote staging deployment is the only current Phase 2B blocker: verified Cloudflare account/API token/D1 ID are not available in connected tools."
-    },
-    {
-      "time": "16:36",
-      "agent": "AGIS COMMANDER",
-      "type": "DECISION",
-      "text": "Cycle closed as DEPLOY-READY, not LIVE. Production write remains OFF."
-    },
-    {
-      "time": "16:32",
-      "agent": "AGIS COMMANDER",
-      "type": "DECISION",
-      "text": "Immediate command received; Phase 2B work started without waiting for the 4-hour fallback."
-    },
-    {
-      "time": "16:33",
-      "agent": "RESEARCH",
-      "type": "VERIFY",
-      "text": "Verified current Cloudflare D1 flow: execute schema/seed remotely, then deploy Worker."
     }
   ]
 }
