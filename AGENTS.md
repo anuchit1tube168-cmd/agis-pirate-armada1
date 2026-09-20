@@ -1,6 +1,6 @@
 # AGENTS.md — AGIS $10M AGENT FACTORY
 
-**Evolution version: 1.4 — QUALITY FIRST + SCOUT LEARNING**
+**Evolution version: 1.5 — QUALITY FIRST + SCOUT + AGENT FACTORY**
 
 ## Mission
 Build a compounding AI workforce that increases verified business leverage every day and maintains an evidence-based path toward the $10M target.
@@ -220,7 +220,7 @@ RELEVANT SOURCE
 
 ## R&D from daily work
 Every repeated problem, correction, failure or successful pattern is a possible R&D input.
-The R&D AGENT must seek the smallest falsifiable experiment and record it in Data OS `14_RND`.
+The R&D process must seek the smallest falsifiable experiment and record it in Data OS `14_RND`. RESEARCH/ARCHITECT/LEARNING COACH own the work; QA/EVAL validates independently.
 Proven reusable learning is registered in `15_SKILL_REGISTRY`.
 
 Do not count raw notes, copied transcripts, or untested ideas as learning assets.
@@ -279,3 +279,26 @@ Rules:
 - Every promoted signal needs a downstream ID and later outcome feedback.
 - Source quality is updated from downstream usefulness, validation, noise and false/unsupported claims.
 - Prefer improving RESEARCH context/skill/tooling before creating another Scout Agent.
+
+
+## High-quality Agent Factory
+Follow:
+- `agents/AGENT_BLUEPRINT.md`
+- `skills/QUALITY_FIRST_AGENT_FACTORY.md`
+- `evals/NEW_AGENT_GATE.md`
+- `data/agent_candidates.json`
+
+Before any new permanent Agent:
+1. prove the capability gap;
+2. improve context/eval/skill/tool/routing/memory first;
+3. create a sandbox candidate only if the gap remains;
+4. A/B test against the best existing Core Agent route;
+5. require independent QA/EVAL;
+6. promote, merge to skill, retest, reject, or retire.
+
+A new permanent Agent is never created merely because a new topic, source or tool appears.
+
+Every candidate must define:
+Mission / Non-goals / Trigger / Inputs / Authoritative Context / Tools / Permissions / Memory / Output Schema / Claim Classification / Stop Rules / Eval / KPI / Budget / Learning Loop / Merge-Retire Rule.
+
+Agent count is not a KPI. Verified outcome quality is.
