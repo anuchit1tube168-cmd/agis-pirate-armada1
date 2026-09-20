@@ -7,7 +7,7 @@
 - [ ] 002 Set target date and months remaining.
 - [ ] 003 Build daily gap-to-$10M calculation.
 - [x] 004 Maintain Enterprise, Mid-market and Hybrid revenue scenarios. Evidence: `DO_THE_MATH.md` Revenue scenarios; explicitly planning examples, not forecasts.
-- [ ] 005 Calculate customer count required at multiple ACVs.
+- [x] 005 Calculate customer count required at multiple ACVs. Evidence: `DO_THE_MATH.md` ACV sensitivity table ($10k–$1M ACV), using `ceil(10,000,000 / ACV)` and explicitly labeled deterministic target math, not forecast.
 - [ ] 006 Calculate qualified pipeline required from observed win rate.
 - [ ] 007 Calculate lead/meeting requirements from observed funnel.
 - [ ] 008 Define gross-margin floor.
