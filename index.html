@@ -29,6 +29,7 @@
       <button class="tab" data-view="command">Command Center</button>
       <button class="tab" data-view="office">AI Office</button>
       <button class="tab" data-view="team">Agent Team</button>
+      <button class="tab" data-view="factory">Agent Factory</button>
       <button class="tab" data-view="scout">Scout Lab</button>
       <button class="tab" data-view="knowledge">Knowledge Lab</button>
       <button class="tab" data-view="learning">Learning / Evolution</button>
@@ -188,6 +189,32 @@
           <article class="card">
             <div class="card-head"><span>SIGNAL INBOX</span><span id="scoutSignalCount" class="badge">0</span></div>
             <div id="scoutSignals" class="scout-list"></div>
+          </article>
+        </div>
+      </section>
+
+
+      <section id="factory" class="view">
+        <div class="section-title">
+          <div><span>QUALITY-FIRST AGENT FACTORY</span><h2>Capability Gap → Candidate → A/B Eval → Promote / Merge / Delete</h2></div>
+          <span class="pill">AGENT COUNT ≠ KPI</span>
+        </div>
+        <div class="split">
+          <article class="card">
+            <div class="card-head"><span>CREATION GATE</span><span class="badge">12/12 REQUIRED</span></div>
+            <div class="learning-loop"><span>GAP</span><i>→</i><span>CORE + SKILL</span><i>→</i><span>MEASURE</span><i>→</i><span>SANDBOX</span><i>→</i><span>A/B EVAL</span><i>→</i><span>DECIDE</span></div>
+            <ul class="rules">
+              <li>Distinct mission and outcome KPI.</li>
+              <li>Least privilege + explicit non-goals.</li>
+              <li>Honest known/inferred/unknown behavior.</li>
+              <li>Independent QA/EVAL before promotion.</li>
+              <li>Merge/retire rule from day one.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="card-head"><span>CANDIDATE REGISTRY</span><span id="candidateCount" class="badge">0</span></div>
+            <div id="candidateDecision" class="next-action"></div>
+            <div id="candidateList" class="scout-list" style="margin-top:12px"></div>
           </article>
         </div>
       </section>
