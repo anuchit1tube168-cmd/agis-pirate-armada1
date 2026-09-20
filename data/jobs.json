@@ -68,5 +68,17 @@
     "permission": "Read sources + project data; no production write",
     "acceptance": "Every promoted Scout signal has claim type, evidence, downstream ID, reviewer, measurable next step and later outcome feedback.",
     "next": "Process only the highest-priority unresolved signal each cycle; update source score after resolution."
+  },
+  {
+    "id": "JOB-016",
+    "status": "ACTIVE",
+    "title": "Quality-First Agent Factory Gate",
+    "objective": "Ensure every future AI Agent is created only from a proven capability gap and beats the existing Core-Agent route under independent evaluation.",
+    "owner": "ARCHITECT + LEARNING COACH",
+    "reviewer": "QA / EVAL + SECURITY when permissions differ",
+    "metric": "100% new-Agent proposals have blueprint + gate + A/B evidence",
+    "permission": "Project docs/tests only; sandbox candidates only",
+    "acceptance": "Blueprint, candidate registry, independent eval gate, Mission Control visibility and CI all pass.",
+    "next": "Do not create a new candidate until a real capability gap passes the gate."
   }
 ]
