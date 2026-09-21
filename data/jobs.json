@@ -85,11 +85,11 @@
     "id": "JOB-017",
     "status": "BLOCKED",
     "title": "PixelLab Core 12 Visual Asset Generation",
-    "objective": "Generate and publish consistent PixelLab-managed visual characters for all 12 Core Agents while preserving AGIS permissions/state and local fallback.",
+    "objective": "Generate PixelLab-managed 12 Core Agent characters plus AGIS-12 command-ship art and publish them into Active Operations while preserving state/permission boundaries.",
     "owner": "NEXUS + MAKER",
     "reviewer": "AEGIS + SENTINEL",
-    "metric": "12/12 generated character previews + manifest + Active Operations fallback test",
-    "blocker": "Repository secret PIXELLAB_API_KEY must be added manually; connected GitHub tool cannot write Secrets APIs.",
-    "next": "Add PIXELLAB_API_KEY as GitHub Actions repository secret, then run Generate PixelLab Core 12 Agents with confirmation GENERATE-CORE12."
+    "metric": "12/12 PixelLab character previews + ship art manifest + Active Operations PixelLab status shows generated assets + fallback regression PASS",
+    "blocker": "PIXELLAB_API_KEY is not yet configured as a GitHub Actions repository secret. Code/pipeline/deployment are ready; real PixelLab generation has not run.",
+    "next": "Add PIXELLAB_API_KEY to GitHub Actions secrets; then run Generate PixelLab Core 12 Agents and Generate PixelLab AGIS-12 Ship Art."
   }
 ]
