@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-09-20",
+  "updated": "2026-09-22",
   "policy": "Quality over volume. External sources generate hypotheses; project evidence decides.",
   "sources": [
     {
@@ -12,12 +12,7 @@
       "status": "ACTIVE",
       "priority": "SELECTIVE",
       "rule": "Deep-process only episodes materially relevant to active AGIS/$10M questions.",
-      "score": {
-        "usefulSignals": 2,
-        "validatedSignals": 0,
-        "falseSignals": 0,
-        "noiseSignals": 0
-      },
+      "score": {"usefulSignals": 2, "validatedSignals": 0, "falseSignals": 0, "noiseSignals": 0},
       "notes": "Existing OpenAI/frontier-AI interviews already ingested as hypotheses."
     },
     {
@@ -29,13 +24,20 @@
       "status": "ACTIVE",
       "priority": "HIGHEST",
       "rule": "Failures, corrections and measured wins are first-class Scout/R&D signals.",
-      "score": {
-        "usefulSignals": 2,
-        "validatedSignals": 1,
-        "falseSignals": 0,
-        "noiseSignals": 0
-      },
+      "score": {"usefulSignals": 2, "validatedSignals": 1, "falseSignals": 0, "noiseSignals": 0},
       "notes": "Highest-value source because it contains actual project outcomes."
+    },
+    {
+      "sourceId": "SRC-MILERDEV",
+      "name": "MilerDev / ohmiler creator-owned public resources",
+      "type": "Creator-owned GitHub Gists / public development material",
+      "domain": "JavaScript / frontend / web apps / Three.js / build-deploy / VPS",
+      "url": "https://gist.github.com/ohmiler",
+      "status": "ACTIVE",
+      "priority": "SELECTIVE",
+      "rule": "Use only public creator-owned material that maps to an active AGIS experiment; treat workflow/performance claims as SOURCE CLAIM until reproduced internally.",
+      "score": {"usefulSignals": 1, "validatedSignals": 0, "falseSignals": 0, "noiseSignals": 0},
+      "notes": "Public gists inspected 2026-09-22 include React/TypeScript/Vite frontend prompts, Three.js interactive-web material, Docker/VPS and VPS-security teaching artifacts."
     }
   ]
 }
