@@ -3,6 +3,42 @@
   "mode": "ACTIVE_OPERATIONS_V2_1_DEPLOYED",
   "events": [
     {
+      "time": "16:30",
+      "agent": "AETHER",
+      "type": "DESIGN",
+      "text": "Active Operations transformed from an open floor into AGIS-12 top-down pixel command ship with Bridge, Strategy, Product, Intel, Engineering, QA/Security, Knowledge, Blocker Dock and Crew Hub."
+    },
+    {
+      "time": "16:30",
+      "agent": "MAKER",
+      "type": "BUILD",
+      "text": "All 12 Core Agents now have dedicated ship stations, room-bounded ambient patrol, corridor routing, and distinct Core 12 fallback pixel silhouettes."
+    },
+    {
+      "time": "16:30",
+      "agent": "NEXUS",
+      "type": "INTEGRATION",
+      "text": "PixelLab character and ship-art pipelines are wired: create-character-v3 for Core 12 and create-image-pixen for the command ship; generated assets auto-load with local fallback."
+    },
+    {
+      "time": "16:30",
+      "agent": "SENTINEL",
+      "type": "PASS",
+      "text": "AGIS-12 ship contract 35583605308 PASS; PixelLab integration 35583605429 PASS; CI 35583605420 PASS."
+    },
+    {
+      "time": "16:30",
+      "agent": "AEGIS",
+      "type": "PASS",
+      "text": "Owner/Security/Credential gates passed; PixelLab token remains secret-only and is not embedded in repo/client."
+    },
+    {
+      "time": "16:30",
+      "agent": "MAKER",
+      "type": "DEPLOY",
+      "text": "AGIS-12 pixel command ship v3.0.1 deployed successfully — custom deploy 35583605496 and Pages 35583604446."
+    },
+    {
       "time": "16:11",
       "agent": "NEXUS",
       "type": "INTEGRATION",
@@ -61,42 +97,6 @@
       "agent": "AEGIS",
       "type": "PASS",
       "text": "Owner Only Gate, Security Guard, Quality Checks and Credential Scan all PASS on latest governance baseline."
-    },
-    {
-      "time": "11:40",
-      "agent": "AETHER",
-      "type": "FIX",
-      "text": "Pages deployment conflict resolved: LIFF no longer triggers on all tests/**, and root/deployed Active Operations artifacts are mirrored."
-    },
-    {
-      "time": "11:40",
-      "agent": "MAKER",
-      "type": "DEPLOY",
-      "text": "Dynamic Pages deployment 35489720000 SUCCESS; AGIS Active Operations v2.1 published with Work Matrix, Evidence Gate, Read Context and handoff routes."
-    },
-    {
-      "time": "11:40",
-      "agent": "MENTOR",
-      "type": "LEARNING",
-      "text": "Promoted lessons: syntax PASS is not runtime PASS; tests can false-positive; security allowlists must be capability-specific; deployment artifacts need a mirror contract."
-    },
-    {
-      "time": "11:25",
-      "agent": "QA / EVAL",
-      "type": "FAIL",
-      "text": "Runtime review found two selector defects that syntax-only CI could not detect: single-element selector helpers were used with forEach."
-    },
-    {
-      "time": "11:26",
-      "agent": "BUILDER",
-      "type": "FIX",
-      "text": "Operations Agent bindings and Learning-card collection now use collection selectors; Agent profile also exposes Read Context and Stop/Escalation rules."
-    },
-    {
-      "time": "11:27",
-      "agent": "LEARNING COACH",
-      "type": "LEARNING",
-      "text": "Regression rule added: syntax PASS is insufficient for DOM collection behavior; runtime selector contracts must fail CI before verdict."
     }
   ]
 }
