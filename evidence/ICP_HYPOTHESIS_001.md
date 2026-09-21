@@ -1,7 +1,7 @@
 # ICP-HYP-001 — Initial ICP Evidence Hypothesis
 
 Date: 2026-09-21
-Status: REVIEW REQUIRED — NOT VERIFIED ICP
+Status: ACCEPTED FOR EVIDENCE COLLECTION — ICP NOT VERIFIED
 Job: JOB-007
 Owner: ECHO / AG-004
 Reviewer: FORGE / AG-005
@@ -58,16 +58,14 @@ Never merge measured values and estimates without labels.
 - OPINION: preference/judgment.
 - UNKNOWN: required fact not yet supported.
 
-## FORGE measurability review checklist
-Reviewer must independently answer PASS/FAIL:
-- Is the workflow repeated often enough to measure?
-- Can a baseline capture hours, delay, people, errors and cost?
-- Is there an identifiable economic-buyer hypothesis?
-- Can a pilot define a before/after outcome without relying on vanity metrics?
-- Can the workflow be tested without production write access?
-- Are privacy/security constraints discoverable before pilot design?
+## FORGE measurability review
+**VERIFIED FACT:** independent review evidence exists at `evidence/ICP_HYPOTHESIS_001_FORGE_REVIEW.md`.
 
-**Current reviewer verdict: PENDING.** Do not mark TODO-011 DONE until FORGE review evidence exists and the hypothesis is accepted for evidence collection.
+**Reviewer verdict:** PASS FOR EVIDENCE COLLECTION — ICP REMAINS HYPOTHESIS.
+
+The review passed the six measurement-design gates for evidence collection, but explicitly did not verify market frequency, demand, budget, procurement, willingness to pay, ACV, ROI, or a specific organization's security constraints. Those remain UNKNOWN until traceable customer evidence exists.
+
+This review satisfies JOB-007 acceptance criterion (5) only. It does **not** mark TODO-011 or JOB-007 DONE.
 
 ## Next measurable action
 Obtain 10 traceable evidence points using the schema above; FORGE then ranks the repeated pains by urgency × budget × frequency × measurability. If evidence contradicts this ICP, reject/narrow it rather than defending it.
