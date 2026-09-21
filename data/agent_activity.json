@@ -3,6 +3,30 @@
   "mode": "ACTIVE_OPERATIONS_V2_1_DEPLOYED",
   "events": [
     {
+      "time": "16:37",
+      "agent": "AETHER",
+      "type": "ARCHITECTURE",
+      "text": "AGIS-12 ship now exposes a tactical HUD/minimap and nine interactive rooms tied to recorded agent state."
+    },
+    {
+      "time": "16:37",
+      "agent": "MAKER",
+      "type": "BUILD",
+      "text": "Added room focus, selected-agent HUD, three-lane corridor routing and nearby-agent separation to reduce visual overlap."
+    },
+    {
+      "time": "16:37",
+      "agent": "SENTINEL",
+      "type": "PASS",
+      "text": "Core ship contract 35584258765 PASS; CI 35584258574 PASS; Pages 35584257451 PASS; Security/Quality/Credential/Owner gates PASS."
+    },
+    {
+      "time": "16:37",
+      "agent": "MENTOR",
+      "type": "LEARNING",
+      "text": "Promoted rule: visual pathing should use deterministic lanes plus local separation; minimap/room HUD must read recorded state, not infer execution."
+    },
+    {
       "time": "16:30",
       "agent": "AETHER",
       "type": "DESIGN",
@@ -73,30 +97,6 @@
       "agent": "SENTINEL",
       "type": "PASS",
       "text": "Core v2 living-office contract 35490073038 PASS; Owner/Security/Quality/Credential/CI gates PASS."
-    },
-    {
-      "time": "11:49",
-      "agent": "AETHER",
-      "type": "DESIGN",
-      "text": "Agent motion maps to operational state: READY patrol, WORKING department desk, REVIEW quality zone, LEARNING knowledge lab, BLOCKED blocker bay."
-    },
-    {
-      "time": "11:49",
-      "agent": "MENTOR",
-      "type": "RULE",
-      "text": "Animation is visualization only; execution claims still require job/evidence/audit records."
-    },
-    {
-      "time": "11:40",
-      "agent": "QA / EVAL",
-      "type": "PASS",
-      "text": "Core v2 runtime/mirror contract PASS — GitHub Actions 35489720660."
-    },
-    {
-      "time": "11:40",
-      "agent": "AEGIS",
-      "type": "PASS",
-      "text": "Owner Only Gate, Security Guard, Quality Checks and Credential Scan all PASS on latest governance baseline."
     }
   ]
 }
