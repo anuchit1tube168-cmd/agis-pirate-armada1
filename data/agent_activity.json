@@ -1,7 +1,31 @@
 {
-  "updated": "2026-09-20",
+  "updated": "2026-09-21",
   "mode": "ACTIVE_OPERATIONS_V2_1_DEPLOYED",
   "events": [
+    {
+      "time": "16:11",
+      "agent": "NEXUS",
+      "type": "INTEGRATION",
+      "text": "PixelLab REST v2 adapter prepared for create-character-v3, background-job polling, character export and asset manifest generation."
+    },
+    {
+      "time": "16:11",
+      "agent": "AEGIS",
+      "type": "SECURITY",
+      "text": "PixelLab token is referenced only as PIXELLAB_API_KEY; no provided token value was written to repository/client/source."
+    },
+    {
+      "time": "16:11",
+      "agent": "SENTINEL",
+      "type": "PASS",
+      "text": "PixelLab Core 12 Integration Test PASS; latest Core v2, Owner Gate, Security, Quality, Credential and CI checks PASS."
+    },
+    {
+      "time": "16:11",
+      "agent": "MAKER",
+      "type": "BLOCKED",
+      "text": "Visual generation is ready but cannot start until PIXELLAB_API_KEY exists in GitHub Actions Secrets; current connector cannot write repository secrets."
+    },
     {
       "time": "11:49",
       "agent": "MAKER",
@@ -73,30 +97,6 @@
       "agent": "LEARNING COACH",
       "type": "LEARNING",
       "text": "Regression rule added: syntax PASS is insufficient for DOM collection behavior; runtime selector contracts must fail CI before verdict."
-    },
-    {
-      "time": "11:02",
-      "agent": "AGIS COMMANDER",
-      "type": "DECISION",
-      "text": "Quality-first Agent Factory activated. New agents require proven capability gap and independent A/B evaluation."
-    },
-    {
-      "time": "11:03",
-      "agent": "ARCHITECT",
-      "type": "BUILD",
-      "text": "Created canonical Agent Blueprint with mission, non-goals, trigger, tools, permissions, memory, output contract, eval and retirement rules."
-    },
-    {
-      "time": "11:03",
-      "agent": "LEARNING COACH",
-      "type": "BUILD",
-      "text": "Created Quality-First Agent Factory skill and candidate lifecycle: Core+Skill → Sandbox → A/B Eval → Promote/Merge/Delete."
-    },
-    {
-      "time": "11:04",
-      "agent": "QA / EVAL",
-      "type": "PASS",
-      "text": "Agent Factory CI run 35488125161 passed JavaScript syntax and Agent Factory contract checks."
     }
   ]
 }
