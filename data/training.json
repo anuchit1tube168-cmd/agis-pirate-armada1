@@ -34,5 +34,11 @@
     "agent": "ARCHITECT + BUILDER + QA / EVAL",
     "lesson": "Visual Agent motion must be driven by recorded state and must never be used as evidence that work occurred.",
     "evidence": "Active Operations v2.2 uses the existing pixel engine for 12 Core Agent sprites. READY agents patrol/available; WORKING/REVIEW/LEARNING agents use active workstation animation; BLOCKED agents wait at Blocker Bay. Core v2 contract 35490073038 and AGIS deploy 35490066706 passed."
+  },
+  {
+    "date": "2026-09-21",
+    "agent": "AETHER + MAKER + SENTINEL + MENTOR",
+    "lesson": "A management-RPG operations view becomes more truthful and readable when room occupancy, path lanes and collision handling are derived from the same recorded Agent state.",
+    "evidence": "AGIS-12 v3.1 added a live minimap, 9 clickable rooms, room status aggregation, per-Agent selection HUD, three corridor lanes and local collision separation. Core ship contract 35584258765, CI 35584258574 and Pages 35584257451 all passed."
   }
 ]
