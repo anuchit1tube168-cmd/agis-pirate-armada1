@@ -1,76 +1,36 @@
 {
   "version": 1,
-  "updated": "2026-09-20",
+  "updated": "2026-09-22",
   "items": [
     {
-      "signalId": "SIG-001",
-      "timestamp": "2026-09-18",
-      "sourceId": "SRC-DOAC",
-      "title": "Agentic cognitive work may accelerate",
-      "topic": "AI agents / automation",
-      "claimType": "FORECAST",
-      "relevance": [
-        "Workflow Automation",
-        "Agent Capability",
-        "Evaluation",
-        "Permissions/Audit",
-        "Time Compression"
-      ],
+      "signalId": "SIG-001", "timestamp": "2026-09-18", "sourceId": "SRC-DOAC", "title": "Agentic cognitive work may accelerate", "topic": "AI agents / automation", "claimType": "FORECAST", "relevance": ["Workflow Automation","Agent Capability","Evaluation","Permissions/Audit","Time Compression"], "confidence": "MEDIUM", "evidenceStrength": 3, "novelty": 4, "potentialImpact": 5, "timeToTest": 3, "route": "R&D", "downstreamId": "JOB-006 / DOAC intelligence", "status": "PROMOTED", "outcome": "Created testable automation/evaluation implications; forecast not treated as fact."
+    },
+    {
+      "signalId": "SIG-002", "timestamp": "2026-09-19", "sourceId": "SRC-INTERNAL-WORK", "title": "Bootstrap seed drifted when live Agent status changed", "topic": "Agent runtime architecture", "claimType": "VERIFIED FACT", "relevance": ["Data Advantage","Agent Capability","Evaluation","Reuse"], "confidence": "HIGH", "evidenceStrength": 5, "novelty": 5, "potentialImpact": 4, "timeToTest": 1, "route": "SKILL CANDIDATE", "downstreamId": "RND-RUNTIME stable seed lesson", "status": "VALIDATED", "outcome": "FAIL → root cause → fix → CI retest PASS. Durable config separated from volatile runtime state."
+    },
+    {
+      "signalId": "SIG-003", "timestamp": "2026-09-19", "sourceId": "SRC-INTERNAL-WORK", "title": "Consequential writes need replay/idempotency protection", "topic": "Runtime safety", "claimType": "HYPOTHESIS", "relevance": ["Permissions/Audit","Evaluation","Integration","Risk"], "confidence": "MEDIUM", "evidenceStrength": 4, "novelty": 4, "potentialImpact": 5, "timeToTest": 2, "route": "R&D", "downstreamId": "RND-RUNTIME-001", "status": "CI_VALIDATED_REMOTE_PENDING", "outcome": "CI replay tests pass; remote D1 staging evidence still pending."
+    },
+    {
+      "signalId": "SIG-004",
+      "timestamp": "2026-09-22",
+      "sourceId": "SRC-MILERDEV",
+      "title": "Creator-owned material provides a testable 3D/web build pattern for the existing Builder baseline",
+      "topic": "Three.js / frontend architecture / build-deploy",
+      "claimType": "SOURCE CLAIM",
+      "relevance": ["Agent Capability","Evaluation","Time Compression","Reuse","Workflow Automation"],
       "confidence": "MEDIUM",
       "evidenceStrength": 3,
-      "novelty": 4,
-      "potentialImpact": 5,
-      "timeToTest": 3,
-      "route": "R&D",
-      "downstreamId": "JOB-006 / DOAC intelligence",
-      "status": "PROMOTED",
-      "outcome": "Created testable automation/evaluation implications; forecast not treated as fact."
-    },
-    {
-      "signalId": "SIG-002",
-      "timestamp": "2026-09-19",
-      "sourceId": "SRC-INTERNAL-WORK",
-      "title": "Bootstrap seed drifted when live Agent status changed",
-      "topic": "Agent runtime architecture",
-      "claimType": "VERIFIED FACT",
-      "relevance": [
-        "Data Advantage",
-        "Agent Capability",
-        "Evaluation",
-        "Reuse"
-      ],
-      "confidence": "HIGH",
-      "evidenceStrength": 5,
-      "novelty": 5,
+      "novelty": 3,
       "potentialImpact": 4,
-      "timeToTest": 1,
-      "route": "SKILL CANDIDATE",
-      "downstreamId": "RND-RUNTIME stable seed lesson",
-      "status": "VALIDATED",
-      "outcome": "FAIL → root cause → fix → CI retest PASS. Durable config separated from volatile runtime state."
-    },
-    {
-      "signalId": "SIG-003",
-      "timestamp": "2026-09-19",
-      "sourceId": "SRC-INTERNAL-WORK",
-      "title": "Consequential writes need replay/idempotency protection",
-      "topic": "Runtime safety",
-      "claimType": "HYPOTHESIS",
-      "relevance": [
-        "Permissions/Audit",
-        "Evaluation",
-        "Integration",
-        "Risk"
-      ],
-      "confidence": "MEDIUM",
-      "evidenceStrength": 4,
-      "novelty": 4,
-      "potentialImpact": 5,
       "timeToTest": 2,
-      "route": "R&D",
-      "downstreamId": "RND-RUNTIME-001",
-      "status": "CI_VALIDATED_REMOTE_PENDING",
-      "outcome": "CI replay tests pass; remote D1 staging evidence still pending."
+      "route": "BUILDER EXPERIMENT",
+      "downstreamId": "JOB-006 / E1-3D-STAGING",
+      "responsibleCoreAgent": "MAKER / AG-007",
+      "reviewer": "AETHER / AG-006 then SENTINEL / AG-008",
+      "status": "ROUTED_UNVALIDATED",
+      "measurableNextStep": "Reproduce a small staging-only Three.js + TypeScript/Vite interactive configurator with separated state/simulation/render/input/UI boundaries; require clean build/typecheck, critical-state test, fallback/reduced-motion behavior, elapsed time, defects and rework evidence.",
+      "outcome": "UNKNOWN — external material is not a validated AGIS skill until reproducible internal evidence and QA pass. MENTOR may promote only after QA evidence."
     }
   ]
 }
