@@ -3,7 +3,7 @@
 Status: READY_FOR_BUILD (not validated)
 Phase: 2B staging/sandbox only; production write OFF
 Signal: SIG-004
-Downstream: JOB-006 / E1-3D-STAGING
+Downstream: JOB-008 / E1-3D-STAGING
 Owner: MAKER / AG-007
 Architecture review: AETHER / AG-006
 QA/Eval: SENTINEL / AG-008
@@ -11,6 +11,7 @@ Learning review: MENTOR / AG-012
 
 ## Claim discipline
 - VERIFIED FACT: SIG-004 exists in the Scout inbox and is routed to this experiment.
+- VERIFIED FACT: this experiment uses JOB-008 so its evidence chain remains separate from JOB-006 Mission Dashboard Baseline.
 - SOURCE CLAIM: creator-owned public material suggests a Three.js + TypeScript/Vite interactive-web build pattern.
 - HYPOTHESIS: explicit state/simulation/render/input/UI separation plus fallback behavior will improve reproducibility/reuse without lowering quality.
 - UNKNOWN: elapsed time, defect count, rework count, bundle/build time, reuse gain, and whether this pattern deserves SKILL.md promotion.
