@@ -98,3 +98,19 @@ PERMISSION_LEVEL: project docs/read-only evidence gathering; external outreach r
 EVIDENCE_REQUIRED: traceable source/interview records, claim classifications, reviewer verdict and links/IDs to evidence.
 IF_PASS: mark TODO-011 only after review evidence exists, then execute interview evidence collection toward TODO-012/013/014 and JOB-002.
 IF_FAIL: keep TODO-011 open, identify the missing evidence/access blocker, and change the evidence route rather than inventing an ICP.
+
+### JOB-008 — E1-3D Staging Reproducibility Experiment
+STATUS: QUEUED
+OWNER_AGENT: MAKER / AG-007
+REVIEWER: AETHER / AG-006 then SENTINEL / AG-008
+BUSINESS_OBJECTIVE: test whether the SIG-004 3D/web build pattern improves reproducibility/reuse without lowering quality.
+CONTEXT: SIG-004 creator-owned public material; this ID is intentionally separate from JOB-006 to preserve evidence-chain integrity. Staging/sandbox only; not revenue evidence.
+DELIVERABLE: minimal Three.js + TypeScript/Vite interactive configurator with separated state/simulation/render/input/UI/data boundaries and reproducible evidence.
+ACCEPTANCE_TEST: clean dependency install; typecheck pass; build pass; >=1 deterministic critical-state automated test; fallback/reduced-motion smoke pass; AETHER boundary review; SENTINEL independent QA; no secrets or production writes.
+TARGET_METRIC: measured elapsed human time, defects, rework, reused assets/components, and pass/fail across all five reproducibility gates.
+TIME_BUDGET: measure actual elapsed/human time; no invented target before baseline.
+DEPENDENCIES: SIG-004 and evidence/E1_3D_STAGING_EXPERIMENT.md.
+PERMISSION_LEVEL: staging/sandbox write only; production write OFF.
+EVIDENCE_REQUIRED: implementation commit/artifact, exact commands/output, AETHER verdict, SENTINEL verdict, elapsed time, defects/rework, reuse evidence.
+IF_PASS: MENTOR evaluates merge into existing web/full-stack/game-development skill; one pass is only skill-candidate evidence.
+IF_FAIL: preserve failed hypothesis/root cause, change one constraint/checklist/tooling assumption, and retest; do not create a new Agent for a build/tool/access blocker.
