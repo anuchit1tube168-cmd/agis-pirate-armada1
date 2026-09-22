@@ -25,7 +25,7 @@
       "potentialImpact": 4,
       "timeToTest": 2,
       "route": "BUILDER EXPERIMENT",
-      "downstreamId": "JOB-006 / E1-3D-STAGING",
+      "downstreamId": "JOB-008 / E1-3D-STAGING",
       "responsibleCoreAgent": "MAKER / AG-007",
       "reviewer": "AETHER / AG-006 then SENTINEL / AG-008",
       "status": "ROUTED_UNVALIDATED",
