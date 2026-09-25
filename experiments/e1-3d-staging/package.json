@@ -3,7 +3,21 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
-  "scripts": {"typecheck":"tsc --noEmit","build":"tsc --noEmit && vite build","test":"vitest run"},
-  "dependencies": {"three":"^0.180.0"},
-  "devDependencies": {"@types/node":"^24.0.0","@types/three":"^0.180.0","@webgpu/types":"^0.1.64","typescript":"^5.9.2","vite":"^7.1.7","vitest":"^3.2.4"}
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsc --noEmit && vite build",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/three": "^0.180.0",
+    "@webgpu/types": "^0.1.64",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.7",
+    "vitest": "^3.2.4",
+    "jsdom": "^27.0.0"
+  }
 }
