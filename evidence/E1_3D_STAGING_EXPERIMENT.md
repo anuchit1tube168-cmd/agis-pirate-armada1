@@ -1,6 +1,6 @@
 # E1-3D-STAGING — Reproducibility Experiment
 
-Status: READY_FOR_BUILD (not validated)
+Status: CI_VALIDATED_BROWSER_SMOKE_PENDING (not skill-validated)
 Phase: 2B staging/sandbox only; production write OFF
 Signal: SIG-004
 Downstream: JOB-008 / E1-3D-STAGING
@@ -54,7 +54,7 @@ Review before skill consideration:
 - fallback path is explicit;
 - dependencies are minimal and justified.
 
-Verdict: PENDING.
+Verdict: PASS — module boundaries previously reviewed; CI validation complete. Browser fallback/reduced-motion smoke remains required.
 
 ## QA/Eval — SENTINEL
 Record:
@@ -69,7 +69,7 @@ Record:
 - reused assets/components;
 - unresolved defects.
 
-Verdict: PENDING.
+Verdict: PARTIAL PASS — GitHub Actions run 36142304833 on commit 59c7641cffd110f20f100ba8b489ba0e32ad85f5 passed clean dependency install, typecheck, deterministic tests, and production build. Fallback/reduced-motion browser smoke remains PENDING; elapsed human time remains UNKNOWN.
 
 ## Promotion rule — MENTOR
 Do not create or promote a SKILL.md from this experiment unless SENTINEL reproduces the clean build/test and AETHER passes the boundary review. One passing experiment is evidence for a skill candidate, not proof of generality. Prefer merging the validated lesson into an existing web/full-stack/game-development skill when possible.
@@ -78,4 +78,4 @@ Do not create or promote a SKILL.md from this experiment unless SENTINEL reprodu
 On failure, preserve the failed hypothesis and root cause, change one constraint/checklist/tooling assumption, and retest. Do not create a new Agent to bypass a build/tool/access blocker.
 
 ## Acceptance outcome
-Current outcome: UNKNOWN — experiment specification is ready, implementation/evidence has not yet been produced.
+Current outcome: CI_VALIDATED_BROWSER_SMOKE_PENDING — implementation has reproducible CI evidence from GitHub Actions run 36142304833 (clean install/typecheck/deterministic tests/build PASS). Browser fallback/reduced-motion smoke and final MENTOR learning review remain required before DONE or SKILL.md promotion.
