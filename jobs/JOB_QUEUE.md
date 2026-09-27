@@ -100,7 +100,7 @@ IF_PASS: mark TODO-011 only after review evidence exists, then execute interview
 IF_FAIL: keep TODO-011 open, identify the missing evidence/access blocker, and change the evidence route rather than inventing an ICP.
 
 ### JOB-008 — E1-3D Staging Reproducibility Experiment
-STATUS: QUEUED
+STATUS: REVIEW
 OWNER_AGENT: MAKER / AG-007
 REVIEWER: AETHER / AG-006 then SENTINEL / AG-008
 BUSINESS_OBJECTIVE: test whether the SIG-004 3D/web build pattern improves reproducibility/reuse without lowering quality.
