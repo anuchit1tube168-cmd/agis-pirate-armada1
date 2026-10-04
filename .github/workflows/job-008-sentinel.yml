@@ -33,3 +33,7 @@ jobs:
         run: npm test
       - name: Production build
         run: npm run build
+      - name: Install Chromium for browser acceptance smoke
+        run: npx playwright install --with-deps chromium
+      - name: Browser acceptance smoke
+        run: npm run test:browser
