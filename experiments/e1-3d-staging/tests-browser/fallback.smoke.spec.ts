@@ -11,7 +11,7 @@ test('WebGL initialization failure keeps the configurator usable', async ({ page
   await page.goto('/');
   await expect(page.locator('#viewport')).toContainText('3D preview unavailable');
   await expect(page.locator('#status')).toHaveText('3D fallback active');
-  await page.getByRole('button', { name: /sphere/i }).click();
+  await page.getByRole('button', { name: /toggle shape/i }).click();
   await expect(page.locator('#status')).toContainText('sphere');
 });
 
