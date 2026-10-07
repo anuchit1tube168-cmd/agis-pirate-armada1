@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-09-22",
+  "updated": "2026-10-07",
   "items": [
     {
       "signalId": "SIG-001", "timestamp": "2026-09-18", "sourceId": "SRC-DOAC", "title": "Agentic cognitive work may accelerate", "topic": "AI agents / automation", "claimType": "FORECAST", "relevance": ["Workflow Automation","Agent Capability","Evaluation","Permissions/Audit","Time Compression"], "confidence": "MEDIUM", "evidenceStrength": 3, "novelty": 4, "potentialImpact": 5, "timeToTest": 3, "route": "R&D", "downstreamId": "JOB-006 / DOAC intelligence", "status": "PROMOTED", "outcome": "Created testable automation/evaluation implications; forecast not treated as fact."
@@ -20,17 +20,17 @@
       "claimType": "SOURCE CLAIM",
       "relevance": ["Agent Capability","Evaluation","Time Compression","Reuse","Workflow Automation"],
       "confidence": "MEDIUM",
-      "evidenceStrength": 3,
+      "evidenceStrength": 4,
       "novelty": 3,
       "potentialImpact": 4,
       "timeToTest": 2,
       "route": "BUILDER EXPERIMENT",
       "downstreamId": "JOB-008 / E1-3D-STAGING",
       "responsibleCoreAgent": "MAKER / AG-007",
-      "reviewer": "AETHER / AG-006 then SENTINEL / AG-008",
-      "status": "ROUTED_UNVALIDATED",
-      "measurableNextStep": "Reproduce a small staging-only Three.js + TypeScript/Vite interactive configurator with separated state/simulation/render/input/UI boundaries; require clean build/typecheck, critical-state test, fallback/reduced-motion behavior, elapsed time, defects and rework evidence.",
-      "outcome": "UNKNOWN — external material is not a validated AGIS skill until reproducible internal evidence and QA pass. MENTOR may promote only after QA evidence."
+      "reviewer": "AETHER / AG-006 then SENTINEL / AG-008; MENTOR / AG-012 learning review",
+      "status": "QA_VALIDATED_RETEST_FOR_REUSE",
+      "measurableNextStep": "Run a second independent staging build that intentionally consumes at least one validated E1-3D boundary/component/checklist; record exact reused artifact path/ID, defects/rework, QA result, and human time only if trustworthy start/stop capture exists.",
+      "outcome": "VERIFIED: first staging experiment passed clean install, typecheck, deterministic tests, build, Chromium/browser acceptance and AETHER boundary review via GitHub Actions run 37319740059. VERIFIED: traceable lower bound >=2 defects and >=2 rework cycles. VERIFIED: demonstrated pre-existing repository asset/component reuse in the first run = 0. UNKNOWN: elapsed human time and cross-build reuse gain. MENTOR decision: RETEST; do not promote SKILL.md until second-build reuse/generalization evidence passes QA."
     }
   ]
 }
