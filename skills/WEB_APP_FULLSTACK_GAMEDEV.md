@@ -1,12 +1,12 @@
 # WEB APP + JS FULL-STACK + 2D/3D GAMEDEV — BUILDER SKILL CANDIDATE
 
-**Status:** CANDIDATE / NOT PROMOTED
+**Status:** CANDIDATE / VALIDATED LESSONS MERGED; WHOLE SKILL NOT PROMOTED
 **Owner:** AG-007 BUILDER
 **Review:** AG-006 ARCHITECT + AG-008 QA/EVAL + AG-009 SECURITY
 **Trigger:** Boss Agis identified a recurring capability gap in high-quality web apps, JavaScript frontend/backend, 2D/3D game development and build/deploy work.
 
 ## Purpose
-Strengthen the existing BUILDER before creating a new agent. This skill is promoted only after independent eval evidence.
+Strengthen the existing BUILDER before creating a new agent. The whole skill is promoted only after independent eval evidence across applicable tracks.
 
 ## Default build flow
 UNDERSTAND → CHECK CONTEXT → REUSE → PLAN → BUILD → TEST → FIX → VERIFY → DOCUMENT → EXTRACT SKILL
@@ -30,6 +30,19 @@ Keep domain/game state independent from rendering and UI. Prefer modules:
 - tests/evals
 
 Framework choice follows requirements and existing project context; do not add a framework merely for novelty.
+
+## Validated reusable-boundary rule — JOB-008
+Evidence: original E1-3D CI run `37319740059` plus independent reuse-consumer CI run `37690959333`.
+
+For domain/game state intended for reuse:
+1. keep serializable state and deterministic transitions independent from renderer, UI, input, DOM/WebGL and environment-specific APIs;
+2. do not claim a boundary reusable from its first successful build alone;
+3. require a second independent consumer and record the exact reused artifact path/ID;
+4. require clean dependency install, typecheck, deterministic test and build to pass for the consumer under independent QA/EVAL;
+5. distinguish boundary reuse from consumer toolchain/type-environment configuration;
+6. a repository-relative source import may demonstrate reuse in an experiment, but is not the preferred distribution contract; extract to a stable shared module/package/public interface when broader reuse is needed and retest consumers.
+
+Validated scope: cross-build state/transition boundary reuse inside staging. This does not establish measured time savings, revenue impact, production readiness, or universal framework generality.
 
 ## Senior/Junior routing
 - **Junior task:** bounded component, page, CRUD route, simple 2D mechanic; must use checklist and review.
@@ -55,7 +68,7 @@ After a meaningful win/failure:
 2. identify reusable pattern;
 3. add/update a test/checklist/template;
 4. retest on a real task;
-5. promote into this skill only when QA/EVAL evidence shows improvement.
+5. merge only the validated lesson when QA/EVAL evidence shows reproducibility; do not promote unrelated capability tracks by association.
 
 Do not award capability/level from documentation alone.
 
@@ -71,7 +84,6 @@ Do **not** create a Web Developer/Game Developer agent yet. First run this skill
 
 ## Promotion metric
 Record pass/fail, defects, elapsed/human time, rework and reused assets. Promote only if quality holds or improves and repeated work becomes measurably faster/more reliable.
-
 
 ## Research-backed training update — 2026-09-19
 **Evidence state:** CANDIDATE; source material informs experiments but does not itself prove Builder improvement.
