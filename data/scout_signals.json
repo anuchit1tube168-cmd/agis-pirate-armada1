@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-07",
+  "updated": "2026-10-08",
   "items": [
     {
       "signalId": "SIG-001", "timestamp": "2026-09-18", "sourceId": "SRC-DOAC", "title": "Agentic cognitive work may accelerate", "topic": "AI agents / automation", "claimType": "FORECAST", "relevance": ["Workflow Automation","Agent Capability","Evaluation","Permissions/Audit","Time Compression"], "confidence": "MEDIUM", "evidenceStrength": 3, "novelty": 4, "potentialImpact": 5, "timeToTest": 3, "route": "R&D", "downstreamId": "JOB-006 / DOAC intelligence", "status": "PROMOTED", "outcome": "Created testable automation/evaluation implications; forecast not treated as fact."
@@ -28,9 +28,9 @@
       "downstreamId": "JOB-008 / E1-3D-STAGING",
       "responsibleCoreAgent": "MAKER / AG-007",
       "reviewer": "AETHER / AG-006 then SENTINEL / AG-008; MENTOR / AG-012 learning review",
-      "status": "QA_VALIDATED_RETEST_FOR_REUSE",
-      "measurableNextStep": "Run a second independent staging build that intentionally consumes at least one validated E1-3D boundary/component/checklist; record exact reused artifact path/ID, defects/rework, QA result, and human time only if trustworthy start/stop capture exists.",
-      "outcome": "VERIFIED: first staging experiment passed clean install, typecheck, deterministic tests, build, Chromium/browser acceptance and AETHER boundary review via GitHub Actions run 37319740059. VERIFIED: traceable lower bound >=2 defects and >=2 rework cycles. VERIFIED: demonstrated pre-existing repository asset/component reuse in the first run = 0. UNKNOWN: elapsed human time and cross-build reuse gain. MENTOR decision: RETEST; do not promote SKILL.md until second-build reuse/generalization evidence passes QA."
+      "status": "VALIDATED_LESSON_MERGED_RETEST_SHARED_PACKAGE",
+      "measurableNextStep": "Extract the validated renderer-independent state/transition boundary to a stable shared module/package or explicit public interface, migrate the tested consumers to it, add a third independent staging consumer, then require clean install, typecheck, deterministic test and build under SENTINEL before claiming broader generalization. Record exact reused artifact IDs and defects/rework; record human time only with trustworthy start/stop capture.",
+      "outcome": "VERIFIED: first staging experiment passed clean install, typecheck, deterministic tests, build, Chromium/browser acceptance and AETHER boundary review via GitHub Actions run 37319740059. VERIFIED: second independent consumer reused experiments/e1-3d-staging/src/state.ts and SENTINEL run 37690959333 passed clean install, typecheck, deterministic reuse test and build. VERIFIED: AETHER verdict PASS_FOR_LESSON with a packaging caveat; MENTOR merged the validated reusable-boundary lesson into skills/WEB_APP_FULLSTACK_GAMEDEV.md while keeping the whole skill unpromoted. VERIFIED: demonstrated cross-build reuse >=1 boundary. UNKNOWN: elapsed human time, quantified time savings, revenue impact and generality beyond the two tested consumers. HYPOTHESIS: a stable shared module/package will generalize better than repository-relative source imports; retest required."
     }
   ]
 }
