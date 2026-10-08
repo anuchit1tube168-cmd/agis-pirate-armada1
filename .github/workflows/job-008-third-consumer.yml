@@ -1,0 +1,28 @@
+name: JOB-008 third consumer reuse gate
+on:
+  push:
+    branches: [staging/job-008-e1-3d-20260922]
+    paths:
+      - 'packages/agis-state-contract/**'
+      - 'experiments/e1-third-consumer/**'
+      - '.github/workflows/job-008-third-consumer.yml'
+  workflow_dispatch:
+jobs:
+  sentinel:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: experiments/e1-third-consumer
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Clean dependency install
+        run: npm install --ignore-scripts
+      - name: Typecheck shared-contract consumer
+        run: npm run typecheck
+      - name: Deterministic test
+        run: npm test
+      - name: Build gate
+        run: npm run build
