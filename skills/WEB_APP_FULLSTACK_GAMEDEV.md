@@ -44,6 +44,19 @@ For domain/game state intended for reuse:
 
 Validated scope: cross-build state/transition boundary reuse inside staging. This does not establish measured time savings, revenue impact, production readiness, or universal framework generality.
 
+## Validated shared-module generalization lesson — JOB-008
+Additional evidence: shared contract `packages/agis-state-contract/src/index.ts`, third independent consumer CI run `37818400783`, and AETHER review `evidence/JOB_008_THIRD_CONSUMER_ARCH_REVIEW.md` (`PASS_FOR_GENERALIZATION_LESSON_WITH_LIMITS`).
+
+When a deterministic boundary has demonstrated reuse and broader reuse is needed:
+1. extract the smallest environment-neutral contract into an explicit shared module/package boundary rather than keeping consumers coupled to another experiment's source path;
+2. keep the contract free of renderer/UI/DOM/WebGL/network/secret/production-write dependencies unless those dependencies are explicitly part of the contract;
+3. prove the extracted boundary with another independent consumer, not only the producer and first reuse consumer;
+4. require clean install, typecheck, deterministic test, and build under independent QA/EVAL for that consumer;
+5. record architecture review separately from CI success: green CI proves configured gates passed, not universal portability;
+6. do not claim cross-repository/package-registry portability, framework universality, time savings, ROI, revenue impact, or production readiness without separate evidence.
+
+Validated scope: three staging consumer/build contexts support the shared-module extraction/generalization lesson for this deterministic state/transition pattern. Whole-skill promotion remains prohibited by association.
+
 ## Senior/Junior routing
 - **Junior task:** bounded component, page, CRUD route, simple 2D mechanic; must use checklist and review.
 - **Senior task:** architecture, auth/data model, cross-module integration, performance, 3D systems, deployment/rollback.
