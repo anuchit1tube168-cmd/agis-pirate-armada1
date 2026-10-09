@@ -1,0 +1,38 @@
+name: JOB-008 package-boundary reuse gate
+
+on:
+  push:
+    branches:
+      - staging/job-008-e1-3d-20260922
+    paths:
+      - 'packages/agis-state-contract/**'
+      - 'experiments/e1-package-consumer/**'
+      - '.github/workflows/job-008-package-consumer.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sentinel-package-boundary:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: experiments/e1-package-consumer
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: experiments/e1-package-consumer/package-lock.json
+      - name: Create lockfile
+        run: npm install --package-lock-only --ignore-scripts
+      - name: Clean dependency install
+        run: npm ci --ignore-scripts
+      - name: Typecheck package consumer
+        run: npm run typecheck
+      - name: Deterministic package reuse test
+        run: npm test
+      - name: Build gate
+        run: npm run build
