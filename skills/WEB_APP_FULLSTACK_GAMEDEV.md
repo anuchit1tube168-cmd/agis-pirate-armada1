@@ -3,7 +3,6 @@
 **Status:** CANDIDATE / VALIDATED LESSONS MERGED; WHOLE SKILL NOT PROMOTED
 **Owner:** AG-007 BUILDER
 **Review:** AG-006 ARCHITECT + AG-008 QA/EVAL + AG-009 SECURITY
-**Trigger:** Boss Agis identified a recurring capability gap in high-quality web apps, JavaScript frontend/backend, 2D/3D game development and build/deploy work.
 
 ## Purpose
 Strengthen the existing BUILDER before creating a new agent. The whole skill is promoted only after independent eval evidence across applicable tracks.
@@ -12,120 +11,43 @@ Strengthen the existing BUILDER before creating a new agent. The whole skill is 
 UNDERSTAND → CHECK CONTEXT → REUSE → PLAN → BUILD → TEST → FIX → VERIFY → DOCUMENT → EXTRACT SKILL
 
 ## Capability tracks
-1. **Frontend JS:** semantic HTML, responsive CSS, accessible UI, state/events, forms, validation, loading/error/empty states, performance.
-2. **Backend JS:** API contracts, validation, auth/RBAC, persistence, idempotency, audit, structured errors, secrets server-side.
-3. **Full-stack:** explicit client/server boundary, typed/validated contracts, staging config, observability, rollback.
-4. **2D:** deterministic game state, update/render separation, input, collision, camera, assets/audio, save state, performance budget.
-5. **3D:** scene/render/input separation, asset lifecycle, camera/controls, lighting, collision/physics boundary, LOD/performance budget, WebGL fallback.
-6. **Build/Deploy:** lint/typecheck/test/build, environment separation, no secrets in client/repo, staging first, smoke/E2E, rollback evidence.
-
-## Architecture rule
-Keep domain/game state independent from rendering and UI. Prefer modules:
-- data/domain
-- simulation/services
-- API/integration
-- render
-- input
-- UI
-- tests/evals
-
-Framework choice follows requirements and existing project context; do not add a framework merely for novelty.
+Frontend JS; Backend JS; Full-stack; 2D; 3D; Build/Deploy. Keep domain/game state independent from rendering/UI/environment APIs. Framework choice follows requirements and existing project context.
 
 ## Validated reusable-boundary rule — JOB-008
-Evidence: original E1-3D CI run `37319740059` plus independent reuse-consumer CI run `37690959333`.
+Evidence: original E1-3D CI `37319740059` and independent reuse-consumer CI `37690959333`.
 
-For domain/game state intended for reuse:
-1. keep serializable state and deterministic transitions independent from renderer, UI, input, DOM/WebGL and environment-specific APIs;
-2. do not claim a boundary reusable from its first successful build alone;
-3. require a second independent consumer and record the exact reused artifact path/ID;
-4. require clean dependency install, typecheck, deterministic test and build to pass for the consumer under independent QA/EVAL;
-5. distinguish boundary reuse from consumer toolchain/type-environment configuration;
-6. a repository-relative source import may demonstrate reuse in an experiment, but is not the preferred distribution contract; extract to a stable shared module/package/public interface when broader reuse is needed and retest consumers.
-
-Validated scope: cross-build state/transition boundary reuse inside staging. This does not establish measured time savings, revenue impact, production readiness, or universal framework generality.
+For reusable domain/game state: keep serializable state and deterministic transitions independent from renderer/UI/input/DOM/WebGL/environment APIs; do not claim reuse from the first build; require an independent consumer; require clean install, typecheck, deterministic test and build under independent QA/EVAL; distinguish reusable logic from consumer toolchain configuration. Repository-relative source import can prove an experiment but is not a preferred distribution contract.
 
 ## Validated shared-module generalization lesson — JOB-008
-Additional evidence: shared contract `packages/agis-state-contract/src/index.ts`, third independent consumer CI run `37818400783`, and AETHER review `evidence/JOB_008_THIRD_CONSUMER_ARCH_REVIEW.md` (`PASS_FOR_GENERALIZATION_LESSON_WITH_LIMITS`).
+Evidence: `packages/agis-state-contract/src/index.ts`, third-consumer CI `37818400783`, AETHER review `evidence/JOB_008_THIRD_CONSUMER_ARCH_REVIEW.md`.
 
-When a deterministic boundary has demonstrated reuse and broader reuse is needed:
-1. extract the smallest environment-neutral contract into an explicit shared module/package boundary rather than keeping consumers coupled to another experiment's source path;
-2. keep the contract free of renderer/UI/DOM/WebGL/network/secret/production-write dependencies unless those dependencies are explicitly part of the contract;
-3. prove the extracted boundary with another independent consumer, not only the producer and first reuse consumer;
-4. require clean install, typecheck, deterministic test, and build under independent QA/EVAL for that consumer;
-5. record architecture review separately from CI success: green CI proves configured gates passed, not universal portability;
-6. do not claim cross-repository/package-registry portability, framework universality, time savings, ROI, revenue impact, or production readiness without separate evidence.
+Extract the smallest environment-neutral contract into an explicit shared module boundary, keep environment/secret/write dependencies out unless contractually required, prove it with another independent consumer, and keep architecture review separate from CI success. Three staging contexts support this deterministic state/transition pattern only; they do not prove universal portability, time savings, ROI, revenue impact, or production readiness.
 
-Validated scope: three staging consumer/build contexts support the shared-module extraction/generalization lesson for this deterministic state/transition pattern. Whole-skill promotion remains prohibited by association.
+## Validated package-boundary reproducibility lesson — JOB-008
+Additional evidence: package-boundary CI run `37889820503` and AETHER review `evidence/JOB_008_PACKAGE_BOUNDARY_ARCH_REVIEW.md` with verdict `PASS_FOR_PACKAGE_BOUNDARY_LESSON_WITH_LIMITS`.
 
-## Senior/Junior routing
-- **Junior task:** bounded component, page, CRUD route, simple 2D mechanic; must use checklist and review.
-- **Senior task:** architecture, auth/data model, cross-module integration, performance, 3D systems, deployment/rollback.
-- BUILDER may execute both; these are task difficulty levels, not new permanent agents.
+When shared deterministic logic is intended for broader distribution:
+1. expose it through a named, explicit package dependency surface rather than coupling consumers to another experiment's source path;
+2. keep the package contract environment-neutral and least-privilege;
+3. validate the package consumer from a clean dependency state with typecheck, deterministic tests and build under independent QA/EVAL;
+4. treat green CI as evidence only for the tested package boundary, not as proof of cross-repository or registry portability;
+5. before claiming portability, test a materially isolated consumer (preferably a separate staging repository or equivalent isolated install) that cannot fall back to repository-relative source imports;
+6. capture actual human elapsed time, defects and rework from start through accepted QA before making time-compression or reliability claims;
+7. require AETHER review of package/dependency coupling after the isolated test, and merge only evidence-supported lessons.
+
+Validated scope: explicit local package-boundary reuse in Phase 2B staging. UNKNOWN: cross-repository portability, registry publication/install behavior, semver compatibility, framework universality, human-time saving, defect reduction, customer ROI and revenue impact. Whole-skill promotion remains prohibited by association.
 
 ## Acceptance gate
-A web/game build is not DONE until applicable checks pass:
-- requirement/acceptance criteria traceable;
-- lint/type/build succeeds;
-- unit/integration tests for critical logic;
-- responsive smoke test;
-- error/loading/empty states tested;
-- no client/repo secrets;
-- write actions permission-gated and auditable where required;
-- staging smoke/E2E evidence;
-- rollback path documented;
-- QA/EVAL independent review.
+Applicable work is not DONE until requirements are traceable; lint/type/build and critical tests pass; error/loading/empty states and responsive behavior are checked where relevant; no secrets are exposed; writes are permission-gated/auditable where required; staging evidence and rollback path exist; and QA/EVAL is independent.
 
 ## Evidence-to-skill rule
-After a meaningful win/failure:
-1. record evidence and failure class;
-2. identify reusable pattern;
-3. add/update a test/checklist/template;
-4. retest on a real task;
-5. merge only the validated lesson when QA/EVAL evidence shows reproducibility; do not promote unrelated capability tracks by association.
-
-Do not award capability/level from documentation alone.
+Record evidence/failure class → identify reusable pattern → add/update test/checklist/template → retest on a real task → merge only the validated lesson. Do not award capability from documentation alone.
 
 ## Capability Gap Gate
-Do **not** create a Web Developer/Game Developer agent yet. First run this skill through AG-007 BUILDER on real jobs. Consider a temporary specialist only after the repository Capability Gap Gate is satisfied.
-
-## Initial eval cases
-- E1 responsive JS web app with form validation + API error recovery.
-- E2 authenticated backend write with approval/audit boundary.
-- E3 small 2D interactive scene with separated simulation/render/input.
-- E4 small 3D scene with asset cleanup and measured frame/performance budget.
-- E5 staging build/deploy with smoke test and rollback instructions.
+Do not create a Web Developer/Game Developer agent merely for this topic. Improve the existing Core Agent context/skill/eval/tooling first; new permanent agents require the repository Capability Gap and NEW_AGENT gates.
 
 ## Promotion metric
 Record pass/fail, defects, elapsed/human time, rework and reused assets. Promote only if quality holds or improves and repeated work becomes measurably faster/more reliable.
 
 ## Research-backed training update — 2026-09-19
-**Evidence state:** CANDIDATE; source material informs experiments but does not itself prove Builder improvement.
-
-### Verified source observations
-- MilerDev publicly structures learning around understanding the problem/reason first, coding concepts/examples, and connecting lessons into projects that can be explained, tested, and extended.
-- Its public catalog exposes HTML/CSS, JavaScript, Figma-to-Code, and ReactJS tracks.
-- The public React track starts with project setup/structure, JSX, components, props, conditional rendering, and list rendering.
-
-### Builder training rule derived for evaluation
-For frontend missions, use:
-PROBLEM/GOAL -> VISUAL/COMPONENT DECOMPOSITION -> DATA/STATE -> IMPLEMENT -> ERROR/EMPTY/LOADING -> RESPONSIVE/A11Y -> TEST -> BUILD -> REVIEW
-
-Treat this sequence as a HYPOTHESIS until E1/E5 produce before/after evidence.
-
-### E1-A — Project-first React web app
-Build a small staging-only mission dashboard using reusable components and explicit state.
-Acceptance:
-1. component boundaries documented;
-2. loading/error/empty states;
-3. responsive keyboard-usable UI;
-4. lint/typecheck/build pass;
-5. at least one critical state test;
-6. no secrets/client privileged writes;
-7. QA records defects, elapsed time and rework.
-
-### E1-B — Design-to-code
-Given one approved design/screenshot, first create a component/layout map, then implement it responsively.
-Measure: visual defects, responsive defects, accessibility defects and number of rework rounds.
-
-### Promotion
-If E1-A/E1-B show repeatable quality/time improvement under independent QA, promote the validated rules into stable skill guidance. Otherwise revise or reject them.
+Source research may inform experiments but does not itself prove Builder improvement. For frontend missions evaluate: PROBLEM/GOAL → VISUAL/COMPONENT DECOMPOSITION → DATA/STATE → IMPLEMENT → ERROR/EMPTY/LOADING → RESPONSIVE/A11Y → TEST → BUILD → REVIEW. Treat this as a hypothesis until independent before/after evidence exists.
