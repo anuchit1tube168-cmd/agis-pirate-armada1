@@ -10,6 +10,7 @@ on:
       - "PHASE-2B.md"
       - "scripts/phase2b-smoke.mjs"
       - "scripts/phase2b-contract.mjs"
+      - "scripts/phase2b-side-effect-contract.mjs"
       - ".github/workflows/phase2b-check.yml"
   workflow_dispatch:
 permissions:
@@ -37,3 +38,5 @@ jobs:
         run: bash scripts/phase2b-sqlite-check.sh
       - name: Run Phase 2B runtime contract test
         run: node scripts/phase2b-contract.mjs
+      - name: Run Phase 2B side-effect reconciliation contract
+        run: node scripts/phase2b-side-effect-contract.mjs
