@@ -1,7 +1,7 @@
 name: Phase 2B Runtime Foundation Test
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "staging/job-008-e1-3d-20260922"]
     paths:
       - "runtime/**"
       - "runtime-config.js"
@@ -9,6 +9,7 @@ on:
       - "app.js"
       - "PHASE-2B.md"
       - "scripts/phase2b-smoke.mjs"
+      - "scripts/phase2b-contract.mjs"
       - ".github/workflows/phase2b-check.yml"
   workflow_dispatch:
 permissions:
