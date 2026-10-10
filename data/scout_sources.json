@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-09-22",
+  "updated": "2026-10-10",
   "policy": "Quality over volume. External sources generate hypotheses; project evidence decides.",
   "sources": [
     {
@@ -30,14 +30,14 @@
     {
       "sourceId": "SRC-MILERDEV",
       "name": "MilerDev / ohmiler creator-owned public resources",
-      "type": "Creator-owned GitHub Gists / public development material",
-      "domain": "JavaScript / frontend / web apps / Three.js / build-deploy / VPS",
-      "url": "https://gist.github.com/ohmiler",
+      "type": "Creator-owned website / GitHub Gists / public development material",
+      "domain": "JavaScript / frontend / backend / web apps / Three.js / testing / build-deploy",
+      "url": "https://milerdev.com/stack",
       "status": "ACTIVE",
       "priority": "SELECTIVE",
-      "rule": "Use only public creator-owned material that maps to an active AGIS experiment; treat workflow/performance claims as SOURCE CLAIM until reproduced internally.",
-      "score": {"usefulSignals": 1, "validatedSignals": 0, "falseSignals": 0, "noiseSignals": 0},
-      "notes": "Public gists inspected 2026-09-22 include React/TypeScript/Vite frontend prompts, Three.js interactive-web material, Docker/VPS and VPS-security teaching artifacts."
+      "rule": "Use only public creator-owned material that maps to an active AGIS experiment; treat architecture/workflow/performance claims as SOURCE CLAIM until reproduced internally.",
+      "score": {"usefulSignals": 2, "validatedSignals": 0, "falseSignals": 0, "noiseSignals": 0},
+      "notes": "Creator-owned stack page inspected 2026-10-10 describes server-side validation/authorization, database-authoritative pricing/access state, PR quality gates (lint/typecheck/tests/browser tests) and deployment flow. Existing public gists also cover React/TypeScript/Vite, Three.js, Docker/VPS and VPS security."
     }
   ]
 }
