@@ -1,5 +1,5 @@
 // Phase 2B staging-only deterministic side-effect/reconciliation experiment.
-// No network, credentials, or production writes. Models the contract before any provider integration.
+// No network, credentials, or production writes. Models failure, replay, and ambiguous crash recovery.
 
 function ok(cond,msg){ if(!cond) throw new Error(msg); }
 
@@ -14,14 +14,8 @@ class EffectStore {
     this.audit.push({action:'EFFECT_PENDING',target:id,status:'PENDING'});
     return row;
   }
-  recordFailure(id,error){
-    const row=this.intents.get(id); row.status='FAILED'; row.lastError=error; row.attempts+=1;
-    this.audit.push({action:'EFFECT_FAILED',target:id,status:'FAILED',error});
-  }
-  recordSuccess(id,receipt){
-    const row=this.intents.get(id); row.status='SUCCEEDED'; row.providerReceipt=receipt; row.lastError=null; row.attempts+=1;
-    this.audit.push({action:'EFFECT_SUCCEEDED',target:id,status:'SUCCEEDED',receipt});
-  }
+  recordFailure(id,error){ const row=this.intents.get(id); row.status='FAILED'; row.lastError=error; row.attempts+=1; this.audit.push({action:'EFFECT_FAILED',target:id,status:'FAILED',error}); }
+  recordSuccess(id,receipt){ const row=this.intents.get(id); row.status='SUCCEEDED'; row.providerReceipt=receipt; row.lastError=null; row.attempts+=1; this.audit.push({action:'EFFECT_SUCCEEDED',target:id,status:'SUCCEEDED',receipt}); }
 }
 
 class MockAdapter {
@@ -46,29 +40,46 @@ const adapter=new MockAdapter();
 const original=store.createIntent({idem:'effect-contract-001',target:'JOB-TEST',payload:{decision:'APPROVE',amount:100}});
 ok(original.status==='PENDING','intent must be durable/auditable before adapter execution');
 ok(store.audit.at(-1)?.action==='EFFECT_PENDING','pending intent must be audited');
-
 await reconcile(store,adapter,original);
 ok(original.status==='FAILED','forced adapter failure must produce FAILED state');
 ok(original.attempts===1,'failed attempt must be counted');
 ok(store.audit.some(x=>x.action==='EFFECT_FAILED' && x.target===original.id),'failure must be audited');
 ok(adapter.effects.size===0,'failed adapter call must not create external effect');
-
 const tamperedReplay=store.createIntent({idem:'effect-contract-001',target:'JOB-TAMPERED',payload:{decision:'REJECT',amount:999999}});
 ok(tamperedReplay.id===original.id,'changed-body replay must resolve to original intent');
 ok(tamperedReplay.target==='JOB-TEST' && tamperedReplay.payload.decision==='APPROVE' && tamperedReplay.payload.amount===100,'replay must not mutate authoritative intent');
 ok(store.intents.size===1,'replay must not duplicate durable intent');
-
 await reconcile(store,adapter,original);
 ok(original.status==='SUCCEEDED','reconciliation retry must reach SUCCEEDED');
 ok(original.attempts===2,'success retry must increment attempt count');
 ok(adapter.effects.size===1,'successful reconciliation must create exactly one external effect');
 ok(store.audit.some(x=>x.action==='EFFECT_SUCCEEDED' && x.target===original.id),'success must be audited');
-
 const callsAfterSuccess=adapter.calls.length;
 await reconcile(store,adapter,original);
 ok(adapter.calls.length===callsAfterSuccess,'replay after success must not call adapter again');
 ok(adapter.effects.size===1,'replay after success must not duplicate external effect');
-ok(store.intents.size===1,'final replay must keep one authoritative intent');
+
+// Ambiguous crash window: provider commits the effect, then the process dies before local success is persisted.
+// The mock provider uses the durable intent ID as its provider idempotency key. On restart, the same
+// authoritative intent is retried and the provider returns the original receipt instead of creating a duplicate.
+const crashStore=new EffectStore();
+const crashAdapter=new MockAdapter(); crashAdapter.failNext=false;
+const crashIntent=crashStore.createIntent({idem:'effect-crash-001',target:'JOB-CRASH',payload:{decision:'APPROVE',amount:250}});
+const receiptBeforeCrash=await crashAdapter.execute(crashIntent);
+ok(crashAdapter.effects.size===1,'provider must have committed exactly one effect before simulated crash');
+ok(crashIntent.status==='PENDING','local state must remain PENDING when crash occurs before recordSuccess');
+ok(crashIntent.providerReceipt===null,'receipt must not be locally persisted before simulated crash');
+// restart/reconcile: local process only knows the durable PENDING intent.
+await reconcile(crashStore,crashAdapter,crashIntent);
+ok(crashIntent.status==='SUCCEEDED','restart reconciliation must converge ambiguous PENDING intent to SUCCEEDED');
+ok(crashIntent.providerReceipt===receiptBeforeCrash,'provider retry must recover the original receipt');
+ok(crashAdapter.effects.size===1,'provider-idempotent retry must not create a second external effect');
+ok(crashAdapter.calls.length===2,'ambiguous window requires one provider call before crash and one retry after restart');
+ok(crashStore.audit.some(x=>x.action==='EFFECT_SUCCEEDED' && x.target===crashIntent.id),'recovered success must be audited');
+const crashCallsAfterSuccess=crashAdapter.calls.length;
+await reconcile(crashStore,crashAdapter,crashIntent);
+ok(crashAdapter.calls.length===crashCallsAfterSuccess,'post-recovery replay must not call provider again');
+ok(crashAdapter.effects.size===1,'post-recovery replay must keep exactly one external effect');
 
 console.log('PHASE 2B SIDE-EFFECT RECONCILIATION CONTRACT PASSED');
-console.log(JSON.stringify({intents:store.intents.size,auditEvents:store.audit.length,adapterCalls:adapter.calls.length,externalEffects:adapter.effects.size,finalStatus:original.status,attempts:original.attempts,network:false,productionWrite:false},null,2));
+console.log(JSON.stringify({base:{intents:store.intents.size,auditEvents:store.audit.length,adapterCalls:adapter.calls.length,externalEffects:adapter.effects.size,finalStatus:original.status},crashWindow:{intents:crashStore.intents.size,auditEvents:crashStore.audit.length,adapterCalls:crashAdapter.calls.length,externalEffects:crashAdapter.effects.size,finalStatus:crashIntent.status,providerReceipt:crashIntent.providerReceipt},network:false,productionWrite:false},null,2));
