@@ -37,6 +37,19 @@ When shared deterministic logic is intended for broader distribution:
 
 Validated scope: explicit local package-boundary reuse in Phase 2B staging. UNKNOWN: cross-repository portability, registry publication/install behavior, semver compatibility, framework universality, human-time saving, defect reduction, customer ROI and revenue impact. Whole-skill promotion remains prohibited by association.
 
+## Validated idempotency-key crash-recovery lesson — SIG-005
+Evidence: SENTINEL CI run `38129404874` at commit `7605510a7ef24f0aabc741ba04fead7fe02cc837`; AETHER review `evidence/SIG_005_AETHER_PROVIDER_CONTRACT_REVIEW.md` with verdict `PASS_FOR_IDEMPOTENCY_KEY_LESSON_ONLY`.
+
+For a consequential external effect when the provider durably honors a caller-supplied idempotency/effect key:
+1. persist the authoritative intent before making the external call;
+2. derive one stable provider effect key from that authoritative intent and reuse it unchanged across retries/restarts;
+3. keep client replay from mutating the original authoritative intent;
+4. if the provider may have committed but local success was not persisted, retry/reconcile with the identical effect key and recover the original provider receipt/effect rather than create a second effect;
+5. audit the ambiguity, recovered receipt and final state;
+6. independently test the crash window `provider committed → local success not persisted → restart/reconcile` before claiming the pattern for a provider contract.
+
+Validated scope: deterministic staging/mock provider contract with durable caller idempotency semantics. This is not evidence of universal exactly-once delivery. Providers that rely on receipt/status lookup, or provide neither safe idempotency nor sufficient lookup, remain separate unvalidated hypotheses and must not inherit this claim. Real-provider semantics, remote D1 behavior, distributed guarantees, time savings, defect reduction, customer ROI and revenue impact remain UNKNOWN.
+
 ## Acceptance gate
 Applicable work is not DONE until requirements are traceable; lint/type/build and critical tests pass; error/loading/empty states and responsive behavior are checked where relevant; no secrets are exposed; writes are permission-gated/auditable where required; staging evidence and rollback path exist; and QA/EVAL is independent.
 
