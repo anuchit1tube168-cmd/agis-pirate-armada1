@@ -11,6 +11,7 @@ on:
       - "scripts/phase2b-smoke.mjs"
       - "scripts/phase2b-contract.mjs"
       - "scripts/phase2b-side-effect-contract.mjs"
+      - "scripts/phase2b-compensation-contract.mjs"
       - ".github/workflows/phase2b-check.yml"
   workflow_dispatch:
 permissions:
@@ -40,3 +41,5 @@ jobs:
         run: node scripts/phase2b-contract.mjs
       - name: Run Phase 2B side-effect reconciliation contract
         run: node scripts/phase2b-side-effect-contract.mjs
+      - name: Run Phase 2B compensation-required contract
+        run: node scripts/phase2b-compensation-contract.mjs
