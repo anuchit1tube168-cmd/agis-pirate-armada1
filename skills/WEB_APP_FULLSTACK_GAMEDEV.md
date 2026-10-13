@@ -61,10 +61,19 @@ For a provider contract that exposes sufficiently durable correlation/status loo
 5. if status reports committed success, persist the recovered receipt/final state and audit recovery;
 6. after local success, replay must not call create or status again unless a separately defined verification policy requires it.
 
-Validated scope: deterministic Phase 2B staging/mock provider with durable correlation/status lookup. Do not claim universal exactly-once delivery, real-provider behavior, distributed transaction guarantees, remote D1 behavior, time savings, defect reduction, customer ROI or revenue. Providers lacking both safe idempotency and sufficient status lookup must not auto-retry create; they require a separate compensation/manual-resolution experiment.
+Validated scope: deterministic Phase 2B staging/mock provider with durable correlation/status lookup. Do not claim universal exactly-once delivery, real-provider behavior, distributed transaction guarantees, remote D1 behavior, time savings, defect reduction, customer ROI or revenue. Providers lacking both safe idempotency and sufficient status lookup must not auto-retry create.
 
-## Next falsifiable experiment — COMPENSATION-REQUIRED
-For a mock provider offering neither durable caller idempotency nor sufficient receipt/status lookup, force an ambiguous commit and test that runtime does not automatically create again, records an explicit unresolved state such as `AMBIGUOUS_REQUIRES_REVIEW`, emits an audit event, exposes an approval-gated manual/compensation decision path, performs no real external compensation/write, and remains replay-safe while unresolved. This is a HYPOTHESIS until independent SENTINEL evidence and AETHER review exist.
+## Validated compensation/manual-resolution safety lesson — SIG-005
+Evidence: SENTINEL CI run `38285110354` at commit `c22d732883ed84d2c9a58b00c5c36fcd5a5e0fed`; AETHER review `evidence/SIG_005_AETHER_COMPENSATION_REVIEW.md` with verdict `PASS_FOR_COMPENSATION_MANUAL_RESOLUTION_LESSON_WITH_LIMITS`.
+
+For a provider contract where an ambiguous create outcome cannot be safely reconciled through durable caller idempotency or sufficient receipt/status lookup:
+1. do not automatically issue another create while the outcome remains ambiguous;
+2. persist an explicit unresolved state such as `AMBIGUOUS_REQUIRES_REVIEW` and record an audit event;
+3. route resolution through an explicit approval-gated manual/compensation decision path;
+4. keep replay safe while unresolved; replay must not silently convert ambiguity into another consequential create;
+5. separate the decision to compensate from execution of any real external compensation.
+
+Validated scope: deterministic Phase 2B staging/mock contract and manual-resolution safety boundary only. Real external compensation requires separate provider-specific evidence plus AEGIS permission/security review before credentials, production data, changed permission scope or consequential writes are introduced. Do not claim universal exactly-once delivery, knowledge of an unqueryable provider outcome, real-provider behavior, remote D1 behavior, measured time compression, defect reduction, customer ROI or revenue.
 
 ## Acceptance gate
 Applicable work is not DONE until requirements are traceable; lint/type/build and critical tests pass; error/loading/empty states and responsive behavior are checked where relevant; no secrets are exposed; writes are permission-gated/auditable where required; staging evidence and rollback path exist; and QA/EVAL is independent.
