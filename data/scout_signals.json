@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-12",
+  "updated": "2026-10-13",
   "items": [
     {
       "signalId": "SIG-001", "timestamp": "2026-09-18", "sourceId": "SRC-DOAC", "title": "Agentic cognitive work may accelerate", "topic": "AI agents / automation", "claimType": "FORECAST", "relevance": ["Workflow Automation","Agent Capability","Evaluation","Permissions/Audit","Time Compression"], "confidence": "MEDIUM", "evidenceStrength": 3, "novelty": 4, "potentialImpact": 5, "timeToTest": 3, "route": "R&D", "downstreamId": "JOB-006 / DOAC intelligence", "status": "PROMOTED", "outcome": "Created testable automation/evaluation implications; forecast not treated as fact."
@@ -46,12 +46,12 @@
       "potentialImpact": 5,
       "timeToTest": 2,
       "route": "R&D / BUILDER EXPERIMENT",
-      "downstreamId": "RND-RUNTIME-001 / SIG-005-RECEIPT-QUERY-NEXT",
+      "downstreamId": "RND-RUNTIME-001 / SIG-005-PROVIDER-RECOVERY-LESSONS",
       "responsibleCoreAgent": "MAKER / AG-007",
-      "reviewer": "SENTINEL / AG-008 independent QA then AETHER / AG-006; MENTOR / AG-012 learning review only after architecture scope decision",
-      "status": "RECEIPT_QUERY_CI_VALIDATED_AETHER_REVIEW_PENDING",
-      "measurableNextStep": "AETHER reviews the independently reproduced RECEIPT-STATUS-QUERY contract and limits any reusable claim to the tested provider semantics: durable correlation/status lookup recovers an ambiguous committed create without issuing a second create. Keep COMPENSATION-REQUIRED unvalidated. MENTOR may merge only after AETHER scope approval. No real provider, credential, production data or consequential external write without AEGIS review.",
-      "outcome": "SOURCE CLAIM: MilerDev creator-owned material motivated the server-authoritative quality-gate experiment. VERIFIED INTERNAL EVIDENCE: staging CI run 38129404874 at commit 7605510a7ef24f0aabc741ba04fead7fe02cc837 completed SUCCESS for the idempotency-key crash-window contract. VERIFIED ARCHITECTURE REVIEW: AETHER classified IDEMPOTENCY-KEY as CI_VALIDATED_MOCK and allowed only that limited lesson; COMPENSATION-REQUIRED remains HYPOTHESIS_UNTESTED. VERIFIED LEARNING UPDATE: MENTOR merged only the idempotency-key crash-recovery lesson into the existing WEB_APP_FULLSTACK_GAMEDEV skill on staging. VERIFIED INTERNAL EVIDENCE: staging CI run 38192523249 at commit 7da212f237ad127a70e4dcfbe83d25b39995c6c5 completed SUCCESS; generated seed, foundation, D1 compatibility/deterministic seed, runtime contract and side-effect reconciliation contract all passed, independently reproducing the new RECEIPT-STATUS-QUERY experiment. INFERENCE: for provider semantics equivalent to the deterministic mock, durable correlation/status lookup can recover an ambiguous committed create without issuing a second create. UNKNOWN: AETHER reusable-scope verdict for receipt-query, compensation workflows, real-provider semantics, remote D1 behavior, human-time savings, defect reduction, ROI and revenue impact."
+      "reviewer": "SENTINEL / AG-008 independent QA; AETHER / AG-006 architecture scope; MENTOR / AG-012 learning merge",
+      "status": "PROVIDER_RECOVERY_LESSONS_MERGED_STAGING",
+      "measurableNextStep": "Select the next highest-priority unresolved Scout signal. For SIG-005, any real-provider adapter, credential, production data, changed permission scope or consequential external compensation/write requires a separate falsifiable experiment and AEGIS review. Keep remote D1, real-provider semantics, time compression, defect reduction, customer ROI and revenue as UNKNOWN until direct evidence exists.",
+      "outcome": "SOURCE CLAIM: MilerDev creator-owned material motivated the server-authoritative quality-gate experiment. VERIFIED INTERNAL EVIDENCE: IDEMPOTENCY-KEY crash recovery passed SENTINEL CI 38129404874 and AETHER allowed the limited lesson. VERIFIED INTERNAL EVIDENCE: RECEIPT-STATUS-QUERY passed SENTINEL CI 38192523249 and AETHER verdict PASS_FOR_RECEIPT_STATUS_QUERY_LESSON_WITH_LIMITS. VERIFIED INTERNAL EVIDENCE: COMPENSATION-REQUIRED/manual-resolution safety contract passed SENTINEL CI 38285110354; AETHER verdict PASS_FOR_COMPENSATION_MANUAL_RESOLUTION_LESSON_WITH_LIMITS. VERIFIED LEARNING UPDATE: MENTOR merged all three limited provider-recovery safety lessons into the existing WEB_APP_FULLSTACK_GAMEDEV skill on Phase 2B staging. The whole skill remains CANDIDATE / NOT PROMOTED. UNKNOWN: real-provider semantics, actual external compensation, remote D1 behavior, human-time savings, defect reduction, customer ROI and revenue impact."
     }
   ]
 }
