@@ -15,7 +15,7 @@
 - [x] 010 Create RED status when current trajectory fails the math. Evidence: `DO_THE_MATH.md` Math control status gate defines UNKNOWN/RED/YELLOW/GREEN from observed evidence and explicitly keeps current status UNKNOWN while target date/funnel inputs are missing.
 
 ## 011–020 — CUSTOMER EVIDENCE
-- [ ] 011 Choose one initial ICP.
+- [x] 011 Choose one initial ICP. Evidence: `evidence/JOB-007-ICP-EVIDENCE-PLAN.md` defines the initial ICP as a hypothesis (operations-heavy organizations with recurring measurable approval/document/data workflows); independent FORGE review `evidence/JOB-007-FORGE-REVIEW.md` = PASS_FOR_EVIDENCE_COLLECTION. This closes only the initial-hypothesis/review gate, not customer validation.
 - [ ] 012 Complete 10 buyer/user interviews for one repeated workflow.
 - [ ] 013 Quantify current hours, people, delay, errors and cost.
 - [ ] 014 Map user, buyer, approver, IT/security stakeholder.
