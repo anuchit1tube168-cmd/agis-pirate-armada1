@@ -30,6 +30,8 @@ jobs:
           node-version: '22'
       - name: Run 8-gate mock acceptance harness
         run: node rtafnc-company-os/phase1/mock-backend.test.mjs
+      - name: Run runtime auth RBAC audit boundary harness
+        run: node rtafnc-company-os/phase1/api-adapter.test.mjs
       - name: AEGIS repository safety assertions
         shell: bash
         run: |
