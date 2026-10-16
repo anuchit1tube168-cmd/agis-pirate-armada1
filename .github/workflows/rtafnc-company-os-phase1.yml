@@ -1,0 +1,41 @@
+name: RTAFNC Company OS Phase 1
+
+on:
+  push:
+    branches:
+      - staging/rtafnc-company-os-cloud-copy
+    paths:
+      - 'rtafnc-company-os/phase1/**'
+      - '.github/workflows/rtafnc-company-os-phase1.yml'
+  pull_request:
+    paths:
+      - 'rtafnc-company-os/phase1/**'
+      - '.github/workflows/rtafnc-company-os-phase1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sentinel-phase1:
+    name: SENTINEL Phase 1 acceptance
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run 8-gate mock acceptance harness
+        run: node rtafnc-company-os/phase1/mock-backend.test.mjs
+      - name: AEGIS repository safety assertions
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f rtafnc-company-os/phase1/SCHEMA_AND_GATES.md
+          grep -q 'STAGING ONLY' rtafnc-company-os/phase1/SCHEMA_AND_GATES.md
+          grep -q 'PRODUCTION WRITE OFF' rtafnc-company-os/phase1/SCHEMA_AND_GATES.md
+          ! grep -RIE '(BEGIN (RSA|OPENSSH|EC) PRIVATE KEY|sk-[A-Za-z0-9_-]{20,}|ghp_[A-Za-z0-9]{20,})' rtafnc-company-os/phase1
+          echo 'AEGIS_STATIC_SAFETY_PASS'
