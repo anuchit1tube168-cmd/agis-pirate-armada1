@@ -1,6 +1,6 @@
 # E1-3D-STAGING — Reproducibility Experiment
 
-Status: WORKING — BUILD NOT YET EVIDENCED
+Status: WORKING — IMPLEMENTATION PRODUCED; CI/REVIEWS PENDING
 Phase: 2B staging/sandbox only; production write OFF
 Signal: SIG-004
 Downstream: JOB-008 / E1-3D-STAGING
@@ -10,79 +10,48 @@ QA/Eval: SENTINEL / AG-008
 Learning review: MENTOR / AG-012
 Activated: 2026-10-27
 
-## Activation rationale
-- VERIFIED FACT: JOB-007 remains unable to produce accepted customer evidence without an approved firsthand buyer/user interaction; fabricated evidence is prohibited.
-- VERIFIED FACT: SIG-004 is routed to JOB-008 and remains `ROUTED_UNVALIDATED`.
-- INFERENCE: while the revenue-evidence route is access-blocked, JOB-008 is the highest-priority unresolved Scout experiment that can be advanced safely in staging without external outreach, secrets, production data, or production writes.
-- UNKNOWN: whether the pattern improves reproducibility, reuse, or elapsed time. Activation is not validation.
-
 ## Claim discipline
-- VERIFIED FACT: SIG-004 exists in the Scout inbox and is routed to this experiment.
-- VERIFIED FACT: this experiment uses JOB-008 so its evidence chain remains separate from JOB-006 Mission Dashboard Baseline.
+- VERIFIED FACT: SIG-004 is routed to this experiment and remains unvalidated.
+- VERIFIED FACT: a minimal implementation now exists under `experiments/e1-3d-staging/` with renderer-independent deterministic state transitions, Three.js rendering, keyboard/button commands, reduced-motion handling and a WebGL failure fallback.
+- VERIFIED FACT: `.github/workflows/job008-e1-3d-check.yml` defines clean dependency install, typecheck, deterministic state tests, production build and static fallback/reduced-motion assertions.
+- UNKNOWN: CI PASS/FAIL at this evidence update; no run result has been accepted as evidence yet.
 - SOURCE CLAIM: creator-owned public material suggests a Three.js + TypeScript/Vite interactive-web build pattern.
-- HYPOTHESIS: explicit state/simulation/render/input/UI separation plus fallback behavior will improve reproducibility/reuse without lowering quality.
-- UNKNOWN: elapsed time, defect count, rework count, bundle/build time, reuse gain, and whether this pattern deserves SKILL.md promotion.
+- HYPOTHESIS: explicit state/render/input/UI separation plus fallback behavior will improve reproducibility/reuse without lowering quality.
+- UNKNOWN: elapsed human time, defects, rework, reuse gain and whether this deserves skill promotion.
 
-## Build scope
-Build a minimal interactive 3D configurator in staging/sandbox only. The artifact must be small enough to reproduce from a clean checkout and must not require secrets, privileged client writes, production data, or production deployment.
-
-Required boundaries:
-1. `state` — serializable application/configuration state; no renderer dependency.
-2. `simulation` — deterministic state transitions; no DOM/Three.js side effects.
-3. `render` — Three.js scene/camera/renderer and visual projection of state.
-4. `input` — pointer/keyboard intent translated into commands; no business-state mutation outside the transition API.
-5. `ui` — HTML/CSS controls/status; no direct scene ownership.
-6. `data` — typed static configuration/catalog data separated from runtime state.
-
-## Minimum behavior
-- Load one simple 3D object/primitive without external secrets or paid assets.
-- At least two deterministic configuration choices change visible state.
-- Keyboard-accessible controls for the critical interaction.
-- Empty/loading/error state where applicable.
-- Reduced-motion or non-animated fallback path.
-- If WebGL initialization fails, show a usable explanatory fallback instead of a blank screen.
+## Implementation scope
+Artifact: `experiments/e1-3d-staging/`
+- `src/state.ts`: serializable state and deterministic transition API; no renderer dependency.
+- `src/main.ts`: Three.js projection of state, UI/input dispatch, reduced-motion path and fail-usable WebGL fallback.
+- `tests/state.test.ts`: deterministic transition and reversible motion tests.
+- `package.json` + `tsconfig.json`: minimal TypeScript/Vite/Three.js package.
+- `index.html`: staging shell with keyboard-compatible command path.
 
 ## Reproducibility gates
-A clean-checkout run must record exact commands and outputs for:
-1. dependency install;
-2. typecheck;
-3. build;
-4. automated test of at least one critical deterministic state transition;
-5. automated or documented smoke check of fallback behavior.
+Required evidence before PASS:
+1. clean dependency install — PENDING CI EVIDENCE;
+2. typecheck — PENDING CI EVIDENCE;
+3. build — PENDING CI EVIDENCE;
+4. deterministic critical-state automated test — PENDING CI EVIDENCE;
+5. fallback/reduced-motion smoke/assertion — PENDING CI EVIDENCE.
 
 PASS requires all five gates to pass with no secrets and no production writes.
 
 ## Architecture review — AETHER
-Review before skill consideration:
-- state is renderer-independent;
-- deterministic transitions are testable without browser rendering;
-- input/UI cannot bypass transition boundary;
-- render layer can be replaced without rewriting business state;
-- fallback path is explicit;
-- dependencies are minimal and justified.
+Review criteria: state renderer-independence; deterministic transition testability; no UI/input bypass of transition boundary; replaceable render layer; explicit fallback; minimal justified dependencies.
 
 Verdict: PENDING.
 
 ## QA/Eval — SENTINEL
-Record:
-- clean-checkout PASS/FAIL;
-- typecheck PASS/FAIL;
-- build PASS/FAIL;
-- critical-state test PASS/FAIL;
-- fallback smoke PASS/FAIL;
-- elapsed human time;
-- defects found;
-- rework cycles;
-- reused assets/components;
-- unresolved defects.
+CI workflow is present, but no successful run is claimed here until the run result is retrieved and reviewed.
 
 Verdict: PENDING.
 
 ## Promotion rule — MENTOR
-Do not create or promote a SKILL.md from this experiment unless SENTINEL reproduces the clean build/test and AETHER passes the boundary review. One passing experiment is evidence for a skill candidate, not proof of generality. Prefer merging the validated lesson into an existing web/full-stack/game-development skill when possible.
+Do not create/promote a SKILL.md unless SENTINEL reproduces the clean build/test and AETHER passes the boundary review. One passing experiment is only evidence for a skill candidate; prefer merging a validated lesson into an existing skill.
 
 ## Failure rule
-On failure, preserve the failed hypothesis and root cause, change one constraint/checklist/tooling assumption, and retest. Do not create a new Agent to bypass a build/tool/access blocker.
+On failure, preserve failed hypothesis/root cause, change one constraint/checklist/tooling assumption and retest. Do not create a new Agent to bypass build/tool/access blockers.
 
 ## Acceptance outcome
-Current outcome: UNKNOWN — experiment is ACTIVE, but implementation/build/test evidence has not yet been produced. Do not mark PASS, skill-candidate, or DONE until the five reproducibility gates and independent reviews have evidence.
+Current outcome: UNKNOWN — implementation exists, but JOB-008 remains ACTIVE and must not become REVIEW/DONE until all five gates plus AETHER/SENTINEL reviews have evidence.
