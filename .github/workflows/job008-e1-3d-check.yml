@@ -1,0 +1,31 @@
+name: JOB-008 E1 3D Reproducibility
+on:
+  push:
+    paths:
+      - 'experiments/e1-3d-staging/**'
+      - '.github/workflows/job008-e1-3d-check.yml'
+  workflow_dispatch:
+jobs:
+  sentinel:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: experiments/e1-3d-staging
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Clean dependency install
+        run: npm install --ignore-scripts --no-audit --no-fund
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Deterministic critical-state tests
+        run: npm test
+      - name: Production build
+        run: npm run build
+      - name: Static fallback and reduced-motion assertions
+        run: |
+          grep -q "prefers-reduced-motion" src/main.ts
+          grep -q "3D unavailable" src/main.ts
+          grep -q "production write OFF" ../../evidence/E1_3D_STAGING_EXPERIMENT.md
