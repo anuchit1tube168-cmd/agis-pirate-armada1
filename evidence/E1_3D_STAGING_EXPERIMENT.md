@@ -1,6 +1,6 @@
 # E1-3D-STAGING — Reproducibility Experiment
 
-Status: READY_FOR_BUILD (not validated)
+Status: WORKING — BUILD NOT YET EVIDENCED
 Phase: 2B staging/sandbox only; production write OFF
 Signal: SIG-004
 Downstream: JOB-008 / E1-3D-STAGING
@@ -8,6 +8,13 @@ Owner: MAKER / AG-007
 Architecture review: AETHER / AG-006
 QA/Eval: SENTINEL / AG-008
 Learning review: MENTOR / AG-012
+Activated: 2026-10-27
+
+## Activation rationale
+- VERIFIED FACT: JOB-007 remains unable to produce accepted customer evidence without an approved firsthand buyer/user interaction; fabricated evidence is prohibited.
+- VERIFIED FACT: SIG-004 is routed to JOB-008 and remains `ROUTED_UNVALIDATED`.
+- INFERENCE: while the revenue-evidence route is access-blocked, JOB-008 is the highest-priority unresolved Scout experiment that can be advanced safely in staging without external outreach, secrets, production data, or production writes.
+- UNKNOWN: whether the pattern improves reproducibility, reuse, or elapsed time. Activation is not validation.
 
 ## Claim discipline
 - VERIFIED FACT: SIG-004 exists in the Scout inbox and is routed to this experiment.
@@ -78,4 +85,4 @@ Do not create or promote a SKILL.md from this experiment unless SENTINEL reprodu
 On failure, preserve the failed hypothesis and root cause, change one constraint/checklist/tooling assumption, and retest. Do not create a new Agent to bypass a build/tool/access blocker.
 
 ## Acceptance outcome
-Current outcome: UNKNOWN — experiment specification is ready, implementation/evidence has not yet been produced.
+Current outcome: UNKNOWN — experiment is ACTIVE, but implementation/build/test evidence has not yet been produced. Do not mark PASS, skill-candidate, or DONE until the five reproducibility gates and independent reviews have evidence.
