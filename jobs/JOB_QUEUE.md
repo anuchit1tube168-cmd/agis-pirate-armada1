@@ -100,11 +100,11 @@ IF_PASS: mark TODO-011 only after review evidence exists, then execute interview
 IF_FAIL: keep TODO-011 open, identify the missing evidence/access blocker, and change the evidence route rather than inventing an ICP.
 
 ### JOB-008 — E1-3D Staging Reproducibility Experiment
-STATUS: QUEUED
+STATUS: ACTIVE
 OWNER_AGENT: MAKER / AG-007
 REVIEWER: AETHER / AG-006 then SENTINEL / AG-008
 BUSINESS_OBJECTIVE: test whether the SIG-004 3D/web build pattern improves reproducibility/reuse without lowering quality.
-CONTEXT: SIG-004 creator-owned public material; this ID is intentionally separate from JOB-006 to preserve evidence-chain integrity. Staging/sandbox only; not revenue evidence.
+CONTEXT: SIG-004 creator-owned public material; this ID is intentionally separate from JOB-006 to preserve evidence-chain integrity. Staging/sandbox only; not revenue evidence. Activated 2026-10-27 because JOB-007 remains blocked on approved firsthand evidence and SIG-004 is the highest-priority unresolved Scout signal that can be advanced safely without external outreach or production access.
 DELIVERABLE: minimal Three.js + TypeScript/Vite interactive configurator with separated state/simulation/render/input/UI/data boundaries and reproducible evidence.
 ACCEPTANCE_TEST: clean dependency install; typecheck pass; build pass; >=1 deterministic critical-state automated test; fallback/reduced-motion smoke pass; AETHER boundary review; SENTINEL independent QA; no secrets or production writes.
 TARGET_METRIC: measured elapsed human time, defects, rework, reused assets/components, and pass/fail across all five reproducibility gates.
