@@ -115,3 +115,20 @@ EVIDENCE_REQUIRED: implementation commit/artifact, exact commands/output, AETHER
 EVIDENCE: GitHub Actions run 40665206902 on d66c9a482d64bd768fc99b99839f4d696a21371b PASS 5/5; AETHER re-review PASS; SENTINEL final technical QA PASS; evidence/E1_3D_STAGING_EXPERIMENT.md updated in commit d52ad5828e758367845c5269ba42c163e5471064.
 IF_PASS: MENTOR evaluates MERGE_TO_SKILL vs RETEST; one pass is only skill-candidate evidence and does not prove generality.
 IF_FAIL: preserve failed hypothesis/root cause, change one constraint/checklist/tooling assumption, and retest; do not create a new Agent for a build/tool/access blocker.
+
+### JOB-009 — Second Bounded 3D/Web Reuse Retest
+STATUS: ACTIVE
+OWNER_AGENT: MAKER / AG-007
+REVIEWER: AETHER / AG-006 then SENTINEL / AG-008; MENTOR / AG-012 disposition
+BUSINESS_OBJECTIVE: determine whether the JOB-008 architecture pattern generalizes to a second bounded task with prospective measurement.
+CONTEXT: Required by SIG-004 MENTOR disposition. This is a staging-only retest; production write OFF; it is not revenue evidence.
+DELIVERABLE: second configurator variant with three shapes + wireframe state while preserving deterministic state and separated render/input/UI boundaries.
+ACCEPTANCE_TEST: deterministic tests cover shape/motion/wireframe; typecheck/build pass; fallback/reduced-motion retained; AETHER boundary review; SENTINEL independent QA; no secrets/production writes.
+TARGET_METRIC: prospectively record elapsed human time, defects, rework, reused components and final pass/fail; compare only after measurement exists.
+TIME_BUDGET: measurement starts 2026-10-29 before implementation expansion; do not backfill JOB-008 elapsed time.
+DEPENDENCIES: JOB-008 technical acceptance; skills/WEB_APP_FULLSTACK_GAMEDEV.md candidate; evidence/JOB-009-3D-RETEST.md.
+PERMISSION_LEVEL: staging/sandbox write only; production write OFF.
+EVIDENCE_REQUIRED: implementation commits, exact test/build outputs, elapsed measurement, defect/rework log, reuse count, AETHER/SENTINEL verdicts.
+EVIDENCE: initial state slice commit 80ae8304b4cd3104a5a1a91592bb9fc05dd8b0c9; prospective evidence record commit 593122b4533167350b5a7126eb13d8cf6becb3bf.
+IF_PASS: MENTOR compares JOB-008/JOB-009 and decides PROMOTE / MERGE_TO_SKILL / RETEST.
+IF_FAIL: preserve failure evidence, change one constraint, retest; do not create a new Agent for a code/tool/dependency blocker.
