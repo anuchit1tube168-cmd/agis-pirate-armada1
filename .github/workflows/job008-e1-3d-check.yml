@@ -30,5 +30,7 @@ jobs:
       - name: Static fallback and reduced-motion assertions
         run: |
           grep -q "prefers-reduced-motion" src/main.ts
-          grep -q "3D unavailable" src/main.ts
+          grep -q "showFallback" src/main.ts
+          grep -q "3D unavailable" src/ui.ts
+          grep -q "markReducedMotion" src/ui.ts
           grep -q "production write OFF" ../../evidence/E1_3D_STAGING_EXPERIMENT.md
