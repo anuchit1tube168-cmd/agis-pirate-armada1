@@ -100,17 +100,18 @@ IF_PASS: mark TODO-011 only after review evidence exists, then execute interview
 IF_FAIL: keep TODO-011 open, identify the missing evidence/access blocker, and change the evidence route rather than inventing an ICP.
 
 ### JOB-008 — E1-3D Staging Reproducibility Experiment
-STATUS: ACTIVE
+STATUS: REVIEW
 OWNER_AGENT: MAKER / AG-007
-REVIEWER: AETHER / AG-006 then SENTINEL / AG-008
+REVIEWER: AETHER / AG-006 then SENTINEL / AG-008; MENTOR / AG-012 learning disposition pending
 BUSINESS_OBJECTIVE: test whether the SIG-004 3D/web build pattern improves reproducibility/reuse without lowering quality.
-CONTEXT: SIG-004 creator-owned public material; this ID is intentionally separate from JOB-006 to preserve evidence-chain integrity. Staging/sandbox only; not revenue evidence. Activated 2026-10-27 because JOB-007 remains blocked on approved firsthand evidence and SIG-004 is the highest-priority unresolved Scout signal that can be advanced safely without external outreach or production access.
-DELIVERABLE: minimal Three.js + TypeScript/Vite interactive configurator with separated state/simulation/render/input/UI/data boundaries and reproducible evidence.
+CONTEXT: SIG-004 creator-owned public material; this ID is intentionally separate from JOB-006 to preserve evidence-chain integrity. Staging/sandbox only; not revenue evidence. Technical acceptance passed on 2026-10-28 after targeted rework and retest; business/time-compression claims remain unproven.
+DELIVERABLE: minimal Three.js + TypeScript/Vite interactive configurator with separated state/render/input/UI boundaries and reproducible evidence.
 ACCEPTANCE_TEST: clean dependency install; typecheck pass; build pass; >=1 deterministic critical-state automated test; fallback/reduced-motion smoke pass; AETHER boundary review; SENTINEL independent QA; no secrets or production writes.
 TARGET_METRIC: measured elapsed human time, defects, rework, reused assets/components, and pass/fail across all five reproducibility gates.
-TIME_BUDGET: measure actual elapsed/human time; no invented target before baseline.
+TIME_BUDGET: measured elapsed/human time remains UNKNOWN; do not invent it after the fact.
 DEPENDENCIES: SIG-004 and evidence/E1_3D_STAGING_EXPERIMENT.md.
 PERMISSION_LEVEL: staging/sandbox write only; production write OFF.
 EVIDENCE_REQUIRED: implementation commit/artifact, exact commands/output, AETHER verdict, SENTINEL verdict, elapsed time, defects/rework, reuse evidence.
-IF_PASS: MENTOR evaluates merge into existing web/full-stack/game-development skill; one pass is only skill-candidate evidence.
+EVIDENCE: GitHub Actions run 40665206902 on d66c9a482d64bd768fc99b99839f4d696a21371b PASS 5/5; AETHER re-review PASS; SENTINEL final technical QA PASS; evidence/E1_3D_STAGING_EXPERIMENT.md updated in commit d52ad5828e758367845c5269ba42c163e5471064.
+IF_PASS: MENTOR evaluates MERGE_TO_SKILL vs RETEST; one pass is only skill-candidate evidence and does not prove generality.
 IF_FAIL: preserve failed hypothesis/root cause, change one constraint/checklist/tooling assumption, and retest; do not create a new Agent for a build/tool/access blocker.
