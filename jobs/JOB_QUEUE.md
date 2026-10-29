@@ -117,18 +117,18 @@ IF_PASS: MENTOR evaluates MERGE_TO_SKILL vs RETEST; one pass is only skill-candi
 IF_FAIL: preserve failed hypothesis/root cause, change one constraint/checklist/tooling assumption, and retest; do not create a new Agent for a build/tool/access blocker.
 
 ### JOB-009 — Second Bounded 3D/Web Reuse Retest
-STATUS: ACTIVE
+STATUS: REVIEW
 OWNER_AGENT: MAKER / AG-007
-REVIEWER: AETHER / AG-006 then SENTINEL / AG-008; MENTOR / AG-012 disposition
+REVIEWER: AETHER / AG-006 then SENTINEL / AG-008; MENTOR / AG-012 disposition complete
 BUSINESS_OBJECTIVE: determine whether the JOB-008 architecture pattern generalizes to a second bounded task with prospective measurement.
-CONTEXT: Required by SIG-004 MENTOR disposition. This is a staging-only retest; production write OFF; it is not revenue evidence.
+CONTEXT: Required by SIG-004 MENTOR disposition. This is a staging-only retest; production write OFF; it is not revenue evidence. Technical acceptance and independent QA passed; measurement objective remains partial because elapsed-human-time precision is insufficient.
 DELIVERABLE: second configurator variant with three shapes + wireframe state while preserving deterministic state and separated render/input/UI boundaries.
 ACCEPTANCE_TEST: deterministic tests cover shape/motion/wireframe; typecheck/build pass; fallback/reduced-motion retained; AETHER boundary review; SENTINEL independent QA; no secrets/production writes.
 TARGET_METRIC: prospectively record elapsed human time, defects, rework, reused components and final pass/fail; compare only after measurement exists.
-TIME_BUDGET: measurement starts 2026-10-29 before implementation expansion; do not backfill JOB-008 elapsed time.
+TIME_BUDGET: measurement started 2026-10-29 before implementation expansion, but precise start/end human-time was not captured; elapsed remains UNKNOWN and must not be backfilled from commit/CI timestamps.
 DEPENDENCIES: JOB-008 technical acceptance; skills/WEB_APP_FULLSTACK_GAMEDEV.md candidate; evidence/JOB-009-3D-RETEST.md.
 PERMISSION_LEVEL: staging/sandbox write only; production write OFF.
 EVIDENCE_REQUIRED: implementation commits, exact test/build outputs, elapsed measurement, defect/rework log, reuse count, AETHER/SENTINEL verdicts.
-EVIDENCE: initial state slice commit 80ae8304b4cd3104a5a1a91592bb9fc05dd8b0c9; prospective evidence record commit 593122b4533167350b5a7126eb13d8cf6becb3bf.
-IF_PASS: MENTOR compares JOB-008/JOB-009 and decides PROMOTE / MERGE_TO_SKILL / RETEST.
+EVIDENCE: state slice 80ae8304b4cd3104a5a1a91592bb9fc05dd8b0c9; evidence record 593122b4533167350b5a7126eb13d8cf6becb3bf; CI run 40824751914 SUCCESS on 768bda86295ad024dc48c8786df7ce0acedf053e; AETHER PASS; SENTINEL independent QA PASS; five reused pattern categories; one CI bootstrap/dependency-ordering defect corrected; product defects observed in configured acceptance gates after executable retest: 0; evidence/JOB-009-3D-RETEST.md records limits.
+IF_PASS: MENTOR disposition is RETEST / DO NOT PROMOTE STABLE SKILL YET because elapsed-human-time and cross-project generality remain UNKNOWN. Next retest must use a materially different web/3D context, precise start/end human-time, defect/rework/reuse log, same architecture/QA gates, and browser smoke where applicable.
 IF_FAIL: preserve failure evidence, change one constraint, retest; do not create a new Agent for a code/tool/dependency blocker.
