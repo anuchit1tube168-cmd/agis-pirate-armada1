@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {initialState,transition} from '../src/state';
+test('shape cycle is deterministic across three shapes',()=>{let s=transition(initialState,{type:'NEXT_SHAPE'});assert.equal(s.shape,'sphere');s=transition(s,{type:'NEXT_SHAPE'});assert.equal(s.shape,'cone');s=transition(s,{type:'NEXT_SHAPE'});assert.equal(s.shape,'box');assert.equal(initialState.shape,'box');});
+test('motion is reversible',()=>{const off=transition(initialState,{type:'TOGGLE_MOTION'});assert.equal(off.motion,false);assert.deepEqual(transition(off,{type:'TOGGLE_MOTION'}),initialState);});
+test('wireframe is reversible and independent',()=>{const on=transition(initialState,{type:'TOGGLE_WIREFRAME'});assert.equal(on.wireframe,true);assert.equal(on.shape,'box');assert.equal(on.motion,true);assert.deepEqual(transition(on,{type:'TOGGLE_WIREFRAME'}),initialState);});
