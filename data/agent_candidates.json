@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "updated": "2026-09-20",
+  "updated": "2026-10-29",
   "policy": "No permanent agent without Capability Gap + A/B Eval.",
   "candidates": [],
   "latestDecision": {
-    "capabilityGap": "Cloudflare staging deploy blocked by missing credentials/D1 ID",
+    "capabilityGap": "JOB-009 has repeated bounded technical evidence but lacks defensible elapsed-human-time and cross-project generality evidence for stable skill promotion.",
     "newAgentNeeded": false,
-    "reason": "This is an access/deployment dependency, not an agent capability gap. Creating a Cloudflare Agent would not solve missing authorization.",
-    "route": "Keep INTEGRATION Core Agent blocked; improve tooling/access when authorized."
+    "reason": "This is an evidence/measurement gap, not an Agent capability gap. JOB-009 CI, AETHER review and SENTINEL bounded QA pass; the remaining uncertainty is measurable time compression and broader generality.",
+    "route": "NO_AGENT_NEEDED. Keep the existing Core route MAKER -> AETHER -> SENTINEL -> MENTOR; run a materially different bounded retest with precise start/end human-time, defect/rework/reuse evidence and browser smoke before any stable skill promotion."
   }
 }
