@@ -2,28 +2,35 @@
 
 ## Claim state
 - VERIFIED FACT: JOB-008 technical acceptance passed; MENTOR required a second bounded retest before stable skill promotion.
-- HYPOTHESIS: reusing the separated state/render/input/UI pattern will preserve quality and reduce rework on a second task.
-- UNKNOWN: total elapsed human time, final defect count, rework count, reuse ratio, time-compression factor, cross-project generality.
+- VERIFIED FACT: JOB-009 GitHub Actions run 40824751914 on commit 768bda86295ad024dc48c8786df7ce0acedf053e completed SUCCESS.
+- VERIFIED FACT: CI passed setup-node, lockfile generation, clean `npm ci`, typecheck, deterministic tests, production build, and static fallback/reduced-motion assertions.
+- VERIFIED FACT: AETHER boundary review PASS: `state.ts` remains transition authority; `render.ts` owns Three.js projection/frame behind `RenderBoundary`; `input.ts` maps user intent to Commands; `ui.ts` owns fallback/reduced-motion markers; `main.ts` composes and dispatches without embedding domain transition logic.
+- HYPOTHESIS: reusing the separated state/render/input/UI pattern preserves quality and reduces rework on a second task.
+- UNKNOWN: total elapsed human time, final quantified reuse ratio, time-compression factor, cross-project generality beyond these two bounded tasks.
 
 ## Prospective measurement start
-Measurement started before implementation expansion on 2026-10-29 Asia/Bangkok. Do not backfill elapsed time from JOB-008.
+Measurement started before implementation expansion on 2026-10-29 Asia/Bangkok. Do not backfill elapsed time from JOB-008. The start timestamp was not recorded at sufficient precision to calculate a defensible elapsed-human-time value; keep elapsed time UNKNOWN rather than infer it from commit or CI timestamps.
 
 ## Bounded task
 Extend the configurator domain to three shapes plus a wireframe state while preserving renderer-independent deterministic transitions and the existing boundary contract. Staging/sandbox only; production write OFF.
 
-## Reuse plan
-Reuse conceptually from JOB-008: deterministic `state.ts` transition authority; RenderBoundary contract; input-to-Command dispatch; UI/fallback separation; CI acceptance pattern. Reuse must be counted only after the retest implementation is complete.
+## Reuse observed
+Reused architecture/pattern categories from JOB-008: (1) deterministic `state.ts` transition authority, (2) `RenderBoundary` contract, (3) input-to-Command dispatch, (4) UI/fallback separation, (5) CI acceptance pattern. This is five verified reused pattern categories, not a percentage reuse claim.
+
+## Defect / rework log
+1. CI bootstrap defect: workflow configured setup-node npm cache against a lockfile that did not yet exist. Classification: workflow/dependency-ordering blocker, not product defect and not Agent capability gap. Smallest fix removed the premature cache dependency while retaining the acceptance gates. Retest commit: `768bda86295ad024dc48c8786df7ce0acedf053e`.
+2. Product defects observed after executable retest: 0 in run 40824751914 acceptance gates. This does not prove absence of all runtime/browser defects.
 
 ## Acceptance
-1. deterministic state tests cover shape cycle, motion and wireframe;
-2. typecheck/build pass;
-3. render/input/UI boundaries remain separated;
-4. fallback/reduced-motion behavior remains available;
-5. AETHER review + SENTINEL independent QA;
-6. record elapsed time, defects, rework and reused components prospectively.
+1. deterministic state tests cover shape cycle, motion and wireframe — PASS in CI run 40824751914;
+2. typecheck/build pass — PASS in CI run 40824751914;
+3. render/input/UI boundaries remain separated — AETHER PASS by source review;
+4. fallback/reduced-motion behavior remains available — PASS static CI assertions;
+5. AETHER review — PASS; SENTINEL independent QA — PENDING;
+6. record elapsed time, defects, rework and reused components prospectively — defects/rework/reuse recorded; elapsed-human-time remains UNKNOWN because start precision is insufficient.
 
 ## Current evidence
-First implementation slice created `experiments/e1-3d-retest-2/src/state.ts` with three-shape cycle and wireframe state. This is not acceptance evidence and does not make the job DONE.
+Implementation is technically executable and CI reproducible. GitHub Actions run 40824751914 completed SUCCESS with all configured validation steps passing. AETHER source review passes the architecture boundary requirement. JOB-009 must remain ACTIVE until SENTINEL independent QA and MENTOR disposition are recorded; do not mark DONE from CI or visual behavior alone.
 
 ## Learning disposition
-Pending. PROMOTE / MERGE_TO_SKILL / RETEST / REJECT only after acceptance and measurement evidence.
+Pending SENTINEL independent QA and MENTOR decision. PROMOTE / MERGE_TO_SKILL / RETEST / REJECT only after independent QA; no new Agent is justified by the observed workflow blocker.
