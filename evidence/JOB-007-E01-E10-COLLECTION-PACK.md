@@ -4,7 +4,7 @@ Status: READY_FOR_APPROVED_COLLECTION — contains no customer evidence.
 Phase: 2B staging only; production write OFF.
 Owner: ECHO / AG-004
 Reviewer: FORGE / AG-005
-Economics consumer after evidence: ORACLE / AG-003
+Economics consumer after evidence: ORACLE / AG-002
 
 ## Purpose
 Turn the reviewed ICP hypothesis into ten traceable evidence records without fabricating demand, ROI, ACV, pipeline, or customer facts. This pack does not authorize external outreach.
