@@ -1,6 +1,6 @@
 # JOB-007 — Initial ICP Evidence Gate
 
-Status: REVIEW — hypothesis only; no customer or revenue claim is verified by this artifact.
+Status: ACTIVE — evidence collection gate; initial hypothesis/review complete, customer validation incomplete.
 Phase: 2B staging only; production write OFF.
 Owner: ECHO / AG-004
 Reviewer: FORGE / AG-005
@@ -56,6 +56,7 @@ This artifact authorizes no external outreach. Interview messages/scripts may be
 - Repeated workflow hypothesis: PASS, deliberately unselected
 - Plan capable of producing 10 evidence points: PASS
 - Fabricated customer/revenue facts: 0
-- FORGE independent review: PENDING
-- TODO-011 completion: NOT YET; remains open until reviewer evidence exists
-- JOB-002 Golden Workflow selection: BLOCKED on 10 evidence records
+- FORGE independent review: PASS_FOR_EVIDENCE_COLLECTION — evidence/JOB-007-FORGE-REVIEW.md
+- TODO-011 completion: COMPLETE for the initial hypothesis/review gate only; no customer validation implied
+- Customer evidence collection: ACTIVE; E01–E10 required from approved firsthand interactions
+- JOB-002 Golden Workflow selection: BLOCKED on 10 accepted evidence records
