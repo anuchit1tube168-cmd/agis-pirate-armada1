@@ -23,9 +23,11 @@ Update weekly with verified data.
 - Status: **UNKNOWN**
 - Verified cumulative revenue: **$0**
 - Revenue gap to primary target: **$10,000,000**
-- Target date / months remaining: **UNKNOWN**
-- Observed funnel rates: **UNKNOWN**
-- Reason: time-based trajectory cannot be evaluated without target date/months remaining and observed funnel evidence. Do not convert missing inputs into RED/YELLOW/GREEN certainty.
+- Planning horizon: **2026-09-21 → 2026-12-20** (ASTRA LEVERAGE 90D).
+- Calendar days remaining as of 2026-10-31: **50 days**.
+- Deterministic required new verified revenue cadence: **$200,000/day**, **$1,400,000/7 days**, **$6,000,000/30-day equivalent**.
+- Observed funnel rates / qualified pipeline: **UNKNOWN / $0 currently recorded**.
+- Reason: target-date math is now explicit, but achievable trajectory still cannot be evaluated without observed funnel and accepted customer evidence. Cadence values are target math, not a forecast.
 - Authoritative gate: `DO_THE_MATH.md` → `UNKNOWN / RED / YELLOW / GREEN`.
 
 ## Weekly leverage review — 2026-10-31
@@ -34,7 +36,7 @@ Update weekly with verified data.
 - Best reused asset: **INFERENCE / technical-only** — the JOB-008/JOB-009 3D/web architecture pattern has repeated bounded technical evidence and five reused pattern categories, but stable skill promotion remains blocked pending a materially different retest with precise timing.
 - Biggest failure: **VERIFIED FACT** — customer evidence gate remains the binding revenue-evidence bottleneck: Data OS `08_CUSTOMER` contains no customer rows; TODO-012–017 remain open.
 - Lesson extracted: **VERIFIED FACT** — technical pass/reuse evidence must not be promoted into revenue, ROI, customer-demand, or time-compression claims without the corresponding measured evidence.
-- Math status: **UNKNOWN**.
+- Math status: **UNKNOWN** — $10M gap / 50 days = $200k/day required cadence, but funnel feasibility remains unverified.
 - One constraint to attack next: obtain the first separately approved firsthand buyer/user interaction and record CE-001/E01; FORGE then ACCEPT/REJECT measurability before ORACLE uses any fields for economics.
 - Scout route: `SIG-004 → JOB-008 / JOB-009 → RETEST`; no new Agent is justified by current evidence.
 - Safety posture: Phase 2B staging-only; production write OFF; no secrets in repo/client; consequential production writes remain approval-gated.
