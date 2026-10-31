@@ -28,11 +28,13 @@ Update weekly with verified data.
 - Reason: time-based trajectory cannot be evaluated without target date/months remaining and observed funnel evidence. Do not convert missing inputs into RED/YELLOW/GREEN certainty.
 - Authoritative gate: `DO_THE_MATH.md` → `UNKNOWN / RED / YELLOW / GREEN`.
 
-## Weekly leverage review
-- Biggest revenue mover:
-- Biggest time saver:
-- Best reused asset:
-- Biggest failure:
-- Lesson extracted:
-- Math status: UNKNOWN / GREEN / YELLOW / RED
-- One constraint to attack next:
+## Weekly leverage review — 2026-10-31
+- Biggest revenue mover: **UNKNOWN** — no accepted firsthand customer evidence or qualified pipeline exists yet; do not infer a mover from technical activity.
+- Biggest time saver: **UNKNOWN** — JOB-009 technical retest passed, but precise prospective elapsed-human-time was not captured, so no time-compression claim is allowed.
+- Best reused asset: **INFERENCE / technical-only** — the JOB-008/JOB-009 3D/web architecture pattern has repeated bounded technical evidence and five reused pattern categories, but stable skill promotion remains blocked pending a materially different retest with precise timing.
+- Biggest failure: **VERIFIED FACT** — customer evidence gate remains the binding revenue-evidence bottleneck: Data OS `08_CUSTOMER` contains no customer rows; TODO-012–017 remain open.
+- Lesson extracted: **VERIFIED FACT** — technical pass/reuse evidence must not be promoted into revenue, ROI, customer-demand, or time-compression claims without the corresponding measured evidence.
+- Math status: **UNKNOWN**.
+- One constraint to attack next: obtain the first separately approved firsthand buyer/user interaction and record CE-001/E01; FORGE then ACCEPT/REJECT measurability before ORACLE uses any fields for economics.
+- Scout route: `SIG-004 → JOB-008 / JOB-009 → RETEST`; no new Agent is justified by current evidence.
+- Safety posture: Phase 2B staging-only; production write OFF; no secrets in repo/client; consequential production writes remain approval-gated.
