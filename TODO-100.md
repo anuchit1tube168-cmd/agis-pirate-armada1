@@ -4,15 +4,15 @@
 
 ## 001–010 — DO THE MATH
 - [x] 001 Define $10M primary target precisely. Evidence: `DO_THE_MATH.md` Primary target = USD 10,000,000 cumulative verified revenue unless Boss Agis explicitly changes it.
-- [ ] 002 Set target date and months remaining.
-- [ ] 003 Build daily gap-to-$10M calculation.
+- [x] 002 Set target date and months remaining. Evidence: `DO_THE_MATH.md` locks the explicit ASTRA LEVERAGE 90D planning horizon to 2026-09-21 → 2026-12-20 and records 50 calendar days remaining as of 2026-10-31; deterministic calendar/gap math only, not a revenue forecast.
+- [x] 003 Build daily gap-to-$10M calculation. Evidence: `DO_THE_MATH.md` defines Required New Revenue / Day = Revenue Gap / Calendar Days Remaining and records $200,000/day from the verified $10M gap over 50 remaining days as of 2026-10-31.
 - [x] 004 Maintain Enterprise, Mid-market and Hybrid revenue scenarios. Evidence: `DO_THE_MATH.md` Revenue scenarios; explicitly planning examples, not forecasts.
 - [x] 005 Calculate customer count required at multiple ACVs. Evidence: `DO_THE_MATH.md` ACV sensitivity table ($10k–$1M ACV), using `ceil(10,000,000 / ACV)` and explicitly labeled deterministic target math, not forecast.
 - [ ] 006 Calculate qualified pipeline required from observed win rate.
 - [ ] 007 Calculate lead/meeting requirements from observed funnel.
 - [ ] 008 Define gross-margin floor.
 - [ ] 009 Define maximum delivery cost/customer.
-- [x] 010 Create RED status when current trajectory fails the math. Evidence: `DO_THE_MATH.md` Math control status gate defines UNKNOWN/RED/YELLOW/GREEN from observed evidence and explicitly keeps current status UNKNOWN while target date/funnel inputs are missing.
+- [x] 010 Create RED status when current trajectory fails the math. Evidence: `DO_THE_MATH.md` Math control status gate defines UNKNOWN/RED/YELLOW/GREEN from observed evidence and explicitly keeps current status UNKNOWN while observed funnel/pipeline/customer evidence remains missing.
 
 ## 011–020 — CUSTOMER EVIDENCE
 - [x] 011 Choose one initial ICP. Evidence: `evidence/JOB-007-ICP-EVIDENCE-PLAN.md` defines the initial ICP as a hypothesis (operations-heavy organizations with recurring measurable approval/document/data workflows); independent FORGE review `evidence/JOB-007-FORGE-REVIEW.md` = PASS_FOR_EVIDENCE_COLLECTION. This closes only the initial-hypothesis/review gate, not customer validation.
