@@ -5,10 +5,29 @@ Target = **USD 10,000,000** cumulative verified revenue unless Boss Agis explici
 
 This is a target, not a guarantee. The system must continuously prove whether the current trajectory can reach it.
 
+## 90-day planning horizon
+- Project instruction: **ASTRA LEVERAGE 90D**.
+- Planning start: **2026-09-21**.
+- Planning target date: **2026-12-20** (90 calendar days after the planning start).
+- Classification: **VERIFIED PROJECT PARAMETER / deterministic calendar math**, not a revenue forecast.
+- If Boss Agis explicitly changes the 90-day horizon or target date, recalculate all cadence math.
+
+As of **2026-10-31**:
+- Verified cumulative revenue: **$0**.
+- Revenue gap: **$10,000,000**.
+- Calendar days remaining to 2026-12-20: **50 days**.
+- Required average new verified revenue/day: **$200,000** (= $10,000,000 / 50).
+- Required average new verified revenue/7 days: **$1,400,000**.
+- Required average new verified revenue/30-day equivalent: **$6,000,000**.
+- These cadence values are deterministic gap math only; they do **not** claim the revenue is achievable.
+
 ## Core equations
 
 ```
 Revenue Gap = 10,000,000 - Verified Cumulative Revenue
+
+Required New Revenue / Day =
+Revenue Gap / Calendar Days Remaining
 
 Required New Revenue / Month =
 Revenue Gap / Months Remaining
@@ -36,7 +55,7 @@ The control status is evidence-based and must never convert missing inputs into 
 - **YELLOW** — trajectory can be calculated but evidence is still thin/volatile or coverage is only marginally above the required level.
 - **GREEN** — observed trajectory and pipeline coverage meet/exceed the required math with current evidence and no verified red-alert condition.
 
-Current status (2026-09-20): **UNKNOWN**, not RED. Verified cumulative revenue is $0 and the gap is $10,000,000, but target date/months remaining and observed funnel rates are not yet available; therefore a time-based trajectory claim would be invented.
+Current status (2026-10-31): **UNKNOWN**. The 90-day target date is now explicit and verified revenue remains $0, leaving a $10,000,000 gap and a deterministic required cadence of $200,000/day across the remaining 50 calendar days. However, observed funnel rates, qualified pipeline, and accepted customer evidence are still missing; therefore an achievable trajectory claim or RED/YELLOW/GREEN funnel judgment would still be invented.
 
 ## ACV sensitivity — customer/win count for $10M
 This is deterministic target math, not a forecast. Counts are rounded up to whole wins where required.
